@@ -1,5 +1,7 @@
 package cn.ihuoniao.activity;
 
+import com.ldoublem.loadingviewlib.view.LVCircularRing;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,12 +13,10 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
 
-import com.ldoublem.loadingviewlib.view.LVCircularRing;
-
 import cn.ihuoniao.Constant;
 import cn.ihuoniao.R;
 import cn.ihuoniao.base.BaseActivity;
-import cn.ihuoniao.function.util.LogCatUtil;
+import cn.ihuoniao.function.activity.LogActivity;
 import cn.ihuoniao.function.util.Logger;
 import cn.ihuoniao.platform.webview.BridgeWebView;
 import cn.ihuoniao.platform.webview.DefaultHandler;
@@ -47,8 +47,7 @@ public class MainActivity extends BaseActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, LogActivity.class);
-                startActivity(intent);
+                Logger.i("hello world");
             }
         });
     }

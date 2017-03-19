@@ -1,4 +1,22 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cn.ihuoniao.function">
+          package="cn.ihuoniao.function">
+
+    <application
+            android:allowBackup="true">
+
+        <activity android:name=".activity.LogActivity"
+                  android:launchMode="singleTop"
+                  android:screenOrientation="portrait"
+                  android:label="@string/debug_name"
+                  android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+                  android:windowSoftInputMode="adjustPan">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+    </application>
 
 </manifest>

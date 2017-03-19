@@ -1,9 +1,9 @@
 package cn.ihuoniao.base;
 
+import com.jaeger.library.StatusBarUtil;
+
 import android.app.Activity;
 import android.view.View;
-
-import com.jaeger.library.StatusBarUtil;
 
 import cn.ihuoniao.R;
 import cn.ihuoniao.actions.base.ActionsCreator;

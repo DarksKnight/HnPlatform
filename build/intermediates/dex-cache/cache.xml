@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/apple/.android/build-cache/02a6629509ab8a839e69c028e592c9c2e372eb04/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="30103d98fa5ed824b54af839c85e2111f9bde8ec">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/10/classes_92e327212ee57a14d458f8c411c68f0c98c4e4fb.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/.android/build-cache/fb0c4abcc779e230eccd85f2ee9c13ac6355215a/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ee394a892dd21c03a528139c1e8d4e0e1264ac84">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/10/classes_a2d96c6f14fb2865b673cda0f69cd66927be47cf.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/Documents/demo/HnPlatform/business-library/build/intermediates/bundles/default/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="50ec723f38792fbd0ca6129d0a05f04515d696a8">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/4/classes_0f89ef0382eaba6bf7ad45eca9d63fbe967b7497.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/.android/build-cache/25e9a3308bb8ac5d5a1ed224ea35039914d93f45/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="cf836a435a496eb22ff2aa69aa1e619462549f81">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/10/classes_0bf629e93eb2bcb761c96e7f822f17a5f1150b43.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/.android/build-cache/5d11829bbe43c33fcd76e5936206ca5788d833c1/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fa0446a14ed5dd3725047d6399ffea771a564b30">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/10/classes_0b0e915136303597479d7abe731362222cb46f6b.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/.android/build-cache/acd427dcf230f5f88ae474a85b69a1b8d68a6562/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="67eb33110dbacb46a48175b08ae0c96761d2c17d">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/10/classes_741b7e373400a7ef13f29306987b2d004da50868.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/.gradle/caches/modules-2/files-2.1/com.squareup/otto/1.3.8/cf615176cd1177edf71d3c9605f8dc148fede6be/otto-1.3.8.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="cf615176cd1177edf71d3c9605f8dc148fede6be">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/10/otto-1.3.8_e90208d7c68be4a9ebd3d1a85d1147def66e3056.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/Documents/demo/HnPlatform/function-library/build/intermediates/bundles/default/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="76ed9409adb6e9865342652344f82c0c7f0b3514">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/4/classes_df50c62e2ab6ec1811cc23e2264d774981d5471a.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/.android/build-cache/19f79d58671ac2ebd392123c0aefaaf241675534/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1630658fbc2d222b988603c27b4a4249586fbfe7">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/10/classes_35470e09f787c66b8aa80704f78ee18618d7072a.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/.android/build-cache/5e93a93d934ff7a199335eb5e3602250cd07e01f/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9d204f14ac0278b79783a83bf9a74cf9e68d0c10">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/10/classes_370561b9b89d294461da03cd6632be007396520f.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/Documents/demo/HnPlatform/uikit-library/build/intermediates/bundles/default/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="534a0c683b2d8c68524146c9b74f9106ff16ff09">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/4/classes_93035c95b36c9ad9e7746b563072085f98dd5030.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/.android/build-cache/3b99d2d6be6008fd7280ca204f531bc41d5e2ba9/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/10/classes_e1bc5a3b75656143c01f0711b948f3185bf482ff.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/.android/build-cache/3e6cdd045ddbdaec2c379bc8a7662ca090ee468c/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e79aa3d9a16f8c9f16377c0608de70a8f31e5d80">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/10/classes_53a9ff75edceb4da70b70a6d26707af3efce269e.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/.android/build-cache/c40b001e53feb1c27723ff52f4e7337d0e9cc656/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b266c8faa5af72e579b9da36ef35053ffed6ac64">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/10/classes_34b1ee98c4f8f0f4d1b03212eb5f6aab79d9d2f0.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/.android/build-cache/34d6b62de84ca2c70335cf8e384af6b5bf0b997b/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="13717eebb33e0c2e7aecfb05fd53d0bca391e8dc">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/10/classes_a8669f78bbe7779183bfab5f89a0f12bafc592f1.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/.android/build-cache/9f2512b050f724b2ded31ca70105c15e95385936/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="cc787750440674c79521358938111bc3f3421797">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/10/classes_2fede4032827f87b5576f2c88c05d85c1779fcd9.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/Documents/androidSdk/android-sdk-macosx/extras/android/m2repository/com/android/support/support-annotations/25.2.0/support-annotations-25.2.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4a5a82a027706397fff621b22fd6fa796e91d7c5">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/10/support-annotations-25.2.0_dbf29ecd04dcca7301bddf4194d89ca000bba39a.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/.android/build-cache/e8008bd83dab2a1a51b56da7b69cc31d2b8be1a1/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3b8a1048a1127beb355a77d65dcc446bfa3ca93d">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/10/classes_a15eb6634d2f9a1cfd53970cb5cc6f2395e2b4a1.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/.gradle/caches/modules-2/files-2.1/com.alibaba/fastjson/1.1.56.android/4eef0ac3ef5e18db7af5d44ca0228ca5c29dd2f6/fastjson-1.1.56.android.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4eef0ac3ef5e18db7af5d44ca0228ca5c29dd2f6">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/10/fastjson-1.1.56.android_d7e1fffa9c9496dca82824b7d0f419156d2b0468.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/Documents/demo/HnPlatform/function-library/build/intermediates/bundles/default/libs/platform_http_1.1.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8d5267389a7da1f31bc60a7abe2fe76b32a540c6">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/8/platform_http_1.1.2_2d51bdca4da2cba0c6c8d53ffb9c0f177d4af4a4.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/.android/build-cache/b7d3d2db642d2cffe894a9d65b999a89bb5e2f88/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7b3e997517ba1b2ef7d22f0aabec3efbd598b613">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/10/classes_c2437fbb4f7b7aa072df38be453b90f629ac0a25.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/.android/build-cache/312d06bb8ecd06b192fc2dc07af85189772279f7/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="03881e5c9573abec8007769ffb348356233854c7">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/10/classes_f7d08db8ca82b6603166b6583511d4a453a2bebf.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/.android/build-cache/86aeccf18bd8a37a482c17e5970e03c4eefd6813/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="536f64f93222b3d004c884c73ddd8e416108da11">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/10/classes_39ecb5a858eb55e3d2a49f598046dcbcb18b0813.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/.android/build-cache/2fbf976f6fde49b087d4e65965d975be5ed9fa9c/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fcca411028f175f034d209ca24a694c46a88eb03">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/10/classes_5d0b62be1608f6f594a0af87897234d19f3bf1de.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/10/bolts-tasks-1.4.0_fe0aa882ed67d269c43943f236b9ffb98416ff73.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/.android/build-cache/29d3ef5bf3d59f326a273c12e059208507b0a25d/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8fe8a8f77d651982ce5e18f6187dc4daf914ac57">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/10/classes_8b0e108ac1ff187f02db6f8a61a9a56308c6c385.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/Documents/demo/HnPlatform/function-library/build/intermediates/bundles/default/libs/ft_logger_1.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="58961d2997c56f539e2415d399b1e4869ce348e7">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/8/ft_logger_1.0.0_730888d0e46d3ee37eabef3189e9c1064b275be6.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/.android/build-cache/18addd263372e557689485b48c31076827b13b33/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e820b7be8c035dd522da4bc822e8a76c8e27921a">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/10/classes_e18a22e666ee6691ad1b3b126fa49b6d40d899b6.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/.android/build-cache/2f34e113b547d87cf359cfb3f3aa466aafae4887/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d38084015027549951cbaea5d5f6fb795cc81151">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/10/classes_eb8cd0c84ef1e4240a5ab2cf1785c5af795c1189.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/.android/build-cache/4cc6bc5731fd90c68b80cf7a621063b87c5d7e7a/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1aa28b11440779f8a6b0023688e283e9a0dcbb39">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/10/classes_acc22d7fc214a77f0782c7b01df537a899a5d387.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/apple/.android/build-cache/23aed6f311ad3a71692be39306137bd766d4e5cf/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6fb6ac3e8d3b9013819920d9ea11f3803c4c0033">
+        <dex dex="/Users/apple/Documents/demo/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/10/classes_db469e0d0c6bc461a66e1eecd20a8bed0a0ecaca.jar.jar" />
+    </item>
+
+</items>
