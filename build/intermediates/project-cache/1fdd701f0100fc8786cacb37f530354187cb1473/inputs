@@ -1,0 +1,6 @@
+COMMAND=PREDEX_LIBRARY_TO_DEX_ARCHIVE
+FILE_PATH=/Users/apple/Documents/demo/HnPlatform/function-library/build/intermediates/bundles/default/libs/mta-sdk-1.6.2.jar
+FILE_HASH=418868f1416898ed88da34f10e4d770502a8d6b7
+DX_VERSION=1.12
+JUMBO_MODE=false
+OPTIMIZE=true

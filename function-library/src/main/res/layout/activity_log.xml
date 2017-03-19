@@ -24,12 +24,14 @@
 
     </ScrollView>
 
-    <android.support.design.widget.FloatingActionButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
+    <Button android:layout_width="60dp" android:layout_height="50dp"
+            android:id="@+id/btnSave"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:text="save"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="20dp"
-            android:layout_marginRight="20dp"/>
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"/>
 
 </RelativeLayout>
