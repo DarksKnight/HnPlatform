@@ -1,0 +1,6 @@
+COMMAND=PREDEX_LIBRARY_TO_DEX_ARCHIVE
+FILE_PATH=/Users/sdk-app-shy/Documents/other/HnPlatform/function-library/build/intermediates/bundles/default/classes.jar
+FILE_HASH=07bc3c812aa81cb0756b34bcc868ed29cb54ab25
+DX_VERSION=1.12
+JUMBO_MODE=false
+OPTIMIZE=true

@@ -1,13 +1,17 @@
 package cn.ihuoniao.function.activity;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Date;
+
 import cn.ihuoniao.function.R;
+import cn.ihuoniao.function.util.FileUtils;
 import cn.ihuoniao.function.util.LogCatUtil;
 
 /**
@@ -18,6 +22,7 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
 
     private TextView tvLog = null;
     private Button btnSave = null;
+    private String log = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,14 +32,20 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
         tvLog = (TextView) findViewById(R.id.tv_log);
         btnSave = (Button) findViewById(R.id.btnSave);
 
-        tvLog.setText(LogCatUtil.getLog());
+        log = LogCatUtil.getLog();
+        tvLog.setText(log);
         btnSave.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         if (view == btnSave) {
-
+            String path = Environment.getExternalStorageDirectory().getPath() + "/hn_platform/log/log_" + (new Date()).getTime() + ".txt";
+            try {
+                FileUtils.writeFileFromString(path, log, false);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

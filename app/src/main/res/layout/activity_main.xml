@@ -2,24 +2,27 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/rl">
 
     <cn.ihuoniao.platform.webview.BridgeWebView
         android:id="@+id/bwv_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="visible"/>
 
     <com.ldoublem.loadingviewlib.view.LVCircularRing
         android:id="@+id/lvc_loading"
         android:layout_width="@dimen/hn_50dp"
         android:layout_height="@dimen/hn_50dp"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:visibility="visible"/>
 
     <Button
         android:id="@+id/btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="click me"
-        android:visibility="gone"/>
+        android:visibility="visible"/>
 
 </RelativeLayout>

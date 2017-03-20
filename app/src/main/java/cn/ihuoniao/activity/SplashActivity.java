@@ -12,7 +12,6 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import cn.ihuoniao.Constant;
 import cn.ihuoniao.R;
 import cn.ihuoniao.base.BaseActivity;
-import cn.ihuoniao.store.AppConfigStore;
 
 /**
  * Created by sdk-app-shy on 2017/3/16.
@@ -72,8 +71,6 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void initData() {
         super.initData();
-
-        registerStore(new AppConfigStore());
 
         Uri uri = Uri.parse(url);
         sdv.setImageURI(uri);

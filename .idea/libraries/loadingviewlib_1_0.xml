@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="loadingviewlib-1.0">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.android/build-cache/9f2512b050f724b2ded31ca70105c15e95385936/output/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.android/build-cache/9f2512b050f724b2ded31ca70105c15e95385936/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/bd4eab58da7ab9069d867d5192d045ac8c13275f/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/bd4eab58da7ab9069d867d5192d045ac8c13275f/output/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

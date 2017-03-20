@@ -52,7 +52,6 @@ public class FirstDeployActivity extends BaseFragmentActivity implements View.On
     @Override
     protected void initData() {
         super.initData();
-
         registerStore(new AppConfigStore());
         actionsCreator.request_getAppConfig();
 
