@@ -1,11 +1,8 @@
 package cn.ihuoniao.base;
 
-import com.jaeger.library.StatusBarUtil;
-
-import android.app.Activity;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
-import cn.ihuoniao.R;
 import cn.ihuoniao.actions.base.ActionsCreator;
 import cn.ihuoniao.dispatcher.Dispatcher;
 import cn.ihuoniao.store.base.Store;
@@ -14,16 +11,12 @@ import cn.ihuoniao.store.base.Store;
  * Created by sdk-app-shy on 2017/3/15.
  */
 
-public abstract class BaseActivity extends Activity {
+public abstract class BaseActivity extends FragmentActivity {
 
     protected Dispatcher dispatcher = Dispatcher.INSTANCE;
     protected ActionsCreator actionsCreator = ActionsCreator.INSTANCE;
-    protected boolean isSetStatusColor = true;
 
     protected void init() {
-        if (isSetStatusColor) {
-            StatusBarUtil.setColor(this, getResources().getColor(R.color.colorTitle));
-        }
 
         initView();
         initData();
