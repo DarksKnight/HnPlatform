@@ -2,6 +2,7 @@ package cn.ihuoniao.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
@@ -17,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.squareup.otto.Subscribe;
+import com.tencent.connect.common.Constants;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
@@ -55,18 +57,22 @@ public class MainActivity extends BaseActivity {
 
     private FirstDeployView firstDeployView = null;
 
-    private String url = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489718966741&di=f62455c41c820a2095c62008b4626708&imgtype=0&src=http%3A%2F%2Fattachments.gfan.com%2Fforum%2Fattachments2%2F201305%2F04%2F181712hd2hv6atncvqntga.jpg";
-
-    private String[] urls = new String[]{
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489718948173&di=85bc7c9f75a14127280fdeb17325f88d&imgtype=0&src=http%3A%2F%2Fwww.1tong.com%2Fuploads%2Fallimg%2F130806%2F1-130P61045170-L.jpg",
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489718966741&di=f62455c41c820a2095c62008b4626708&imgtype=0&src=http%3A%2F%2Fattachments.gfan.com%2Fforum%2Fattachments2%2F201305%2F04%2F181712hd2hv6atncvqntga.jpg",
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489718990213&di=bc975b26c7ff6a6fce82e5ad328b98ee&imgtype=0&src=http%3A%2F%2Fcdn.duitang.com%2Fuploads%2Fitem%2F201412%2F09%2F20141209002509_u5hrh.jpeg",
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490313725&di=17c700b87b64afc233b3017dbbde42cd&imgtype=jpg&er=1&src=http%3A%2F%2Fimage.tianjimedia.com%2FuploadImages%2F2012%2F244%2F64P3023HQL9Z.jpg",
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489719012472&di=d1f707107e509de492b73a74b8231d4a&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fpic%2Fitem%2F574f9b1001e93901b32412d17bec54e737d19655.jpg"};
-
-    private long oldTime = 0;
-
     private Tencent tencent = null;
+
+    private IUiListener iUiListener = new IUiListener() {
+        @Override
+        public void onComplete(Object o) {
+            Logger.i("com : " + o.toString());
+        }
+
+        @Override
+        public void onError(UiError uiError) {
+        }
+
+        @Override
+        public void onCancel() {
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,22 +135,7 @@ public class MainActivity extends BaseActivity {
                 Map<String, Object> params = new HashMap<>();
                 params.put("tencent", tencent);
                 params.put("activity", MainActivity.this);
-                params.put("listener", new IUiListener() {
-                    @Override
-                    public void onComplete(Object o) {
-                        Logger.i("com : " + o.toString());
-                    }
-
-                    @Override
-                    public void onError(UiError uiError) {
-
-                    }
-
-                    @Override
-                    public void onCancel() {
-
-                    }
-                });
+                params.put("listener", iUiListener);
                 control.doCommand(new QQLoginCommand(new QQLoginReceiver()), params);
             }
         });
@@ -160,8 +151,6 @@ public class MainActivity extends BaseActivity {
         params.put("context", this);
         params.put("appId", "1105976281");
         tencent = (Tencent)control.doCommand(new QQInitCommand(new QQInitReceiver()), params);
-
-        oldTime = (new Date()).getTime();
 
         bwvContent.setDefaultHandler(new DefaultHandler());
         bwvContent.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
@@ -208,10 +197,14 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        bwvContent.registerHandler("submitFromWeb", new BridgeHandler() {
+        bwvContent.registerHandler("qqLogin", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
-                Logger.i("data : " + data);
+                Map<String, Object> params = new HashMap<>();
+                params.put("tencent", tencent);
+                params.put("activity", MainActivity.this);
+                params.put("listener", iUiListener);
+                control.doCommand(new QQLoginCommand(new QQLoginReceiver()), params);
                 function.onCallBack("hello world");
             }
         });
@@ -254,5 +247,13 @@ public class MainActivity extends BaseActivity {
         if (null != spv) {
             spv.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == Constants.REQUEST_LOGIN) {
+            Tencent.handleResultData(data, iUiListener);
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

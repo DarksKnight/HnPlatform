@@ -26,13 +26,6 @@
             </intent-filter>
         </activity>
 
-        <!--<activity-->
-                <!--android:name=".activity.MainActivity"-->
-                <!--android:launchMode="singleTop"-->
-                <!--android:screenOrientation="portrait"-->
-                <!--android:theme="@android:style/Theme.NoTitleBar"-->
-                <!--android:windowSoftInputMode="adjustPan"/>-->
-
     </application>
 
 </manifest>
