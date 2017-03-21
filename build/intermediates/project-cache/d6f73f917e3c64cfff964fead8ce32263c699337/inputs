@@ -1,0 +1,6 @@
+COMMAND=PREDEX_LIBRARY_TO_DEX_ARCHIVE
+FILE_PATH=/Users/sdk-app-shy/Documents/other/HnPlatform/uikit-library/build/intermediates/bundles/default/classes.jar
+FILE_HASH=910d5e4c0f45266fdfbd442c31464077046d176a
+DX_VERSION=1.12
+JUMBO_MODE=false
+OPTIMIZE=true

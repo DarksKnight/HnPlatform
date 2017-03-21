@@ -23,7 +23,6 @@ import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -59,6 +58,8 @@ public class MainActivity extends BaseActivity {
 
     private Tencent tencent = null;
 
+    private boolean isClickAdv = false;
+
     private IUiListener iUiListener = new IUiListener() {
         @Override
         public void onComplete(Object o) {
@@ -88,7 +89,7 @@ public class MainActivity extends BaseActivity {
         bwvContent = getView(R.id.bwv_content);
         btn = getView(R.id.btn);
         rlContent = getView(R.id.rl_content);
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams((int)getResources().getDimension(R.dimen.hn_50dp), (int)getResources().getDimension(R.dimen.hn_50dp));
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams((int) getResources().getDimension(R.dimen.hn_50dp), (int) getResources().getDimension(R.dimen.hn_50dp));
         lp.addRule(RelativeLayout.CENTER_IN_PARENT);
         rlContent.addView(lvc, lp);
 
@@ -107,9 +108,9 @@ public class MainActivity extends BaseActivity {
 
                 @Override
                 public void onClickAdv(String url) {
-                    bwvContent.loadUrl(url);
-                    dissmissSplash();
+                    isClickAdv = true;
                     showLoading();
+                    bwvContent.loadUrl(url);
                 }
             });
         } else {
@@ -150,7 +151,7 @@ public class MainActivity extends BaseActivity {
         Map<String, Object> params = new HashMap<>();
         params.put("context", this);
         params.put("appId", "1105976281");
-        tencent = (Tencent)control.doCommand(new QQInitCommand(new QQInitReceiver()), params);
+        tencent = (Tencent) control.doCommand(new QQInitCommand(new QQInitReceiver()), params);
 
         bwvContent.setDefaultHandler(new DefaultHandler());
         bwvContent.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
@@ -189,9 +190,20 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
-                if (newProgress > 60) {
-                    appInfo.isLoadFinish = true;
-                    hideLoading();
+                if (isClickAdv) {
+                    if (null != view.getOriginalUrl()) {
+                        if (view.getOriginalUrl().equals(spv.getLink())) {
+                            if (newProgress > 70) {
+                                isClickAdv = false;
+                                hideLoading();
+                            }
+                        }
+                    }
+                } else {
+                    if (newProgress > 70) {
+                        appInfo.isLoadFinish = true;
+                        hideLoading();
+                    }
                 }
                 super.onProgressChanged(view, newProgress);
             }
@@ -213,11 +225,20 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && bwvContent.canGoBack()) {
-            showLoading();
-            bwvContent.goBack();
+            if (!bwvContent.getUrl().equals(appInfo.platformUrl + "/")) {
+                showLoading();
+                bwvContent.goBack();
+            } else {
+                CommonUtil.exit(this);
+            }
             return true;
         } else if (keyCode == KeyEvent.KEYCODE_BACK) {
-            CommonUtil.exit(this);
+            if (!bwvContent.getUrl().equals(appInfo.platformUrl + "/")) {
+                showLoading();
+                bwvContent.loadUrl(appInfo.platformUrl);
+            } else {
+                CommonUtil.exit(this);
+            }
             return true;
         }
         return super.onKeyDown(keyCode, event);
@@ -238,8 +259,10 @@ public class MainActivity extends BaseActivity {
         }
 
         appInfo.platformUrl = event.appConfig.cfg_basehost;
-        Logger.i("platform url : " + appInfo.platformUrl);
-        bwvContent.loadUrl(appInfo.platformUrl);
+        if (!isClickAdv) {
+            bwvContent.loadUrl(appInfo.platformUrl);
+        }
+
 //        bwvContent.loadUrl("http://192.168.21.61:7001/login");
     }
 

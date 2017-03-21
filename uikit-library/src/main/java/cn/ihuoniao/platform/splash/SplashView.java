@@ -67,11 +67,13 @@ public class SplashView extends LinearLayout {
 
     private void initView() {
         sdv = (SimpleDraweeView) findViewById(R.id.sdv_splash);
+        sdv.setEnabled(false);
         tvAdvTime = (TextView) findViewById(R.id.tv_advTime);
 
         sdv.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                setVisibility(View.GONE);
                 listener.onClickAdv(link);
             }
         });
@@ -80,10 +82,18 @@ public class SplashView extends LinearLayout {
     public void setUrl(String url, String link, String time) {
         Uri uri = Uri.parse(url);
         sdv.setImageURI(uri);
+        sdv.setEnabled(true);
         this.link = link;
+        tvAdvTime.setVisibility(View.VISIBLE);
         tvAdvTime.setText(time);
         advTime = Integer.parseInt(time);
-        timer.schedule(task, 1000, 1000);
+        if (null != timer) {
+            timer.schedule(task, 1000, 1000);
+        }
+    }
+
+    public String getLink() {
+        return link;
     }
 
     public void setListener(Listener listener) {
@@ -93,6 +103,7 @@ public class SplashView extends LinearLayout {
     @Override
     public void setVisibility(int visibility) {
         timer.cancel();
+        timer = null;
         super.setVisibility(visibility);
     }
 
