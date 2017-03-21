@@ -9,4 +9,6 @@ public class TYPE {
     public static final String NEW_CLICK = "new_click";
 
     public static final String TYPE_APP_CONFIG = "type_app_config";
+
+    public static final String TYPE_QQ_LOGIN = "type_qq_login";
 }

@@ -3,7 +3,7 @@ package cn.ihuoniao.store;
 import com.alibaba.fastjson.JSONObject;
 
 import cn.ihuoniao.TYPE;
-import cn.ihuoniao.actions.base.BaseAction;
+import cn.ihuoniao.actions.AppConfigAction;
 import cn.ihuoniao.event.AppConfigEvent;
 import cn.ihuoniao.model.AppConfigModel;
 import cn.ihuoniao.request.AppConfigRequest;
@@ -14,10 +14,10 @@ import cn.ihuoniao.store.base.Store;
  * Created by sdk-app-shy on 2017/3/17.
  */
 
-public class AppConfigStore extends Store<AppConfigEvent> {
+public class AppConfigStore extends Store<AppConfigAction> {
 
     @Override
-    public void onAction(BaseAction action) {
+    public void onAction(AppConfigAction action) {
         switch (action.getType()) {
             case TYPE.TYPE_APP_CONFIG:
                 getAppConfigRequest();

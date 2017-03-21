@@ -3,12 +3,9 @@ package cn.ihuoniao.base;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
-import com.jaeger.library.StatusBarUtil;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.ihuoniao.R;
 import cn.ihuoniao.actions.base.ActionsCreator;
 import cn.ihuoniao.dispatcher.Dispatcher;
 import cn.ihuoniao.store.base.Store;
@@ -38,8 +35,8 @@ public class BaseFragmentActivity extends FragmentActivity {
         return (E) findViewById(id);
     }
 
-    protected void registerStore(Store store) {
-        dispatcher.register(store);
+    protected void registerStore(String key, Store store) {
+        dispatcher.register(key, store);
     }
 
     protected void unregisterStore(Store store) {

@@ -1,7 +1,7 @@
 package cn.ihuoniao.dispatcher;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import cn.ihuoniao.actions.base.BaseAction;
 import cn.ihuoniao.store.base.Store;
@@ -13,29 +13,21 @@ import cn.ihuoniao.store.base.Store;
 public enum  Dispatcher {
     INSTANCE;
 
-    private final List<Store> stores = new ArrayList<>();
+    private final Map<String, Store> stores = new HashMap<>();
 
-    public void register(final Store store) {
-        if (!stores.contains(store)) {
-            stores.add(store);
-        }
+    public void register(String key, final Store store) {
+        stores.put(key, store);
     }
 
     public void unregister(final Store store) {
         stores.remove(store);
     }
 
-    public void dispatch(BaseAction action) {
-        post(action);
+    public void dispatch(String key, BaseAction action) {
+        stores.get(key).onAction(action);
     }
 
-    private void post(final BaseAction action) {
-        for (Store store : stores) {
-            store.onAction(action);
-        }
-    }
-
-    public List<Store> getStores() {
+    public Map<String, Store> getStores() {
         return stores;
     }
 }

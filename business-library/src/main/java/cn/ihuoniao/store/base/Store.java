@@ -4,14 +4,17 @@ import com.squareup.otto.Bus;
 
 import cn.ihuoniao.actions.base.BaseAction;
 import cn.ihuoniao.event.base.StoreChangeEvent;
+import cn.ihuoniao.function.command.base.Control;
 
 /**
  * Created by sdk-app-shy on 2017/3/16.
  */
 
-public abstract class Store<T extends StoreChangeEvent> {
+public abstract class Store<T extends BaseAction> {
 
     private static final Bus bus = new Bus();
+
+    protected Control control = Control.INSTANCE;
 
     protected Store() {
     }
@@ -24,9 +27,9 @@ public abstract class Store<T extends StoreChangeEvent> {
         this.bus.unregister(view);
     }
 
-    protected void emitStoreChange(T event) {
+    protected void emitStoreChange(StoreChangeEvent event) {
         this.bus.post(event);
     }
 
-    public abstract void onAction(BaseAction action);
+    public abstract void onAction(T action);
 }

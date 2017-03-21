@@ -31,18 +31,15 @@ import cn.ihuoniao.R;
 import cn.ihuoniao.base.BaseActivity;
 import cn.ihuoniao.event.AppConfigEvent;
 import cn.ihuoniao.function.command.QQInitCommand;
-import cn.ihuoniao.function.command.QQLoginCommand;
 import cn.ihuoniao.function.receiver.QQInitReceiver;
-import cn.ihuoniao.function.receiver.QQLoginReceiver;
 import cn.ihuoniao.function.util.CommonUtil;
 import cn.ihuoniao.function.util.Logger;
 import cn.ihuoniao.platform.firstdeploy.FirstDeployView;
 import cn.ihuoniao.platform.splash.SplashView;
-import cn.ihuoniao.platform.webview.BridgeHandler;
 import cn.ihuoniao.platform.webview.BridgeWebView;
-import cn.ihuoniao.platform.webview.CallBackFunction;
 import cn.ihuoniao.platform.webview.DefaultHandler;
 import cn.ihuoniao.store.AppConfigStore;
+import cn.ihuoniao.store.QQStore;
 
 public class MainActivity extends BaseActivity {
 
@@ -59,6 +56,8 @@ public class MainActivity extends BaseActivity {
     private Tencent tencent = null;
 
     private boolean isClickAdv = false;
+
+    private Map<String, Object> infos = new HashMap<>();
 
     private IUiListener iUiListener = new IUiListener() {
         @Override
@@ -133,21 +132,23 @@ public class MainActivity extends BaseActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Map<String, Object> params = new HashMap<>();
-                params.put("tencent", tencent);
-                params.put("activity", MainActivity.this);
-                params.put("listener", iUiListener);
-                control.doCommand(new QQLoginCommand(new QQLoginReceiver()), params);
+                actionsCreator.action_qqLogin(infos);
             }
         });
+    }
+
+    @Override
+    public void registerStores() {
+        registerStore(AppConfigStore.class.getSimpleName(), new AppConfigStore());
+        registerStore(QQStore.class.getSimpleName(), new QQStore());
     }
 
     @Override
     protected void initData() {
         super.initData();
 
-        registerStore(new AppConfigStore());
         actionsCreator.request_getAppConfig();
+
         Map<String, Object> params = new HashMap<>();
         params.put("context", this);
         params.put("appId", "1105976281");
@@ -209,17 +210,10 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        bwvContent.registerHandler("qqLogin", new BridgeHandler() {
-            @Override
-            public void handler(String data, CallBackFunction function) {
-                Map<String, Object> params = new HashMap<>();
-                params.put("tencent", tencent);
-                params.put("activity", MainActivity.this);
-                params.put("listener", iUiListener);
-                control.doCommand(new QQLoginCommand(new QQLoginReceiver()), params);
-                function.onCallBack("hello world");
-            }
-        });
+        infos.put("webview", bwvContent);
+        infos.put("activity", this);
+        infos.put("tencent", tencent);
+        actionsCreator.action_qqLogin(infos);
     }
 
     @Override

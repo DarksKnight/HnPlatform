@@ -6,6 +6,9 @@ import android.view.ViewGroup;
 
 import com.ldoublem.loadingviewlib.view.LVCircularRing;
 
+import java.util.Iterator;
+import java.util.Map;
+
 import cn.ihuoniao.R;
 import cn.ihuoniao.actions.base.ActionsCreator;
 import cn.ihuoniao.dispatcher.Dispatcher;
@@ -26,8 +29,8 @@ public abstract class BaseActivity extends FragmentActivity {
     protected Control control = Control.INSTANCE;
 
     protected void init() {
-
         initView();
+        registerStores();
         initData();
     }
 
@@ -37,7 +40,7 @@ public abstract class BaseActivity extends FragmentActivity {
     protected void initView() {
         lvc = new LVCircularRing(this);
         lvc.setBarColor(getResources().getColor(R.color.colorTitle));
-        lvc.setLayoutParams(new ViewGroup.LayoutParams((int)getResources().getDimension(R.dimen.hn_50dp), (int)getResources().getDimension(R.dimen.hn_50dp)));
+        lvc.setLayoutParams(new ViewGroup.LayoutParams((int) getResources().getDimension(R.dimen.hn_50dp), (int) getResources().getDimension(R.dimen.hn_50dp)));
         hideLoading();
     }
 
@@ -45,8 +48,8 @@ public abstract class BaseActivity extends FragmentActivity {
         return (E) findViewById(id);
     }
 
-    protected void registerStore(Store store) {
-        dispatcher.register(store);
+    protected void registerStore(String key, Store store) {
+        dispatcher.register(key, store);
     }
 
     protected void unregisterStore(Store store) {
@@ -67,8 +70,10 @@ public abstract class BaseActivity extends FragmentActivity {
     protected void onResume() {
         super.onResume();
 
-        for(int i = 0;i < dispatcher.getStores().size(); i++) {
-            dispatcher.getStores().get(i).register(this);
+        Iterator<Map.Entry<String, Store>> iter = dispatcher.getStores().entrySet().iterator();
+        while(iter.hasNext()) {
+            Map.Entry<String, Store> entry = iter.next();
+            entry.getValue().register(this);
         }
     }
 
@@ -76,8 +81,12 @@ public abstract class BaseActivity extends FragmentActivity {
     protected void onPause() {
         super.onPause();
 
-        for(int i = 0;i < dispatcher.getStores().size(); i++) {
-            dispatcher.getStores().get(i).unregister(this);
+        Iterator<Map.Entry<String, Store>> iter = dispatcher.getStores().entrySet().iterator();
+        while(iter.hasNext()) {
+            Map.Entry<String, Store> entry = iter.next();
+            entry.getValue().unregister(this);
         }
     }
+
+    public abstract void registerStores();
 }
