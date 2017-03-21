@@ -6,9 +6,10 @@ import java.io.Serializable;
  * Created by sdk-app-shy on 2017/3/17.
  */
 
-public class AppInfo implements Serializable {
+public enum  AppInfo implements Serializable {
+    INSTANCE;
 
-    public boolean isNeedFinish = false;
+    public boolean isLoadFinish = false;
 
     public String platformUrl = "";
 }

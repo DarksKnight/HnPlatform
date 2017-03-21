@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">火鸟平台</string>
     <string name="toast_init">正在初始化，请稍后</string>
+    <string name="alert_title">提醒</string>
 </resources>

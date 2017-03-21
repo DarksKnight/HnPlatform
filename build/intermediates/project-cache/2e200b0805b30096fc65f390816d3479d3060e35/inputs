@@ -1,6 +1,0 @@
-COMMAND=PREDEX_LIBRARY_TO_DEX_ARCHIVE
-FILE_PATH=/Users/apple/Documents/demo/HnPlatform/function-library/build/intermediates/bundles/default/libs/platform_http_1.1.2.jar
-FILE_HASH=8d5267389a7da1f31bc60a7abe2fe76b32a540c6
-DX_VERSION=1.12
-JUMBO_MODE=false
-OPTIMIZE=true

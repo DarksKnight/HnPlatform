@@ -1,6 +1,0 @@
-COMMAND=PREDEX_LIBRARY_TO_DEX_ARCHIVE
-FILE_PATH=/Users/apple/Documents/demo/HnPlatform/business-library/build/intermediates/bundles/default/classes.jar
-FILE_HASH=e91557726b18f0b061b39fb377622a375a38fa69
-DX_VERSION=1.12
-JUMBO_MODE=false
-OPTIMIZE=true

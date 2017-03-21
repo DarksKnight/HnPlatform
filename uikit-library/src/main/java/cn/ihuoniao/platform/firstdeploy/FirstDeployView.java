@@ -31,12 +31,7 @@ public class FirstDeployView extends LinearLayout {
     private TextView tvSkip = null;
     private CirclePageIndicator cpi = null;
     private FragmentPagerAdapter adapter = null;
-    private String[] urls = new String[]{
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489718948173&di=85bc7c9f75a14127280fdeb17325f88d&imgtype=0&src=http%3A%2F%2Fwww.1tong.com%2Fuploads%2Fallimg%2F130806%2F1-130P61045170-L.jpg",
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489718966741&di=f62455c41c820a2095c62008b4626708&imgtype=0&src=http%3A%2F%2Fattachments.gfan.com%2Fforum%2Fattachments2%2F201305%2F04%2F181712hd2hv6atncvqntga.jpg",
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489718990213&di=bc975b26c7ff6a6fce82e5ad328b98ee&imgtype=0&src=http%3A%2F%2Fcdn.duitang.com%2Fuploads%2Fitem%2F201412%2F09%2F20141209002509_u5hrh.jpeg",
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490313725&di=17c700b87b64afc233b3017dbbde42cd&imgtype=jpg&er=1&src=http%3A%2F%2Fimage.tianjimedia.com%2FuploadImages%2F2012%2F244%2F64P3023HQL9Z.jpg",
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489719012472&di=d1f707107e509de492b73a74b8231d4a&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fpic%2Fitem%2F574f9b1001e93901b32412d17bec54e737d19655.jpg"};
+
 
     public FirstDeployView(Context context) {
         this(context, null, 0);
@@ -72,11 +67,11 @@ public class FirstDeployView extends LinearLayout {
         });
     }
 
-    public void setUrls() {
+    public void setUrls(List<String> urls) {
         listFragment.clear();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < urls.size(); i++) {
             FirstDeployFragment fragment = new FirstDeployFragment();
-            fragment.setPicUrl(urls[i]);
+            fragment.setPicUrl(urls.get(i));
             listFragment.add(fragment);
         }
         listFragment.get(listFragment.size() - 1).setLast(true);

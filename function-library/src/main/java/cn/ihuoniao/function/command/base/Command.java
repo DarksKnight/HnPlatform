@@ -14,5 +14,5 @@ public abstract class Command<T extends Receiver> {
         this.receiver = receiver;
     }
 
-    public abstract void execute(Map<String, Object> params);
+    public abstract Object execute(Map<String, Object> params);
 }

@@ -1,6 +1,0 @@
-COMMAND=PREDEX_LIBRARY_TO_DEX_ARCHIVE
-FILE_PATH=/Users/apple/Documents/demo/HnPlatform/function-library/build/intermediates/bundles/default/libs/open_sdk_r5785.jar
-FILE_HASH=02dc78077cc09236d29893fcd210b603cff0ed21
-DX_VERSION=1.12
-JUMBO_MODE=false
-OPTIMIZE=true

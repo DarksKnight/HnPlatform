@@ -1,13 +1,26 @@
 package cn.ihuoniao.function.command.base;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 
 /**
  * Created by sdk-app-shy on 2017/3/20.
  */
 
-public class Control {
+public enum  Control {
 
-    private List<Command> commandList = new ArrayList<>();
+    INSTANCE;
+
+    private Command command = null;
+
+    public void setCommand(Command command) {
+        this.command = command;
+    }
+
+    public void doCommand(Map<String, Object> params) {
+        command.execute(params);
+    }
+
+    public Object doCommand(Command cmd, Map<String, Object> params) {
+        return cmd.execute(params);
+    }
 }

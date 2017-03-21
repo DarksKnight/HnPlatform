@@ -1,6 +1,0 @@
-COMMAND=PREDEX_LIBRARY_TO_DEX_ARCHIVE
-FILE_PATH=/Users/sdk-app-shy/Documents/other/HnPlatform/function-library/build/intermediates/bundles/default/libs/ft_logger_1.0.0.jar
-FILE_HASH=58961d2997c56f539e2415d399b1e4869ce348e7
-DX_VERSION=1.12
-JUMBO_MODE=true
-OPTIMIZE=true

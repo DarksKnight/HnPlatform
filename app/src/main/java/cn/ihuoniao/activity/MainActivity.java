@@ -1,17 +1,13 @@
 package cn.ihuoniao.activity;
 
-import com.ldoublem.loadingviewlib.view.LVCircularRing;
-import com.squareup.otto.Subscribe;
-
-import android.content.SharedPreferences;
-import android.net.Uri;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.ValueCallback;
+import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -19,14 +15,25 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
+
+import com.squareup.otto.Subscribe;
+import com.tencent.tauth.IUiListener;
+import com.tencent.tauth.Tencent;
+import com.tencent.tauth.UiError;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import cn.ihuoniao.Constant;
 import cn.ihuoniao.R;
 import cn.ihuoniao.base.BaseActivity;
 import cn.ihuoniao.event.AppConfigEvent;
+import cn.ihuoniao.function.command.QQInitCommand;
+import cn.ihuoniao.function.command.QQLoginCommand;
+import cn.ihuoniao.function.receiver.QQInitReceiver;
+import cn.ihuoniao.function.receiver.QQLoginReceiver;
+import cn.ihuoniao.function.util.CommonUtil;
 import cn.ihuoniao.function.util.Logger;
 import cn.ihuoniao.platform.firstdeploy.FirstDeployView;
 import cn.ihuoniao.platform.splash.SplashView;
@@ -42,38 +49,24 @@ public class MainActivity extends BaseActivity {
 
     private Button btn = null;
 
-    private LVCircularRing lvc = null;
-
-    private RelativeLayout rl = null;
+    private RelativeLayout rlContent = null;
 
     private SplashView spv = null;
 
     private FirstDeployView firstDeployView = null;
 
-    private String currentUrl = "";
+    private String url = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489718966741&di=f62455c41c820a2095c62008b4626708&imgtype=0&src=http%3A%2F%2Fattachments.gfan.com%2Fforum%2Fattachments2%2F201305%2F04%2F181712hd2hv6atncvqntga.jpg";
 
-    private int splashSecond = 3;
-
-    private int dismissSecond = 4;
-
-    private String url = "http://img5.duitang.com/uploads/item/201412/09/20141209002455_fShKH.jpeg";
-
-    private boolean isLoading = true;
-
-    private boolean isLoadFinish = false;
+    private String[] urls = new String[]{
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489718948173&di=85bc7c9f75a14127280fdeb17325f88d&imgtype=0&src=http%3A%2F%2Fwww.1tong.com%2Fuploads%2Fallimg%2F130806%2F1-130P61045170-L.jpg",
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489718966741&di=f62455c41c820a2095c62008b4626708&imgtype=0&src=http%3A%2F%2Fattachments.gfan.com%2Fforum%2Fattachments2%2F201305%2F04%2F181712hd2hv6atncvqntga.jpg",
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489718990213&di=bc975b26c7ff6a6fce82e5ad328b98ee&imgtype=0&src=http%3A%2F%2Fcdn.duitang.com%2Fuploads%2Fitem%2F201412%2F09%2F20141209002509_u5hrh.jpeg",
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490313725&di=17c700b87b64afc233b3017dbbde42cd&imgtype=jpg&er=1&src=http%3A%2F%2Fimage.tianjimedia.com%2FuploadImages%2F2012%2F244%2F64P3023HQL9Z.jpg",
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489719012472&di=d1f707107e509de492b73a74b8231d4a&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fpic%2Fitem%2F574f9b1001e93901b32412d17bec54e737d19655.jpg"};
 
     private long oldTime = 0;
 
-    private boolean isExit = false;
-
-    Handler mHandler = new Handler() {
-
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            isExit = false;
-        }
-    };
+    private Tencent tencent = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,30 +81,43 @@ public class MainActivity extends BaseActivity {
 
         bwvContent = getView(R.id.bwv_content);
         btn = getView(R.id.btn);
-        lvc = getView(R.id.lvc_loading);
-        rl = getView(R.id.rl_content);
-        lvc.setBarColor(getResources().getColor(R.color.colorTitle));
+        rlContent = getView(R.id.rl_content);
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams((int)getResources().getDimension(R.dimen.hn_50dp), (int)getResources().getDimension(R.dimen.hn_50dp));
+        lp.addRule(RelativeLayout.CENTER_IN_PARENT);
+        rlContent.addView(lvc, lp);
 
         //判断是否第一次启动
-        SharedPreferences setting = getSharedPreferences(Constant.HN_SETTING, 0);
-        Boolean user_first = setting.getBoolean("FIRST", true);
-        if (!user_first) {
+        if (!CommonUtil.isFirstRun(this, Constant.HN_SETTING)) {
             spv = new SplashView(this);
-            rl.addView(spv, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+            rlContent.addView(spv, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT));
+            spv.setListener(new SplashView.Listener() {
+                @Override
+                public void onComplete() {
+                    if (!appInfo.isLoadFinish) {
+                        showLoading();
+                    }
+                }
+
+                @Override
+                public void onClickAdv(String url) {
+                    bwvContent.loadUrl(url);
+                    dissmissSplash();
+                    showLoading();
+                }
+            });
         } else {
-            setting.edit().putBoolean("FIRST", false).commit();
             firstDeployView = new FirstDeployView(this);
-            rl.addView(firstDeployView,
+            rlContent.addView(firstDeployView,
                     new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                             ViewGroup.LayoutParams.MATCH_PARENT));
             firstDeployView.setListener(new FirstDeployView.Listener() {
                 @Override
                 public void closeView() {
-                    if (isLoadFinish) {
+                    if (appInfo.isLoadFinish) {
                         firstDeployView.setVisibility(View.GONE);
                     } else {
-                        Toast.makeText(MainActivity.this, "正在初始化", Toast.LENGTH_SHORT).show();
+                        CommonUtil.toast(MainActivity.this, getString(R.string.toast_init));
                     }
                 }
             });
@@ -120,7 +126,26 @@ public class MainActivity extends BaseActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bwvContent.reload();
+                Map<String, Object> params = new HashMap<>();
+                params.put("tencent", tencent);
+                params.put("activity", MainActivity.this);
+                params.put("listener", new IUiListener() {
+                    @Override
+                    public void onComplete(Object o) {
+                        Logger.i("com : " + o.toString());
+                    }
+
+                    @Override
+                    public void onError(UiError uiError) {
+
+                    }
+
+                    @Override
+                    public void onCancel() {
+
+                    }
+                });
+                control.doCommand(new QQLoginCommand(new QQLoginReceiver()), params);
             }
         });
     }
@@ -129,23 +154,14 @@ public class MainActivity extends BaseActivity {
     protected void initData() {
         super.initData();
 
-        oldTime = (new Date()).getTime();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (isLoadFinish && !isLoading) {
-                    dismissSplash();
-                    showLoading();
-                }
-            }
-        }, splashSecond * 1000);
-
-        if (null != spv) {
-            spv.setUrl(url);
-        }
-
         registerStore(new AppConfigStore());
         actionsCreator.request_getAppConfig();
+        Map<String, Object> params = new HashMap<>();
+        params.put("context", this);
+        params.put("appId", "1105976281");
+        tencent = (Tencent)control.doCommand(new QQInitCommand(new QQInitReceiver()), params);
+
+        oldTime = (new Date()).getTime();
 
         bwvContent.setDefaultHandler(new DefaultHandler());
         bwvContent.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
@@ -158,37 +174,35 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                lvc.setVisibility(View.VISIBLE);
-                lvc.startAnim();
-                currentUrl = url;
+                showLoading();
                 return super.shouldOverrideUrlLoading(view, url);
             }
+
         });
 
         bwvContent.setWebChromeClient(new WebChromeClient() {
 
-            @SuppressWarnings("unused")
-            public void openFileChooser(ValueCallback<Uri> uploadMsg, String AcceptType,
-                    String capture) {
-                this.openFileChooser(uploadMsg);
-            }
-
-            @SuppressWarnings("unused")
-            public void openFileChooser(ValueCallback<Uri> uploadMsg, String AcceptType) {
-                this.openFileChooser(uploadMsg);
-            }
-
-            public void openFileChooser(ValueCallback<Uri> uploadMsg) {
-
+            @Override
+            public boolean onJsAlert(WebView view, String url, String message, final JsResult result) {
+                AlertDialog.Builder b = new AlertDialog.Builder(MainActivity.this);
+                b.setTitle(getString(R.string.alert_title));
+                b.setMessage(message);
+                b.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        result.confirm();
+                    }
+                });
+                b.setCancelable(true);
+                b.create().show();
+                return true;
             }
 
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 if (newProgress > 60) {
-                    isLoading = false;
-                    lvc.stopAnim();
-                    lvc.setVisibility(View.GONE);
-                    dismissSplash();
+                    appInfo.isLoadFinish = true;
+                    hideLoading();
                 }
                 super.onProgressChanged(view, newProgress);
             }
@@ -206,56 +220,39 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && bwvContent.canGoBack()) {
-            lvc.setVisibility(View.VISIBLE);
-            lvc.startAnim();
+            showLoading();
             bwvContent.goBack();
             return true;
         } else if (keyCode == KeyEvent.KEYCODE_BACK) {
-            exit();
+            CommonUtil.exit(this);
             return true;
         }
         return super.onKeyDown(keyCode, event);
     }
 
     @Subscribe
-    public void onStoreChange(AppConfigEvent event) {
+    public void onStoreChange(final AppConfigEvent event) {
         if (null != firstDeployView) {
-            firstDeployView.setUrls();
+            firstDeployView.setUrls(event.appConfig.cfg_guide.android);
+        }
+        if (null != spv) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    spv.setUrl(event.appConfig.cfg_startad.src, event.appConfig.cfg_startad.link, event.appConfig.cfg_startad.time);
+                }
+            }, 1000);
         }
 
-        isLoadFinish = true;
-        Logger.i("platform url : " + Constant.APP_INFO.platformUrl);
-        currentUrl = Constant.APP_INFO.platformUrl;
-        bwvContent.loadUrl(Constant.APP_INFO.platformUrl);
-        if ((new Date()).getTime() - oldTime > (1000 * dismissSecond) && !isLoading) {
-            dismissSplash();
-            showLoading();
-        }
+        appInfo.platformUrl = event.appConfig.cfg_basehost;
+        Logger.i("platform url : " + appInfo.platformUrl);
+        bwvContent.loadUrl(appInfo.platformUrl);
+//        bwvContent.loadUrl("http://192.168.21.61:7001/login");
     }
 
-    private void dismissSplash() {
+    private void dissmissSplash() {
         if (null != spv) {
             spv.setVisibility(View.GONE);
-        }
-    }
-
-    private void showLoading() {
-        if (isLoading) {
-            lvc.setVisibility(View.VISIBLE);
-            lvc.startAnim();
-        }
-    }
-
-    private void exit() {
-        if (!isExit) {
-            isExit = true;
-            Toast.makeText(this, "再按一次退出程序",
-                    Toast.LENGTH_SHORT).show();
-            // 利用handler延迟发送更改状态信息
-            mHandler.sendEmptyMessageDelayed(0, 2000);
-        } else {
-            finish();
-            System.exit(0);
         }
     }
 }

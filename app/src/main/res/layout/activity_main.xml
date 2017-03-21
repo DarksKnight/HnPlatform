@@ -11,13 +11,6 @@
             android:layout_height="match_parent"
             android:visibility="visible"/>
 
-    <com.ldoublem.loadingviewlib.view.LVCircularRing
-            android:id="@+id/lvc_loading"
-            android:layout_width="@dimen/hn_50dp"
-            android:layout_height="@dimen/hn_50dp"
-            android:layout_centerInParent="true"
-            android:visibility="gone"/>
-
     <Button
             android:id="@+id/btn"
             android:layout_width="wrap_content"
