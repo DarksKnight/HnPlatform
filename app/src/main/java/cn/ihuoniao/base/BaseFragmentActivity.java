@@ -35,9 +35,9 @@ public class BaseFragmentActivity extends FragmentActivity {
         return (E) findViewById(id);
     }
 
-    protected void registerStore(String key, Store store) {
-        dispatcher.register(key, store);
-    }
+//    protected void registerStore(Store store) {
+//        dispatcher.register(store);
+//    }
 
     protected void unregisterStore(Store store) {
         dispatcher.unregister(store);

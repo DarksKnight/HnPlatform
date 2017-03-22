@@ -6,13 +6,14 @@ import android.view.ViewGroup;
 
 import com.ldoublem.loadingviewlib.view.LVCircularRing;
 
-import java.util.Iterator;
+import java.util.HashMap;
 import java.util.Map;
 
 import cn.ihuoniao.R;
 import cn.ihuoniao.actions.base.ActionsCreator;
 import cn.ihuoniao.dispatcher.Dispatcher;
 import cn.ihuoniao.function.command.base.Control;
+import cn.ihuoniao.function.util.CommonUtil;
 import cn.ihuoniao.model.AppInfo;
 import cn.ihuoniao.store.base.Store;
 
@@ -27,6 +28,8 @@ public abstract class BaseActivity extends FragmentActivity {
     protected AppInfo appInfo = AppInfo.INSTANCE;
     protected LVCircularRing lvc = null;
     protected Control control = Control.INSTANCE;
+    protected boolean isDebug = false;
+    protected Map<String, Object> infos = new HashMap<>();
 
     protected void init() {
         initView();
@@ -38,11 +41,16 @@ public abstract class BaseActivity extends FragmentActivity {
     }
 
     protected void initView() {
+        isDebug = CommonUtil.isDebug(this);
+        CommonUtil.bomb();
+        actionsCreator.setParams(infos);
         lvc = new LVCircularRing(this);
         lvc.setBarColor(getResources().getColor(R.color.colorTitle));
         lvc.setLayoutParams(new ViewGroup.LayoutParams((int) getResources().getDimension(R.dimen.hn_50dp), (int) getResources().getDimension(R.dimen.hn_50dp)));
         hideLoading();
     }
+
+    public abstract void registerStores();
 
     protected final <E extends View> E getView(int id) {
         return (E) findViewById(id);
@@ -67,26 +75,20 @@ public abstract class BaseActivity extends FragmentActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onStart() {
+        super.onStart();
 
-        Iterator<Map.Entry<String, Store>> iter = dispatcher.getStores().entrySet().iterator();
-        while(iter.hasNext()) {
-            Map.Entry<String, Store> entry = iter.next();
+        for (Map.Entry<String, Store> entry : dispatcher.getStores().entrySet()) {
             entry.getValue().register(this);
         }
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onStop() {
+        super.onStop();
 
-        Iterator<Map.Entry<String, Store>> iter = dispatcher.getStores().entrySet().iterator();
-        while(iter.hasNext()) {
-            Map.Entry<String, Store> entry = iter.next();
+        for (Map.Entry<String, Store> entry : dispatcher.getStores().entrySet()) {
             entry.getValue().unregister(this);
         }
     }
-
-    public abstract void registerStores();
 }

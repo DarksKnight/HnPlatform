@@ -24,4 +24,10 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 -dontwarn com.tencent.bugly.**
+-dontwarn com.facebook.**
+-dontwarn com.ldoublem.**
+-dontwarn com.mistyrain.**
 -keep public class com.tencent.bugly.**{*;}
+-keep public class com.facebook.**{*;}
+-keep public class com.ldoublem.**{*;}
+-keep public class com.mistyrain.**{*;}

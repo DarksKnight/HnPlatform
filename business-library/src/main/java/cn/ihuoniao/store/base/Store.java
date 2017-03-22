@@ -1,10 +1,16 @@
 package cn.ihuoniao.store.base;
 
+import android.app.Activity;
+
 import com.squareup.otto.Bus;
+
+import java.util.Map;
 
 import cn.ihuoniao.actions.base.BaseAction;
 import cn.ihuoniao.event.base.StoreChangeEvent;
 import cn.ihuoniao.function.command.base.Control;
+import cn.ihuoniao.function.listener.StatusListener;
+import cn.ihuoniao.platform.webview.BridgeWebView;
 
 /**
  * Created by sdk-app-shy on 2017/3/16.
@@ -12,7 +18,10 @@ import cn.ihuoniao.function.command.base.Control;
 
 public abstract class Store<T extends BaseAction> {
 
-    private static final Bus bus = new Bus();
+    private final Bus bus = new Bus();
+    protected BridgeWebView webView = null;
+    protected Activity activity = null;
+    protected StatusListener statusListener = null;
 
     protected Control control = Control.INSTANCE;
 
@@ -31,5 +40,12 @@ public abstract class Store<T extends BaseAction> {
         this.bus.post(event);
     }
 
-    public abstract void onAction(T action);
+    public void onAction(T action) {
+        Map<String, Object> infos = (Map<String, Object>)action.getData();
+        if (null != infos) {
+            webView = (BridgeWebView)infos.get("webview");
+            activity = (Activity)infos.get("activity");
+            statusListener = (StatusListener)infos.get("statusListener");
+        }
+    }
 }

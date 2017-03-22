@@ -8,44 +8,43 @@ import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.alibaba.fastjson.JSON;
+import com.apkfuns.jsbridge.JSBridge;
 import com.squareup.otto.Subscribe;
 import com.tencent.connect.common.Constants;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
-import com.tencent.tauth.UiError;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import cn.ihuoniao.Constant;
+import cn.ihuoniao.Event;
 import cn.ihuoniao.R;
+import cn.ihuoniao.TYPE;
 import cn.ihuoniao.base.BaseActivity;
 import cn.ihuoniao.event.AppConfigEvent;
-import cn.ihuoniao.function.command.QQInitCommand;
-import cn.ihuoniao.function.receiver.QQInitReceiver;
+import cn.ihuoniao.event.QQEvent;
+import cn.ihuoniao.function.listener.StatusListener;
 import cn.ihuoniao.function.util.CommonUtil;
 import cn.ihuoniao.function.util.Logger;
 import cn.ihuoniao.platform.firstdeploy.FirstDeployView;
 import cn.ihuoniao.platform.splash.SplashView;
 import cn.ihuoniao.platform.webview.BridgeWebView;
+import cn.ihuoniao.platform.webview.BridgeWebViewClient;
 import cn.ihuoniao.platform.webview.DefaultHandler;
 import cn.ihuoniao.store.AppConfigStore;
+import cn.ihuoniao.store.AppInfoStore;
 import cn.ihuoniao.store.QQStore;
 
 public class MainActivity extends BaseActivity {
 
     private BridgeWebView bwvContent = null;
-
-    private Button btn = null;
 
     private RelativeLayout rlContent = null;
 
@@ -57,22 +56,7 @@ public class MainActivity extends BaseActivity {
 
     private boolean isClickAdv = false;
 
-    private Map<String, Object> infos = new HashMap<>();
-
-    private IUiListener iUiListener = new IUiListener() {
-        @Override
-        public void onComplete(Object o) {
-            Logger.i("com : " + o.toString());
-        }
-
-        @Override
-        public void onError(UiError uiError) {
-        }
-
-        @Override
-        public void onCancel() {
-        }
-    };
+    private IUiListener iUiListener = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +70,6 @@ public class MainActivity extends BaseActivity {
         super.initView();
 
         bwvContent = getView(R.id.bwv_content);
-        btn = getView(R.id.btn);
         rlContent = getView(R.id.rl_content);
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams((int) getResources().getDimension(R.dimen.hn_50dp), (int) getResources().getDimension(R.dimen.hn_50dp));
         lp.addRule(RelativeLayout.CENTER_IN_PARENT);
@@ -129,31 +112,6 @@ public class MainActivity extends BaseActivity {
             });
         }
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                actionsCreator.action_qqLogin(infos);
-            }
-        });
-    }
-
-    @Override
-    public void registerStores() {
-        registerStore(AppConfigStore.class.getSimpleName(), new AppConfigStore());
-        registerStore(QQStore.class.getSimpleName(), new QQStore());
-    }
-
-    @Override
-    protected void initData() {
-        super.initData();
-
-        actionsCreator.request_getAppConfig();
-
-        Map<String, Object> params = new HashMap<>();
-        params.put("context", this);
-        params.put("appId", "1105976281");
-        tencent = (Tencent) control.doCommand(new QQInitCommand(new QQInitReceiver()), params);
-
         bwvContent.setDefaultHandler(new DefaultHandler());
         bwvContent.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
         bwvContent.getSettings().setJavaScriptEnabled(true);
@@ -161,22 +119,34 @@ public class MainActivity extends BaseActivity {
         bwvContent.getSettings().setLoadWithOverviewMode(true);
         bwvContent.getSettings().setDomStorageEnabled(true);
 
-        bwvContent.setWebViewClient(new WebViewClient() {
+        bwvContent.setWebViewClient(new BridgeWebViewClient(bwvContent) {
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                showLoading();
+                Logger.i("url : " + url);
+                if (url.contains("http")) {
+                    showLoading();
+                }
                 return super.shouldOverrideUrlLoading(view, url);
             }
 
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+            }
         });
 
         bwvContent.setWebChromeClient(new WebChromeClient() {
 
             @Override
-            public boolean onJsAlert(WebView view, String url, String message, final JsResult result) {
+            public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, JsPromptResult result) {
+                result.confirm(JSBridge.callJsPrompt(MainActivity.this, view, message));
+                return super.onJsPrompt(view, url, message, defaultValue, result);
+            }
+
+            @Override
+            public boolean onJsAlert(final WebView view, String url, final String message, final JsResult result) {
                 AlertDialog.Builder b = new AlertDialog.Builder(MainActivity.this);
-                b.setTitle(getString(R.string.alert_title));
                 b.setMessage(message);
                 b.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
@@ -212,8 +182,31 @@ public class MainActivity extends BaseActivity {
 
         infos.put("webview", bwvContent);
         infos.put("activity", this);
-        infos.put("tencent", tencent);
-        actionsCreator.action_qqLogin(infos);
+        infos.put("statusListener", new StatusListener(){
+
+            @Override
+            public void start() {
+                showLoading();
+            }
+
+            @Override
+            public void end() {
+                hideLoading();
+            }
+        });
+    }
+
+    @Override
+    public void registerStores() {
+        registerStore(TYPE.REGISTER_GET_APP_INFO, new AppInfoStore());
+        registerStore(TYPE.REGISTER_STORE_APP_CONFIG, new AppConfigStore());
+        registerStore(TYPE.REGISTER_STORE_QQ, new QQStore());
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
+        actionsCreator.request_getAppConfig();
     }
 
     @Override
@@ -247,22 +240,49 @@ public class MainActivity extends BaseActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    spv.setUrl(event.appConfig.cfg_startad.src, event.appConfig.cfg_startad.link, event.appConfig.cfg_startad.time);
+                    if (CommonUtil.isShowAdv(MainActivity.this, Constant.HN_SETTING, event.appConfig.cfg_startad.link)) {
+                        spv.setUrl(event.appConfig.cfg_startad.src, event.appConfig.cfg_startad.link, event.appConfig.cfg_startad.time);
+                    } else {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                spv.setVisibility(View.GONE);
+                                if (!appInfo.isLoadFinish) {
+                                    showLoading();
+                                }
+                            }
+                        }, Integer.parseInt(event.appConfig.cfg_startad.time) * 1000);
+                    }
                 }
             }, 1000);
         }
 
         appInfo.platformUrl = event.appConfig.cfg_basehost;
+        appInfo.loginInfo = event.appConfig.cfg_loginconnect;
         if (!isClickAdv) {
-            bwvContent.loadUrl(appInfo.platformUrl);
+            if (isDebug) {
+                bwvContent.loadUrl("file:///android_asset/debug.html");
+            } else {
+                bwvContent.loadUrl(appInfo.platformUrl);
+            }
         }
 
-//        bwvContent.loadUrl("http://192.168.21.61:7001/login");
+        initWebView();
     }
 
-    private void dissmissSplash() {
-        if (null != spv) {
-            spv.setVisibility(View.GONE);
+    @Subscribe
+    public void onStoreChange(QQEvent event) {
+        switch (event.eventName) {
+            case Event.QQ_INIT:
+                tencent = event.tencent;
+                infos.put("tencent", tencent);
+                actionsCreator.register_qqLogin();
+                break;
+            case Event.QQ_LOGIN:
+                this.iUiListener = event.listener;
+                break;
+            default:
+                break;
         }
     }
 
@@ -272,5 +292,11 @@ public class MainActivity extends BaseActivity {
             Tencent.handleResultData(data, iUiListener);
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void initWebView() {
+        infos.put("appId", JSON.parseObject(appInfo.loginInfo.qq).getString("appid"));
+        actionsCreator.init_qq();
+        actionsCreator.register_getAppInfo();
     }
 }

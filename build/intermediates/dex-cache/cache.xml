@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/sdk-app-shy/Documents/other/HnPlatform/function-library/build/intermediates/bundles/default/libs/platform_http_1.1.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8d5267389a7da1f31bc60a7abe2fe76b32a540c6">
+        <dex dex="/Users/sdk-app-shy/Documents/other/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/8/platform_http_1.1.2_a157a47a73d52290a67cea17cec6bef92d146ea0.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/sdk-app-shy/Documents/other/HnPlatform/function-library/build/intermediates/bundles/default/libs/bugly_crash_release.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="209313db7b18ab730e488e70869e50f1e81df327">
+        <dex dex="/Users/sdk-app-shy/Documents/other/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/8/bugly_crash_release_b73a294827e16826bbf34fe05ddc022737a2f38d.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/sdk-app-shy/Documents/other/HnPlatform/function-library/build/intermediates/bundles/default/libs/ft_logger_1.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="58961d2997c56f539e2415d399b1e4869ce348e7">
+        <dex dex="/Users/sdk-app-shy/Documents/other/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/8/ft_logger_1.0.0_8e0861e78aea9955a0e4194142af327a67236102.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/sdk-app-shy/Documents/other/HnPlatform/function-library/build/intermediates/bundles/default/libs/mta-sdk-1.6.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="418868f1416898ed88da34f10e4d770502a8d6b7">
+        <dex dex="/Users/sdk-app-shy/Documents/other/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/8/mta-sdk-1.6.2_c2dfe2d721c9571f2ee85ac2c58bea7a460f4ee2.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/sdk-app-shy/Documents/other/HnPlatform/function-library/build/intermediates/bundles/default/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="eb9552586ef7b6d58af08211dd8b5e5a73c084bb">
+        <dex dex="/Users/sdk-app-shy/Documents/other/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/4/classes_9db38d109c3d1aef06fcdcf7062638a06b60d1bb.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/sdk-app-shy/Documents/other/HnPlatform/business-library/build/intermediates/bundles/default/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3781146ec4f4ff384bbe8fa93d548735b5147b6a">
+        <dex dex="/Users/sdk-app-shy/Documents/other/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/4/classes_e0a6b8c0ab49f1af79297461cb763d253476ce8f.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/sdk-app-shy/Documents/other/HnPlatform/function-library/build/intermediates/bundles/default/libs/open_sdk_r5785.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="02dc78077cc09236d29893fcd210b603cff0ed21">
+        <dex dex="/Users/sdk-app-shy/Documents/other/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/8/open_sdk_r5785_ae29f5902e94294082c567f8c4a4afb1fcc552c9.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/sdk-app-shy/Documents/other/HnPlatform/uikit-library/build/intermediates/bundles/default/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="80ebb9112ca0c4a1a4f2870298f8b7cad45464e6">
+        <dex dex="/Users/sdk-app-shy/Documents/other/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/4/classes_1dc47215ac172c7a7619b823bc4ffa09c6a55658.jar.jar" />
+    </item>
+
+</items>

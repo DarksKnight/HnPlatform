@@ -15,7 +15,7 @@ public enum  Dispatcher {
 
     private final Map<String, Store> stores = new HashMap<>();
 
-    public void register(String key, final Store store) {
+    public void register(String key, Store store) {
         stores.put(key, store);
     }
 

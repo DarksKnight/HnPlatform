@@ -19,6 +19,8 @@ public class AppConfigModel implements Serializable {
 
     public Started cfg_startad = null;
 
+    public Login cfg_loginconnect = null;
+
     public class Guide {
         public List<String> android = null;
     }
@@ -29,5 +31,9 @@ public class AppConfigModel implements Serializable {
         public String src = "";
 
         public String link = "";
+    }
+
+    public class Login {
+        public String qq = null;
     }
 }

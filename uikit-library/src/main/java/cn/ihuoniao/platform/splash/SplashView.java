@@ -102,13 +102,16 @@ public class SplashView extends LinearLayout {
 
     @Override
     public void setVisibility(int visibility) {
-        timer.cancel();
-        timer = null;
+        if (null != timer) {
+            timer.cancel();
+            timer = null;
+        }
         super.setVisibility(visibility);
     }
 
     public interface Listener {
         void onComplete();
+
         void onClickAdv(String url);
     }
 }

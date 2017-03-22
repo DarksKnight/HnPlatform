@@ -12,4 +12,6 @@ public enum  AppInfo implements Serializable {
     public boolean isLoadFinish = false;
 
     public String platformUrl = "";
+
+    public AppConfigModel.Login loginInfo = null;
 }

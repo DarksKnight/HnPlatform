@@ -18,6 +18,7 @@ public class AppConfigStore extends Store<AppConfigAction> {
 
     @Override
     public void onAction(AppConfigAction action) {
+        super.onAction(action);
         switch (action.getType()) {
             case TYPE.TYPE_APP_CONFIG:
                 getAppConfigRequest();
