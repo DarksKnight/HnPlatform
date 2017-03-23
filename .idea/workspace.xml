@@ -10,53 +10,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f68a3caf-915a-4a39-9978-68d7ba77dec7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/openDefault_1_0_0_.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/actions/WeiboAction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/event/WeiboEvent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/WeiboStore.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/WeiboInitCommand.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/WeiboLoginCommand.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/receiver/WeiboInitReceiver.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/receiver/WeiboLoginReceiver.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-23-16-41-16-435.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-23-16-41-16-435.rawproto" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-23-16-41-41-834.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-23-16-41-41-834.rawproto" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-23-16-42-15-055.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-23-16-42-15-055.rawproto" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-23-16-42-22-998.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-23-16-42-22-998.rawproto" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/testclient/hn_platform_201703230441.apk" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/demo.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4.1/javaCompile/classAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/3.4.1/javaCompile/classAnalysis.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4.1/javaCompile/jarAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/3.4.1/javaCompile/jarAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4.1/javaCompile/javaCompile.lock" afterPath="$PROJECT_DIR$/.gradle/3.4.1/javaCompile/javaCompile.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4.1/javaCompile/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/3.4.1/javaCompile/taskHistory.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4.1/javaCompile/taskJars.bin" afterPath="$PROJECT_DIR$/.gradle/3.4.1/javaCompile/taskJars.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4.1/taskHistory/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.4.1/taskHistory/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4.1/taskHistory/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.4.1/taskHistory/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4.1/taskHistory/jvmClassSignatures.bin" afterPath="$PROJECT_DIR$/.gradle/3.4.1/taskHistory/jvmClassSignatures.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4.1/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/3.4.1/taskHistory/taskHistory.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4.1/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/3.4.1/taskHistory/taskHistory.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/assets/debuga.html" afterPath="$PROJECT_DIR$/app/src/main/assets/debuga.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/cn/ihuoniao/activity/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/cn/ihuoniao/activity/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business-library/build.gradle" afterPath="$PROJECT_DIR$/business-library/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business-library/business-library.iml" afterPath="$PROJECT_DIR$/business-library/business-library.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/Event.java" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/Event.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/TYPE.java" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/TYPE.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/actions/base/ActionsCreator.java" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/actions/base/ActionsCreator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/event/QQEvent.java" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/event/QQEvent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/event/WeChatEvent.java" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/event/WeChatEvent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/event/base/StoreChangeEvent.java" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/event/base/StoreChangeEvent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/model/AppConfigModel.java" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/model/AppConfigModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/QQStore.java" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/QQStore.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/WeChatStore.java" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/WeChatStore.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/function-library/build.gradle" afterPath="$PROJECT_DIR$/function-library/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/function-library/function-library.iml" afterPath="$PROJECT_DIR$/function-library/function-library.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/uikit-library/build.gradle" afterPath="$PROJECT_DIR$/uikit-library/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -149,7 +124,31 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="385">
+              <caret line="46" column="33" lean-forward="false" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+          <provider editor-type-id="android-manifest">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="118">
+              <caret line="9" column="24" lean-forward="false" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -3764,7 +3763,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="8941142321000" />
+        <entry key="$PROJECT_DIR$" value="8941145668000" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -4309,7 +4308,6 @@
         <option value="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/receiver/WeChatLoginReceiver.java" />
         <option value="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/receiver/WeChatInitReceiver.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_wx_entry.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/API.java" />
         <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/request/base/BaseRequest.java" />
         <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/request/AppConfigRequest.java" />
@@ -4320,7 +4318,6 @@
         <option value="$PROJECT_DIR$/function-library/src/main/res/layout/activity_log.xml" />
         <option value="$PROJECT_DIR$/uikit-library/build.gradle" />
         <option value="$PROJECT_DIR$/function-library/build.gradle" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/business-library/build.gradle" />
         <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/Event.java" />
         <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/TYPE.java" />
@@ -4341,6 +4338,8 @@
         <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/WeChatStore.java" />
         <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/QQStore.java" />
         <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/WeiboStore.java" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       </list>
     </option>
   </component>
@@ -4943,6 +4942,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1873" height="1058" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287234" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -4967,7 +4967,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287234" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287234" sideWeight="0.5062807" order="13" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24849808" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24849808" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298744" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -5132,14 +5132,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="563">
-          <caret line="67" column="21" lean-forward="false" selection-start-line="67" selection-start-column="21" selection-end-line="67" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/TYPE.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -5227,17 +5219,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="21" column="41" lean-forward="false" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="38" column="17" lean-forward="true" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -5457,6 +5438,25 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="291">
           <caret line="24" column="17" lean-forward="false" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="46" column="33" lean-forward="false" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="9" column="24" lean-forward="false" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
           <folding />
         </state>
       </provider>
