@@ -13,6 +13,7 @@ import cn.ihuoniao.actions.QQAction;
 import cn.ihuoniao.event.QQEvent;
 import cn.ihuoniao.function.command.QQInitCommand;
 import cn.ihuoniao.function.command.QQLoginCommand;
+import cn.ihuoniao.function.listener.ResultListener;
 import cn.ihuoniao.function.receiver.QQInitReceiver;
 import cn.ihuoniao.function.receiver.QQLoginReceiver;
 import cn.ihuoniao.function.util.Logger;
@@ -32,7 +33,7 @@ public class QQStore extends Store<QQAction> {
         Map<String, Object> infos = action.getData();
         switch (action.getType()) {
             case TYPE.TYPE_QQ_INIT:
-                init(infos.get("appId").toString());
+                init(infos.get("qqAppId").toString());
                 break;
             case TYPE.TYPE_QQ_LOGIN:
                 qqLogin((Tencent)infos.get("tencent"));
@@ -46,15 +47,20 @@ public class QQStore extends Store<QQAction> {
         Map<String, Object> params = new HashMap<>();
         params.put("context", activity);
         params.put("appId", appId);
-        Tencent tencent = (Tencent) control.doCommand(new QQInitCommand(new QQInitReceiver()), params);
-        QQEvent event = new QQEvent();
-        event.eventName = Event.QQ_INIT;
-        event.tencent = tencent;
-        emitStoreChange(event);
+        control.doCommand(new QQInitCommand(new QQInitReceiver()), params, new ResultListener<Tencent>() {
+            @Override
+            public void onResult(Tencent result) {
+                QQEvent event = new QQEvent();
+                event.eventName = Event.INIT_QQ;
+                event.tencent = result;
+                emitStoreChange(event);
+            }
+        });
+
     }
 
     public void qqLogin(final Tencent tencent) {
-        webView.registerHandler(Event.QQ_LOGIN, new BridgeHandler() {
+        webView.registerHandler(Event.LOGIN_QQ, new BridgeHandler() {
             @Override
             public void handler(String data, final CallBackFunction function) {
                 statusListener.start();
@@ -81,10 +87,10 @@ public class QQStore extends Store<QQAction> {
                 params.put("activity", activity);
                 params.put("listener", listener);
                 QQEvent event = new QQEvent();
-                event.eventName = Event.QQ_LOGIN;
+                event.eventName = Event.LOGIN_QQ;
                 event.listener = listener;
                 emitStoreChange(event);
-                control.doCommand(new QQLoginCommand(new QQLoginReceiver()), params);
+                control.doCommand(new QQLoginCommand(new QQLoginReceiver()), params, null);
             }
         });
     }

@@ -1,9 +1,8 @@
 package cn.ihuoniao.function.activity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,14 +17,14 @@ import cn.ihuoniao.function.util.LogCatUtil;
  * Created by apple on 2017/3/19.
  */
 
-public class LogActivity extends AppCompatActivity implements View.OnClickListener {
+public class LogActivity extends Activity implements View.OnClickListener {
 
     private TextView tvLog = null;
     private Button btnSave = null;
     private String log = "";
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log);
 

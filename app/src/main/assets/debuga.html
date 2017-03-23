@@ -12,9 +12,18 @@
                 'qqLogin'
                 , {}
                 , function(responseData) {
-                    alert(responseData);
+                    console.log('qqLogin : ' + responseData);
                 }
-            );
+                );
+            });
+            $('#btnWeChatLogin').click(function() {
+                window.WebViewJavascriptBridge.callHandler(
+                'wechatLogin'
+                , {}
+                , function(responseData) {
+                    console.log('weChatLogin : ' + responseData);
+                }
+                );
             });
         });
     </script>
@@ -23,7 +32,9 @@
 <body class="login">
 <div>
     <ul>
-        <li><input type="button" value="qqLoginaaa" id="btnQQLogin" style="width:200px;height:100px;"/>
+        <li><input type="button" value="qqLogin" id="btnQQLogin" style="width:200px;height:100px;"/>
+        </li>
+        <li><input type="button" value="wechatLogin" id="btnWeChatLogin" style="width:200px;height:100px;"/>
         </li>
     </ul>
 </div>

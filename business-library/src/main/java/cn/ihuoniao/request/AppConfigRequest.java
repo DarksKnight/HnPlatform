@@ -12,7 +12,7 @@ import cn.ihuoniao.request.base.RequestCallBack;
  * Created by sdk-app-shy on 2017/3/17.
  */
 
-public class AppConfigRequest extends BaseRequest {
+public class AppConfigRequest extends BaseRequest<Map<String, Object>> {
 
     @Override
     public void request(Map<String, Object> params, final RequestCallBack callback) {

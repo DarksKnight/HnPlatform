@@ -11,7 +11,7 @@ public class LogCatUtil {
 
     public static String getLog() {
         try {
-            Process process = Runtime.getRuntime().exec("logcat -d -s Logger");   //捕获日志
+            Process process = Runtime.getRuntime().exec("logcat -d -s Logger chromium");   //捕获日志
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));    //将捕获内容转换为BufferedReader
 
             String str;

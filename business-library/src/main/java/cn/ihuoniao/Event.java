@@ -6,6 +6,10 @@ package cn.ihuoniao;
 
 public class Event {
     public static final String GET_APP_INFO = "getAppInfo";
-    public static final String QQ_INIT = "qqInit";
-    public static final String QQ_LOGIN = "qqLogin";
+    public static final String GET_LOGIN_WECHAT_INFO  = "getLoginWeChatInfo";
+
+    public static final String INIT_QQ = "qqInit";
+    public static final String LOGIN_QQ = "qqLogin";
+    public static final String INIT_WECHAT = "wechatInit";
+    public static final String LOGIN_WECHAT = "wechatLogin";
 }

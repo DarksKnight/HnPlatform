@@ -31,3 +31,12 @@
 -keep public class com.facebook.**{*;}
 -keep public class com.ldoublem.**{*;}
 -keep public class com.mistyrain.**{*;}
+-keep class com.tencent.mm.opensdk.** {
+   *;
+}
+-keep class com.tencent.wxop.** {
+   *;
+}
+-keep class com.tencent.mm.sdk.** {
+   *;
+}

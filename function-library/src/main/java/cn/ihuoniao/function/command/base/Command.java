@@ -2,11 +2,13 @@ package cn.ihuoniao.function.command.base;
 
 import java.util.Map;
 
+import cn.ihuoniao.function.listener.ResultListener;
+
 /**
  * Created by sdk-app-shy on 2017/3/20.
  */
 
-public abstract class Command<T extends Receiver> {
+public abstract class Command<K, T extends Receiver> {
 
     protected T receiver = null;
 
@@ -14,5 +16,5 @@ public abstract class Command<T extends Receiver> {
         this.receiver = receiver;
     }
 
-    public abstract Object execute(Map<String, Object> params);
+    public abstract void execute(Map<String, Object> params, ResultListener<K> listener);
 }

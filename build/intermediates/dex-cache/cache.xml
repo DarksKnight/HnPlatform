@@ -12,6 +12,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="/Users/sdk-app-shy/Documents/other/HnPlatform/function-library/build/intermediates/bundles/default/libs/wup-1.0.0.E-SNAPSHOT.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e435c9a0f4a55d45cff005d3a72e27d6882a353c">
+        <dex dex="/Users/sdk-app-shy/Documents/other/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/8/wup-1.0.0.E-SNAPSHOT_36d33376242bb041aab161657d7acc22fabd4be0.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/Users/sdk-app-shy/Documents/other/HnPlatform/function-library/build/intermediates/bundles/default/libs/bugly_crash_release.jar"
         jumboMode="false"
         optimize="true"
@@ -30,6 +39,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="/Users/sdk-app-shy/Documents/other/HnPlatform/function-library/build/intermediates/bundles/default/libs/mid-core-sdk-3.7.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2331bebf97db7ee12c3d670e9c5eb03b5cc28bd0">
+        <dex dex="/Users/sdk-app-shy/Documents/other/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/8/mid-core-sdk-3.7.2_0ca806b5f129ddbe7887f98548213267d595b438.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/Users/sdk-app-shy/Documents/other/HnPlatform/function-library/build/intermediates/bundles/default/libs/mta-sdk-1.6.2.jar"
         jumboMode="false"
         optimize="true"
@@ -43,7 +61,7 @@
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="eb9552586ef7b6d58af08211dd8b5e5a73c084bb">
+        sha1="bb44b5d2bc9295d422f97b86c28152b1ab37cdcb">
         <dex dex="/Users/sdk-app-shy/Documents/other/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/4/classes_9db38d109c3d1aef06fcdcf7062638a06b60d1bb.jar.jar" />
     </item>
     <item
@@ -52,7 +70,7 @@
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="3781146ec4f4ff384bbe8fa93d548735b5147b6a">
+        sha1="f002213a9c810f1f179632159412e56d727590dc">
         <dex dex="/Users/sdk-app-shy/Documents/other/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/4/classes_e0a6b8c0ab49f1af79297461cb763d253476ce8f.jar.jar" />
     </item>
     <item
@@ -72,6 +90,24 @@
         revision="25.0.2"
         sha1="80ebb9112ca0c4a1a4f2870298f8b7cad45464e6">
         <dex dex="/Users/sdk-app-shy/Documents/other/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/4/classes_1dc47215ac172c7a7619b823bc4ffa09c6a55658.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/sdk-app-shy/Documents/other/HnPlatform/function-library/build/intermediates/bundles/default/libs/jg_filter_sdk_1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d29e539522e76a4fe6953ab2df787751223f0571">
+        <dex dex="/Users/sdk-app-shy/Documents/other/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/8/jg_filter_sdk_1.1_2db3fce71eae6a41b2dcb4752710c0b5aa2f5c35.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/sdk-app-shy/Documents/other/HnPlatform/function-library/build/intermediates/bundles/default/libs/Xg_sdk_v3.0_20170301_1733.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0d8a33a0f096bf88d87a6ad72a5d5eb68c2b303b">
+        <dex dex="/Users/sdk-app-shy/Documents/other/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/8/Xg_sdk_v3.0_20170301_1733_94704dcd3f765ca4ef9eae1e8cfb8424d27beaa9.jar.jar" />
     </item>
 
 </items>

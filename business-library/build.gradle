@@ -19,5 +19,4 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':function-library')
-    compile project(':uikit-library')
 }

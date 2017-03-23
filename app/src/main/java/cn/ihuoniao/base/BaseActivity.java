@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 
 import com.ldoublem.loadingviewlib.view.LVCircularRing;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import cn.ihuoniao.R;
@@ -29,7 +28,7 @@ public abstract class BaseActivity extends FragmentActivity {
     protected LVCircularRing lvc = null;
     protected Control control = Control.INSTANCE;
     protected boolean isDebug = false;
-    protected Map<String, Object> infos = new HashMap<>();
+    protected Map<String, Object> infos = appInfo.infos;
 
     protected void init() {
         initView();

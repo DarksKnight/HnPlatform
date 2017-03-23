@@ -8,7 +8,7 @@ import cn.ihuoniao.function.command.base.Receiver;
 
 public class QQShareReceiver extends Receiver {
 
-    public void share() {
+    public void shareQQ() {
 
     }
 

@@ -30,6 +30,7 @@ import cn.ihuoniao.TYPE;
 import cn.ihuoniao.base.BaseActivity;
 import cn.ihuoniao.event.AppConfigEvent;
 import cn.ihuoniao.event.QQEvent;
+import cn.ihuoniao.event.WeChatEvent;
 import cn.ihuoniao.function.listener.StatusListener;
 import cn.ihuoniao.function.util.CommonUtil;
 import cn.ihuoniao.function.util.Logger;
@@ -37,10 +38,12 @@ import cn.ihuoniao.platform.firstdeploy.FirstDeployView;
 import cn.ihuoniao.platform.splash.SplashView;
 import cn.ihuoniao.platform.webview.BridgeWebView;
 import cn.ihuoniao.platform.webview.BridgeWebViewClient;
+import cn.ihuoniao.platform.webview.CallBackFunction;
 import cn.ihuoniao.platform.webview.DefaultHandler;
 import cn.ihuoniao.store.AppConfigStore;
 import cn.ihuoniao.store.AppInfoStore;
 import cn.ihuoniao.store.QQStore;
+import cn.ihuoniao.store.WeChatStore;
 
 public class MainActivity extends BaseActivity {
 
@@ -182,7 +185,7 @@ public class MainActivity extends BaseActivity {
 
         infos.put("webview", bwvContent);
         infos.put("activity", this);
-        infos.put("statusListener", new StatusListener(){
+        infos.put("statusListener", new StatusListener() {
 
             @Override
             public void start() {
@@ -201,6 +204,7 @@ public class MainActivity extends BaseActivity {
         registerStore(TYPE.REGISTER_GET_APP_INFO, new AppInfoStore());
         registerStore(TYPE.REGISTER_STORE_APP_CONFIG, new AppConfigStore());
         registerStore(TYPE.REGISTER_STORE_QQ, new QQStore());
+        registerStore(TYPE.REGISTER_STORE_WECHAT, new WeChatStore());
     }
 
     @Override
@@ -270,22 +274,6 @@ public class MainActivity extends BaseActivity {
         initWebView();
     }
 
-    @Subscribe
-    public void onStoreChange(QQEvent event) {
-        switch (event.eventName) {
-            case Event.QQ_INIT:
-                tencent = event.tencent;
-                infos.put("tencent", tencent);
-                actionsCreator.register_qqLogin();
-                break;
-            case Event.QQ_LOGIN:
-                this.iUiListener = event.listener;
-                break;
-            default:
-                break;
-        }
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == Constants.REQUEST_LOGIN) {
@@ -295,8 +283,49 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initWebView() {
-        infos.put("appId", JSON.parseObject(appInfo.loginInfo.qq).getString("appid"));
+        infos.put("qqAppId", JSON.parseObject(appInfo.loginInfo.qq).getString("appid"));
         actionsCreator.init_qq();
+        infos.put("wechatAppId", JSON.parseObject(appInfo.loginInfo.wechat).getString("appid"));
+        infos.put("wechatSecret", JSON.parseObject(appInfo.loginInfo.wechat).getString("appsecret"));
+        actionsCreator.init_wechat();
         actionsCreator.register_getAppInfo();
+    }
+
+    @Subscribe
+    public void onStoreChange(QQEvent event) {
+        switch (event.eventName) {
+            case Event.INIT_QQ:
+                tencent = event.tencent;
+                infos.put("tencent", tencent);
+                actionsCreator.register_qqLogin();
+                break;
+            case Event.LOGIN_QQ:
+                this.iUiListener = event.listener;
+                break;
+            default:
+                break;
+        }
+    }
+
+    private CallBackFunction function = null;
+
+    @Subscribe
+    public void onStoreChange(WeChatEvent event) {
+        switch (event.eventName) {
+            case Event.INIT_WECHAT:
+                appInfo.wxApi = event.wxApi;
+                infos.put("wxApi", appInfo.wxApi);
+                actionsCreator.register_wechatLogin();
+                break;
+            case Event.GET_LOGIN_WECHAT_INFO:
+                if (event.wxLoginInfo.equals("")) {
+                    function = event.function;
+                } else {
+                    function.onCallBack(event.wxLoginInfo);
+                }
+                break;
+            default:
+                break;
+        }
     }
 }
