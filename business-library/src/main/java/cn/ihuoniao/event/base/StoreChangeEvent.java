@@ -5,4 +5,6 @@ package cn.ihuoniao.event.base;
  */
 
 public abstract class StoreChangeEvent {
+
+    public String eventName = "";
 }

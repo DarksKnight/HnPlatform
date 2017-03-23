@@ -10,54 +10,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f68a3caf-915a-4a39-9978-68d7ba77dec7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Xg_sdk_v3_0_20170301_1733.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/jg_filter_sdk_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/mid_core_sdk_3_7_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/wechat_sdk_android_without_mta_1_0_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/wup_1_0_0_E_SNAPSHOT.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/cn/ihuoniao/platform/wxapi/WXEntryActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/actions/WeChatAction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/event/WeChatEvent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/request/WeChatLoginRequest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/WeChatStore.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/WeChatInitCommand.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/WeChatLoginCommand.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/listener/ResultListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/receiver/WeChatInitReceiver.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/receiver/WeChatLoginReceiver.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/alertdialog_1_0_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/permission_1_0_5.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-22-15-54-41-846.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-22-15-54-41-846.rawproto" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-22-15-55-02-798.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-22-15-55-02-798.rawproto" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-22-15-55-16-016.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-22-15-55-16-016.rawproto" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-22-15-55-23-243.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-22-15-55-23-243.rawproto" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-22-16-04-35-085.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-22-16-04-35-085.rawproto" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-22-16-04-39-497.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-22-16-04-39-497.rawproto" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-22-16-05-12-688.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-22-16-05-12-688.rawproto" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/intermediates/project-cache/06780a9b8ba23b92406df07a6b4afa3bbac807e9/inputs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/intermediates/project-cache/06780a9b8ba23b92406df07a6b4afa3bbac807e9/output" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/intermediates/project-cache/40bffab635ef164e57b91b6599a5e90fdcb4d6ca/inputs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/intermediates/project-cache/40bffab635ef164e57b91b6599a5e90fdcb4d6ca/output" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/intermediates/project-cache/4480121c333d9433ca882b0b5f80ecda656f3930/inputs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/intermediates/project-cache/4480121c333d9433ca882b0b5f80ecda656f3930/output" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/intermediates/project-cache/6cb9cad8a84522e584f065e5bd227a10a3dd1725/inputs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/intermediates/project-cache/6cb9cad8a84522e584f065e5bd227a10a3dd1725/output" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/intermediates/project-cache/75e7edacbbbb70016771569c1f17fb141286056f/inputs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/intermediates/project-cache/75e7edacbbbb70016771569c1f17fb141286056f/output" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/intermediates/project-cache/8c4586e18c087ce7404884ae123284d1e1326f3a/inputs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/intermediates/project-cache/8c4586e18c087ce7404884ae123284d1e1326f3a/output" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/intermediates/project-cache/ccf618b165f20ec188970b73db2628266e9aff3f/inputs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/intermediates/project-cache/ccf618b165f20ec188970b73db2628266e9aff3f/output" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/intermediates/project-cache/d5c3b2de185a03f0ab059f2add774e1ff494f404/inputs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/intermediates/project-cache/d5c3b2de185a03f0ab059f2add774e1ff494f404/output" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/openDefault_1_0_0_.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/actions/WeiboAction.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/event/WeiboEvent.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/WeiboStore.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/WeiboInitCommand.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/WeiboLoginCommand.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/receiver/WeiboInitReceiver.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/receiver/WeiboLoginReceiver.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-23-16-41-16-435.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-23-16-41-16-435.rawproto" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-23-16-41-41-834.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-23-16-41-41-834.rawproto" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-23-16-42-15-055.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-23-16-42-15-055.rawproto" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-23-16-42-22-998.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-03-23-16-42-22-998.rawproto" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/testclient/hn_platform_201703230441.apk" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4.1/javaCompile/classAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/3.4.1/javaCompile/classAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4.1/javaCompile/jarAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/3.4.1/javaCompile/jarAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4.1/javaCompile/javaCompile.lock" afterPath="$PROJECT_DIR$/.gradle/3.4.1/javaCompile/javaCompile.lock" />
@@ -70,39 +39,24 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4.1/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/3.4.1/taskHistory/taskHistory.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/proguard-rules.pro" afterPath="$PROJECT_DIR$/app/proguard-rules.pro" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/assets/debug.html" afterPath="$PROJECT_DIR$/app/src/main/assets/debug.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/assets/debuga.html" afterPath="$PROJECT_DIR$/app/src/main/assets/debuga.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/cn/ihuoniao/HnApplication.java" afterPath="$PROJECT_DIR$/app/src/main/java/cn/ihuoniao/HnApplication.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/cn/ihuoniao/activity/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/cn/ihuoniao/activity/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/cn/ihuoniao/base/BaseActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/cn/ihuoniao/base/BaseActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business-library/build.gradle" afterPath="$PROJECT_DIR$/business-library/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business-library/business-library.iml" afterPath="$PROJECT_DIR$/business-library/business-library.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/API.java" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/API.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/Event.java" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/Event.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/TYPE.java" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/TYPE.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/actions/base/ActionsCreator.java" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/actions/base/ActionsCreator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/event/QQEvent.java" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/event/QQEvent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/event/WeChatEvent.java" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/event/WeChatEvent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/event/base/StoreChangeEvent.java" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/event/base/StoreChangeEvent.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/model/AppConfigModel.java" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/model/AppConfigModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/model/AppInfo.java" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/model/AppInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/request/AppConfigRequest.java" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/request/AppConfigRequest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/request/base/BaseRequest.java" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/request/base/BaseRequest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/QQStore.java" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/QQStore.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/WeChatStore.java" afterPath="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/WeChatStore.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/function-library/build.gradle" afterPath="$PROJECT_DIR$/function-library/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/function-library/function-library.iml" afterPath="$PROJECT_DIR$/function-library/function-library.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/function-library/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/function-library/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/activity/LogActivity.java" afterPath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/activity/LogActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/QQInitCommand.java" afterPath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/QQInitCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/QQLoginCommand.java" afterPath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/QQLoginCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/QQShareCommand.java" afterPath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/QQShareCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/QQZoneShareCommand.java" afterPath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/QQZoneShareCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/base/Command.java" afterPath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/base/Command.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/base/Control.java" afterPath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/base/Control.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/constant/MemoryConstants.java" afterPath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/constant/MemoryConstants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/receiver/QQShareReceiver.java" afterPath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/receiver/QQShareReceiver.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/util/LogCatUtil.java" afterPath="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/util/LogCatUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/function-library/src/main/res/layout/activity_log.xml" afterPath="$PROJECT_DIR$/function-library/src/main/res/layout/activity_log.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/uikit-library/build.gradle" afterPath="$PROJECT_DIR$/uikit-library/build.gradle" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -207,8 +161,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>tv_advTime</find>
-      <find>registerstore</find>
       <find>register</find>
       <find>tencent</find>
       <find>registerStore</find>
@@ -237,6 +189,8 @@
       <find>READ_PHONE_STATE</find>
       <find>code</find>
       <find>wxApi</find>
+      <find>AuthListener</find>
+      <find>mAccessToken</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -3810,7 +3764,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="8940916964000" />
+        <entry key="$PROJECT_DIR$" value="8941142321000" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -4336,17 +4290,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/listener/StatusListener.java" />
-        <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/AppConfigStore.java" />
-        <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/base/Store.java" />
-        <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/event/QQEvent.java" />
-        <option value="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/receiver/QQInitReceiver.java" />
-        <option value="$PROJECT_DIR$/uikit-library/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/cn/ihuoniao/base/NativeModule.java" />
-        <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/actions/GetAppInfoAction.java" />
-        <option value="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/util/CommonUtil.java" />
-        <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/AppInfoStore.java" />
-        <option value="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/receiver/QQShareReceiver.java" />
         <option value="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/base/Control.java" />
         <option value="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/QQInitCommand.java" />
         <option value="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/listener/ResultListener.java" />
@@ -4358,35 +4301,46 @@
         <option value="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/util/LogCatUtil.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/cn/ihuoniao/HnApplication.java" />
         <option value="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/activity/LogActivity.java" />
-        <option value="$PROJECT_DIR$/function-library/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/actions/WechatAction.java" />
         <option value="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/WeChatInitCommand.java" />
         <option value="$PROJECT_DIR$/app/proguard-rules.pro" />
-        <option value="$PROJECT_DIR$/app/src/main/assets/debuga.html" />
         <option value="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/constant/MemoryConstants.java" />
-        <option value="$PROJECT_DIR$/business-library/build.gradle" />
-        <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/model/AppConfigModel.java" />
-        <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/QQStore.java" />
         <option value="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/WeChatLoginCommand.java" />
         <option value="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/receiver/WeChatLoginReceiver.java" />
-        <option value="$PROJECT_DIR$/function-library/build.gradle" />
         <option value="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/receiver/WeChatInitReceiver.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_wx_entry.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/Event.java" />
-        <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/TYPE.java" />
         <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/API.java" />
         <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/request/base/BaseRequest.java" />
         <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/request/AppConfigRequest.java" />
         <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/request/WeChatLoginRequest.java" />
         <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/model/AppInfo.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/cn/ihuoniao/base/BaseActivity.java" />
-        <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/actions/base/ActionsCreator.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/cn/ihuoniao/platform/wxapi/WXEntryActivity.java" />
-        <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/event/WeChatEvent.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/cn/ihuoniao/activity/MainActivity.java" />
-        <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/WeChatStore.java" />
         <option value="$PROJECT_DIR$/function-library/src/main/res/layout/activity_log.xml" />
+        <option value="$PROJECT_DIR$/uikit-library/build.gradle" />
+        <option value="$PROJECT_DIR$/function-library/build.gradle" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/business-library/build.gradle" />
+        <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/Event.java" />
+        <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/TYPE.java" />
+        <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/actions/WeiboAction.java" />
+        <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/event/base/StoreChangeEvent.java" />
+        <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/event/WeChatEvent.java" />
+        <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/event/QQEvent.java" />
+        <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/model/AppConfigModel.java" />
+        <option value="$PROJECT_DIR$/function-library/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/receiver/WeiboInitReceiver.java" />
+        <option value="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/WeiboInitCommand.java" />
+        <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/event/WeiboEvent.java" />
+        <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/actions/base/ActionsCreator.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/cn/ihuoniao/activity/MainActivity.java" />
+        <option value="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/receiver/WeiboLoginReceiver.java" />
+        <option value="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/WeiboLoginCommand.java" />
+        <option value="$PROJECT_DIR$/app/src/main/assets/debuga.html" />
+        <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/WeChatStore.java" />
+        <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/QQStore.java" />
+        <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/WeiboStore.java" />
       </list>
     </option>
   </component>
@@ -4470,7 +4424,7 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="activity" />
+              <option name="myItemId" value="receiver" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -4501,6 +4455,38 @@
               <option name="myItemId" value="business-library" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ihuoniao" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="event" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HnPlatform" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="business-library" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HnPlatform" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -4512,8 +4498,8 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResFolderNode" />
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -4526,12 +4512,12 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResFolderNode" />
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResFolderTypeNode" />
+              <option name="myItemId" value="ihuoniao" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -4542,6 +4528,18 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ihuoniao" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wxapi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -4990,230 +4988,11 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="61" />
+      <option name="time" value="62" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/function-library/build/intermediates/manifest/androidTest/debug/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="23" column="27" lean-forward="false" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/function-library/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="27" lean-forward="true" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/Constant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/actions/QQAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" column="61" lean-forward="true" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/receiver/QQInitReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/QQInitCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="18" column="11" lean-forward="false" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
-          <folding>
-            <element signature="e#457#458#0" expanded="false" />
-            <element signature="e#488#489#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/event/QQEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="13" column="4" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/proguard-rules.pro">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="30" lean-forward="true" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/QQLoginCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="24" column="83" lean-forward="false" selection-start-line="24" selection-start-column="75" selection-end-line="24" selection-end-column="83" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/business-library/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="40" lean-forward="false" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/uikit-library/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="51" lean-forward="false" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/receiver/QQLoginReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="16" column="15" lean-forward="false" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/constant/MemoryConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/dispatcher/Dispatcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding>
-            <element signature="e#598#599#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/model/AppConfigModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="36" column="28" lean-forward="false" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/WeChatLoginCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="48" lean-forward="false" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#460#461#0" expanded="true" />
-            <element signature="e#491#492#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/function-library/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="53" lean-forward="true" selection-start-line="20" selection-start-column="53" selection-end-line="20" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.tencent.mm.opensdk/wechat-sdk-android-without-mta/1.0.2/e8db000948e58e4ef6b7a1a54e92e7040e7037d5/wechat-sdk-android-without-mta-1.0.2.jar!/com/tencent/mm/opensdk/openapi/IWXAPI.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="28" column="12" lean-forward="false" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/receiver/WeChatLoginReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/listener/ResultListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="9" lean-forward="false" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/WeChatInitCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="26" column="36" lean-forward="false" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.tencent.mm.opensdk/wechat-sdk-android-without-mta/1.0.2/e8db000948e58e4ef6b7a1a54e92e7040e7037d5/wechat-sdk-android-without-mta-1.0.2.jar!/com/tencent/mm/opensdk/openapi/IWXAPIEventHandler.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/request/base/Request.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="30" column="23" lean-forward="false" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.tencent.mm.opensdk/wechat-sdk-android-without-mta/1.0.2/e8db000948e58e4ef6b7a1a54e92e7040e7037d5/wechat-sdk-android-without-mta-1.0.2.jar!/com/tencent/mm/opensdk/modelbase/BaseResp.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="9" column="22" lean-forward="false" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_wx_entry.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -5221,25 +5000,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="46" lean-forward="false" selection-start-line="4" selection-start-column="46" selection-end-line="4" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="38" column="17" lean-forward="true" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/receiver/WeChatInitReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="16" column="63" lean-forward="false" selection-start-line="16" selection-start-column="63" selection-end-line="16" selection-end-column="63" />
           <folding />
         </state>
       </provider>
@@ -5257,7 +5017,7 @@
         <state relative-caret-position="255">
           <caret line="15" column="79" lean-forward="false" selection-start-line="15" selection-start-column="79" selection-end-line="15" selection-end-column="79" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -5275,29 +5035,8 @@
         <state relative-caret-position="170">
           <caret line="10" column="11" lean-forward="false" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
           <folding>
-            <element signature="e#228#229#0" expanded="true" />
-            <element signature="e#261#262#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/actions/WeChatAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
-          <folding>
-            <element signature="e#278#279#0" expanded="true" />
-            <element signature="e#311#312#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/model/AppInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="55" lean-forward="false" selection-start-line="23" selection-start-column="55" selection-end-line="23" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#228#229#0" expanded="false" />
+            <element signature="e#261#262#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -5306,14 +5045,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="30" column="55" lean-forward="false" selection-start-line="30" selection-start-column="55" selection-end-line="30" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/TYPE.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="53" lean-forward="false" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="53" />
           <folding />
         </state>
       </provider>
@@ -5334,24 +5065,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/base/Store.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding>
-            <element signature="e#995#996#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/actions/base/ActionsCreator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="49" column="117" lean-forward="false" selection-start-line="49" selection-start-column="117" selection-end-line="49" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/base/Control.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -5368,40 +5081,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/QQStore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="69" column="51" lean-forward="false" selection-start-line="69" selection-start-column="43" selection-end-line="69" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/Event.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="31" lean-forward="false" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/event/WeChatEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="4" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/assets/debuga.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="44" lean-forward="false" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/function-library/src/main/res/layout/activity_log.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -5413,28 +5092,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/cn/ihuoniao/platform/wxapi/WXEntryActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="52" lean-forward="false" selection-start-line="32" selection-start-column="52" selection-end-line="32" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/WeChatStore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="801">
-          <caret line="99" column="37" lean-forward="false" selection-start-line="99" selection-start-column="37" selection-end-line="99" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2480#3124#0" expanded="true" />
-            <element signature="e#3123#3124#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/activity/LogActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -5443,13 +5100,364 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/cn/ihuoniao/activity/MainActivity.java">
+    <entry file="file://$PROJECT_DIR$/uikit-library/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4252">
-          <caret line="318" column="22" lean-forward="true" selection-start-line="318" selection-start-column="22" selection-end-line="318" selection-end-column="22" />
+        <state relative-caret-position="425">
+          <caret line="25" column="54" lean-forward="false" selection-start-line="25" selection-start-column="54" selection-end-line="25" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///www/demo/weibo_android_sdk/weibosdkdemo/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="46" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/function-library/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="4" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="22" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business-library/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="5" lean-forward="false" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="563">
+          <caret line="67" column="21" lean-forward="false" selection-start-line="67" selection-start-column="21" selection-end-line="67" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/TYPE.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="69" lean-forward="true" selection-start-line="17" selection-start-column="69" selection-end-line="17" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/actions/WeChatAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="10" column="64" lean-forward="false" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="64" />
+          <folding>
+            <element signature="e#278#279#0" expanded="false" />
+            <element signature="e#311#312#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/actions/QQAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/actions/WeiboAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#276#277#0" expanded="false" />
+            <element signature="e#309#310#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/event/base/StoreChangeEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="33" lean-forward="false" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/event/WeChatEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="51" lean-forward="false" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/event/QQEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="14" column="4" lean-forward="false" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/event/AppConfigEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/model/AppInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="32" lean-forward="false" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/model/AppConfigModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="21" column="41" lean-forward="false" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="38" column="17" lean-forward="true" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///www/demo/weibo_android_sdk/weibosdkdemo/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="61" column="18" lean-forward="true" selection-start-line="61" selection-start-column="18" selection-end-line="61" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/function-library/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="100" column="43" lean-forward="false" selection-start-line="100" selection-start-column="43" selection-end-line="100" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/base/Store.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="22" column="23" lean-forward="false" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/WeChatInitCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="26" column="36" lean-forward="false" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/receiver/WeChatInitReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="16" column="63" lean-forward="false" selection-start-line="16" selection-start-column="63" selection-end-line="16" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/event/WeiboEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="37" lean-forward="false" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/actions/base/ActionsCreator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="485">
+          <caret line="57" column="35" lean-forward="false" selection-start-line="57" selection-start-column="16" selection-end-line="57" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/receiver/WeiboInitReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="50" lean-forward="true" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///www/demo/weibo_android_sdk/weibosdkdemo/app/src/main/java/com/sina/weibo/sdk/demo/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="54" column="4" lean-forward="true" selection-start-line="54" selection-start-column="4" selection-end-line="57" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/receiver/WeChatLoginReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/WeiboInitCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="25" column="45" lean-forward="false" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/WeChatLoginCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/receiver/WeiboLoginReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="59" lean-forward="false" selection-start-line="13" selection-start-column="59" selection-end-line="13" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/QQLoginCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="28" column="53" lean-forward="false" selection-start-line="28" selection-start-column="42" selection-end-line="28" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/Event.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="56" lean-forward="false" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/cn/ihuoniao/platform/wxapi/WXEntryActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="49" lean-forward="false" selection-start-line="32" selection-start-column="23" selection-end-line="32" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/QQStore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="512">
+          <caret line="80" column="44" lean-forward="true" selection-start-line="80" selection-start-column="44" selection-end-line="80" selection-end-column="44" />
+          <folding>
+            <element signature="e#2785#2786#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///www/demo/weibo_android_sdk/weibosdkdemo/app/src/main/java/com/sina/weibo/sdk/demo/WBAuthActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="54" column="29" lean-forward="false" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/WeiboStore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="80" column="80" lean-forward="false" selection-start-line="80" selection-start-column="80" selection-end-line="80" selection-end-column="80" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1778#2097#0" expanded="true" />
+            <element signature="e#2096#2097#0" expanded="true" />
+            <element signature="e#2209#3861#0" expanded="true" />
+            <element signature="e#3333#3334#0" expanded="true" />
+            <element signature="e#3401#3402#0" expanded="true" />
+            <element signature="e#3477#3478#0" expanded="true" />
+            <element signature="e#3545#3546#0" expanded="true" />
+            <element signature="e#3860#3861#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/cn/ihuoniao/activity/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="330" column="46" lean-forward="true" selection-start-line="330" selection-start-column="46" selection-end-line="330" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/WeiboLoginCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="3" lean-forward="false" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#506#507#0" expanded="true" />
+            <element signature="e#537#538#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/store/WeChatStore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="461">
+          <caret line="90" column="53" lean-forward="true" selection-start-line="90" selection-start-column="53" selection-end-line="90" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/assets/debuga.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="24" column="17" lean-forward="false" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>

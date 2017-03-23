@@ -84,6 +84,10 @@ public class WeChatStore extends Store<WeChatAction> {
     }
 
     private void getWeChatLoginInfo(SendAuth.Resp response, String appid, String secret) {
+        if (response.errCode != 0) {
+            statusListener.end();
+            return;
+        }
         Map<String, String> params = new HashMap<>();
         params.put("appid", appid);
         params.put("secret", secret);

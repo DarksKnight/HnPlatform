@@ -25,6 +25,15 @@
                 }
                 );
             });
+            $('#btnWeiboLogin').click(function() {
+                window.WebViewJavascriptBridge.callHandler(
+                'weiboLogin'
+                , {}
+                , function(responseData) {
+                    console.log('weiboLogin : ' + responseData);
+                }
+                );
+            });
         });
     </script>
 </head>
@@ -35,6 +44,8 @@
         <li><input type="button" value="qqLogin" id="btnQQLogin" style="width:200px;height:100px;"/>
         </li>
         <li><input type="button" value="wechatLogin" id="btnWeChatLogin" style="width:200px;height:100px;"/>
+        </li>
+        <li><input type="button" value="weiboLogin" id="btnWeiboLogin" style="width:200px;height:100px;"/>
         </li>
     </ul>
 </div>

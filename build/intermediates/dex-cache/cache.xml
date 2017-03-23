@@ -12,6 +12,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="/Users/sdk-app-shy/.android/build-cache/cbd293c8e1c2f92bb79e5971db6c034261f6740d/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a8c6f0f17ad703a3a9d57f0099665a9ea8f023ef">
+        <dex dex="/Users/sdk-app-shy/Documents/other/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/10/classes_d638a57750a0ef18ccf1ccbc26b0f7aaaae4b3e3.jar.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/Users/sdk-app-shy/Documents/other/HnPlatform/function-library/build/intermediates/bundles/default/libs/wup-1.0.0.E-SNAPSHOT.jar"
         jumboMode="false"
         optimize="true"
@@ -61,7 +70,7 @@
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="bb44b5d2bc9295d422f97b86c28152b1ab37cdcb">
+        sha1="84a424855ec7155ab7dc85013a281fdf251bf520">
         <dex dex="/Users/sdk-app-shy/Documents/other/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/4/classes_9db38d109c3d1aef06fcdcf7062638a06b60d1bb.jar.jar" />
     </item>
     <item
@@ -70,7 +79,7 @@
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="f002213a9c810f1f179632159412e56d727590dc">
+        sha1="b0ce8cdfd95de52edf84863502fefaec702493ce">
         <dex dex="/Users/sdk-app-shy/Documents/other/HnPlatform/app/build/intermediates/transforms/preDex/release/jars/1000/4/classes_e0a6b8c0ab49f1af79297461cb763d253476ce8f.jar.jar" />
     </item>
     <item

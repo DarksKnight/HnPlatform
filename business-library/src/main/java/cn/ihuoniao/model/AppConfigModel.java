@@ -35,6 +35,9 @@ public class AppConfigModel implements Serializable {
 
     public class Login {
         public String qq = "";
+
         public String wechat = "";
+
+        public String sina = "";
     }
 }

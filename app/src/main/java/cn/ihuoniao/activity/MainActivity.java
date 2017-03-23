@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 
 import com.alibaba.fastjson.JSON;
 import com.apkfuns.jsbridge.JSBridge;
+import com.sina.weibo.sdk.auth.sso.SsoHandler;
 import com.squareup.otto.Subscribe;
 import com.tencent.connect.common.Constants;
 import com.tencent.tauth.IUiListener;
@@ -31,6 +32,7 @@ import cn.ihuoniao.base.BaseActivity;
 import cn.ihuoniao.event.AppConfigEvent;
 import cn.ihuoniao.event.QQEvent;
 import cn.ihuoniao.event.WeChatEvent;
+import cn.ihuoniao.event.WeiboEvent;
 import cn.ihuoniao.function.listener.StatusListener;
 import cn.ihuoniao.function.util.CommonUtil;
 import cn.ihuoniao.function.util.Logger;
@@ -44,6 +46,7 @@ import cn.ihuoniao.store.AppConfigStore;
 import cn.ihuoniao.store.AppInfoStore;
 import cn.ihuoniao.store.QQStore;
 import cn.ihuoniao.store.WeChatStore;
+import cn.ihuoniao.store.WeiboStore;
 
 public class MainActivity extends BaseActivity {
 
@@ -56,6 +59,8 @@ public class MainActivity extends BaseActivity {
     private FirstDeployView firstDeployView = null;
 
     private Tencent tencent = null;
+
+    private SsoHandler handler = null;
 
     private boolean isClickAdv = false;
 
@@ -205,6 +210,7 @@ public class MainActivity extends BaseActivity {
         registerStore(TYPE.REGISTER_STORE_APP_CONFIG, new AppConfigStore());
         registerStore(TYPE.REGISTER_STORE_QQ, new QQStore());
         registerStore(TYPE.REGISTER_STORE_WECHAT, new WeChatStore());
+        registerStore(TYPE.REGISTER_STROE_WEIBO, new WeiboStore());
     }
 
     @Override
@@ -288,6 +294,9 @@ public class MainActivity extends BaseActivity {
         infos.put("wechatAppId", JSON.parseObject(appInfo.loginInfo.wechat).getString("appid"));
         infos.put("wechatSecret", JSON.parseObject(appInfo.loginInfo.wechat).getString("appsecret"));
         actionsCreator.init_wechat();
+        infos.put("weiboAkey", JSON.parseObject(appInfo.loginInfo.sina).getString("akey"));
+        infos.put("weiboSkey", JSON.parseObject(appInfo.loginInfo.sina).getString("skey"));
+        actionsCreator.init_weibo();
         actionsCreator.register_getAppInfo();
     }
 
@@ -323,6 +332,19 @@ public class MainActivity extends BaseActivity {
                 } else {
                     function.onCallBack(event.wxLoginInfo);
                 }
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Subscribe
+    public void onStoreChange(WeiboEvent event) {
+        switch (event.eventName) {
+            case Event.INIT_WEIBO:
+                this.handler = event.handler;
+                infos.put("weiboHandler", handler);
+                actionsCreator.register_weiboLogin();
                 break;
             default:
                 break;

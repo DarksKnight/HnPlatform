@@ -11,8 +11,6 @@ import cn.ihuoniao.platform.webview.CallBackFunction;
 
 public class WeChatEvent extends StoreChangeEvent {
 
-    public String eventName = "";
-
     public IWXAPI wxApi = null;
 
     public CallBackFunction function = null;

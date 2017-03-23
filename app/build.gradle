@@ -65,7 +65,7 @@ android {
 
     repositories {
         flatDir {
-            dirs 'libs'
+            dirs '../libs'
         }
     }
 }
@@ -77,5 +77,4 @@ def getBuildTime() {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':business-library')
-    compile 'com.android.support:appcompat-v7:23.2.0+'
 }

@@ -74,12 +74,12 @@ public class QQStore extends Store<QQAction> {
 
                     @Override
                     public void onError(UiError uiError) {
-
+                        statusListener.end();
                     }
 
                     @Override
                     public void onCancel() {
-
+                        statusListener.end();
                     }
                 };
                 Map<String, Object> params = new HashMap<>();

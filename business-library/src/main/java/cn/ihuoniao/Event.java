@@ -12,4 +12,6 @@ public class Event {
     public static final String LOGIN_QQ = "qqLogin";
     public static final String INIT_WECHAT = "wechatInit";
     public static final String LOGIN_WECHAT = "wechatLogin";
+    public static final String INIT_WEIBO = "weiboInit";
+    public static final String LOGIN_WEIBO = "weiboLogin";
 }

@@ -7,6 +7,7 @@ import cn.ihuoniao.actions.AppConfigAction;
 import cn.ihuoniao.actions.AppInfoAction;
 import cn.ihuoniao.actions.QQAction;
 import cn.ihuoniao.actions.WeChatAction;
+import cn.ihuoniao.actions.WeiboAction;
 import cn.ihuoniao.dispatcher.Dispatcher;
 
 /**
@@ -48,5 +49,13 @@ public enum  ActionsCreator {
 
     public void request_getWeChatLoginInfo() {
         Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_WECHAT, new WeChatAction(TYPE.TYPE_LOGIN_WECHAT_INFO, params));
+    }
+
+    public void init_weibo() {
+        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STROE_WEIBO, new WeiboAction(TYPE.TYPE_WEIBO_INIT, params));
+    }
+
+    public void register_weiboLogin() {
+        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STROE_WEIBO, new WeiboAction(TYPE.TYPE_WEIBO_LOGIN, params));
     }
 }

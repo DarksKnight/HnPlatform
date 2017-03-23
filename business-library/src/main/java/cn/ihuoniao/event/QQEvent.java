@@ -11,7 +11,7 @@ import cn.ihuoniao.event.base.StoreChangeEvent;
 
 public class QQEvent extends StoreChangeEvent {
 
-    public String eventName = "";
     public Tencent tencent = null;
+
     public IUiListener listener = null;
 }
