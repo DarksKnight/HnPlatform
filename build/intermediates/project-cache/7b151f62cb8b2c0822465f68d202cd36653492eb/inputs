@@ -1,6 +1,0 @@
-COMMAND=PREDEX_LIBRARY_TO_DEX_ARCHIVE
-FILE_PATH=/Users/sdk-app-shy/Documents/other/HnPlatform/function-library/build/intermediates/bundles/default/libs/SocialSDK_QQ_Simplify.jar
-FILE_HASH=4894a6da813f42b367584bf5ed5d5c2125b049cf
-DX_VERSION=1.12
-JUMBO_MODE=true
-OPTIMIZE=true

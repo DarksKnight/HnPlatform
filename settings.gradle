@@ -1,1 +1,0 @@
-include ':app', ':uikit-library', ':business-library', ':function-library'
