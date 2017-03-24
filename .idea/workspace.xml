@@ -9,7 +9,9 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f68a3caf-915a-4a39-9978-68d7ba77dec7" name="Default" comment="" />
+    <list default="true" id="f68a3caf-915a-4a39-9978-68d7ba77dec7" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -4242,7 +4244,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/API.java" />
         <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/request/base/BaseRequest.java" />
         <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/request/AppConfigRequest.java" />
         <option value="$PROJECT_DIR$/business-library/src/main/java/cn/ihuoniao/request/WeChatLoginRequest.java" />
@@ -4293,6 +4294,7 @@
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/receiver/UMengShareReceiver.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/cn/ihuoniao/activity/MainActivity.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -4822,13 +4824,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/base/Command.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="18" column="51" lean-forward="false" selection-start-line="18" selection-start-column="45" selection-end-line="18" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/function-library/src/main/java/cn/ihuoniao/function/command/QQInitCommand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -5210,6 +5205,14 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="1" lean-forward="false" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
