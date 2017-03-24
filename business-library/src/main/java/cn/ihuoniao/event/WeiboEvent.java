@@ -1,6 +1,6 @@
 package cn.ihuoniao.event;
 
-import com.sina.weibo.sdk.auth.sso.SsoHandler;
+//import com.sina.weibo.sdk.auth.sso.SsoHandler;
 
 import cn.ihuoniao.event.base.StoreChangeEvent;
 
@@ -10,5 +10,5 @@ import cn.ihuoniao.event.base.StoreChangeEvent;
 
 public class WeiboEvent extends StoreChangeEvent {
 
-    public SsoHandler handler = null;
+//    public SsoHandler handler = null;
 }

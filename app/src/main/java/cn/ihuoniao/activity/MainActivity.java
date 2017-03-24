@@ -18,11 +18,11 @@ import android.widget.RelativeLayout;
 
 import com.alibaba.fastjson.JSON;
 import com.apkfuns.jsbridge.JSBridge;
-import com.sina.weibo.sdk.auth.sso.SsoHandler;
 import com.squareup.otto.Subscribe;
 import com.tencent.connect.common.Constants;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
+import com.umeng.socialize.UMShareAPI;
 
 import cn.ihuoniao.Constant;
 import cn.ihuoniao.Event;
@@ -32,7 +32,6 @@ import cn.ihuoniao.base.BaseActivity;
 import cn.ihuoniao.event.AppConfigEvent;
 import cn.ihuoniao.event.QQEvent;
 import cn.ihuoniao.event.WeChatEvent;
-import cn.ihuoniao.event.WeiboEvent;
 import cn.ihuoniao.function.listener.StatusListener;
 import cn.ihuoniao.function.util.CommonUtil;
 import cn.ihuoniao.function.util.Logger;
@@ -45,6 +44,7 @@ import cn.ihuoniao.platform.webview.DefaultHandler;
 import cn.ihuoniao.store.AppConfigStore;
 import cn.ihuoniao.store.AppInfoStore;
 import cn.ihuoniao.store.QQStore;
+import cn.ihuoniao.store.UMengStore;
 import cn.ihuoniao.store.WeChatStore;
 import cn.ihuoniao.store.WeiboStore;
 
@@ -60,7 +60,7 @@ public class MainActivity extends BaseActivity {
 
     private Tencent tencent = null;
 
-    private SsoHandler handler = null;
+//    private SsoHandler handler = null;
 
     private boolean isClickAdv = false;
 
@@ -132,7 +132,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 Logger.i("url : " + url);
-                if (url.contains("http")) {
+                if (url.contains("http://")) {
                     showLoading();
                 }
                 return super.shouldOverrideUrlLoading(view, url);
@@ -211,6 +211,7 @@ public class MainActivity extends BaseActivity {
         registerStore(TYPE.REGISTER_STORE_QQ, new QQStore());
         registerStore(TYPE.REGISTER_STORE_WECHAT, new WeChatStore());
         registerStore(TYPE.REGISTER_STROE_WEIBO, new WeiboStore());
+        registerStore(TYPE.REGISTER_STORE_UMENG, new UMengStore());
     }
 
     @Override
@@ -282,14 +283,23 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == Constants.REQUEST_LOGIN) {
-            Tencent.handleResultData(data, iUiListener);
+        if (requestCode == Constants.REQUEST_LOGIN
+                || requestCode == Constants.REQUEST_QZONE_SHARE
+                || requestCode == Constants.REQUEST_QQ_SHARE) {
+            if (iUiListener != null) {
+                Tencent.handleResultData(data, iUiListener);
+            }
         }
+//        if (null != handler) {
+//            handler.authorizeCallBack(requestCode, resultCode, data);
+//        }
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void initWebView() {
         infos.put("qqAppId", JSON.parseObject(appInfo.loginInfo.qq).getString("appid"));
+        infos.put("qqAppKey", JSON.parseObject(appInfo.loginInfo.qq).getString("appkey"));
         actionsCreator.init_qq();
         infos.put("wechatAppId", JSON.parseObject(appInfo.loginInfo.wechat).getString("appid"));
         infos.put("wechatSecret", JSON.parseObject(appInfo.loginInfo.wechat).getString("appsecret"));
@@ -297,7 +307,11 @@ public class MainActivity extends BaseActivity {
         infos.put("weiboAkey", JSON.parseObject(appInfo.loginInfo.sina).getString("akey"));
         infos.put("weiboSkey", JSON.parseObject(appInfo.loginInfo.sina).getString("skey"));
         actionsCreator.init_weibo();
+        actionsCreator.init_umeng();
+
         actionsCreator.register_getAppInfo();
+        actionsCreator.register_umengShare();
+        actionsCreator.register_weiboLogin();
     }
 
     @Subscribe
@@ -307,8 +321,16 @@ public class MainActivity extends BaseActivity {
                 tencent = event.tencent;
                 infos.put("tencent", tencent);
                 actionsCreator.register_qqLogin();
+                actionsCreator.register_qqShare();
+                actionsCreator.register_qqZoneShare();
                 break;
             case Event.LOGIN_QQ:
+                this.iUiListener = event.listener;
+                break;
+            case Event.SHARE_QQ_ZONE:
+                this.iUiListener = event.listener;
+                break;
+            case Event.SHARE_QQ:
                 this.iUiListener = event.listener;
                 break;
             default:
@@ -338,16 +360,16 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    @Subscribe
-    public void onStoreChange(WeiboEvent event) {
-        switch (event.eventName) {
-            case Event.INIT_WEIBO:
-                this.handler = event.handler;
-                infos.put("weiboHandler", handler);
-                actionsCreator.register_weiboLogin();
-                break;
-            default:
-                break;
-        }
-    }
+//    @Subscribe
+//    public void onStoreChange(WeiboEvent event) {
+//        switch (event.eventName) {
+//            case Event.INIT_WEIBO:
+//                this.handler = event.handler;
+//                infos.put("weiboHandler", handler);
+//                actionsCreator.register_weiboLogin();
+//                break;
+//            default:
+//                break;
+//        }
+//    }
 }

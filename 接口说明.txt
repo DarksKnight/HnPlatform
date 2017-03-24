@@ -1,0 +1,62 @@
+//qq登录
+window.WebViewJavascriptBridge.callHandler(
+    'qqLogin'
+    , {}
+    , function (responseData) {
+        console.log('qqLogin : ' + responseData);
+    }
+);
+
+//微信登录
+window.WebViewJavascriptBridge.callHandler(
+    'wechatLogin'
+    , {}
+    , function (responseData) {
+        console.log('weChatLogin : ' + responseData);
+    }
+);
+
+//微博登录
+window.WebViewJavascriptBridge.callHandler(
+    'weiboLogin'
+    , {}
+    , function (responseData) {
+        console.log('weiboLogin : ' + responseData);
+    }
+);
+
+//qq空间分享，图片地址为数组，没有传空数组
+window.WebViewJavascriptBridge.callHandler(
+    'qqZoneShare'
+    , { "title": "hello", "summary": "hello world", "url": "http://www.baidu.com", "imageUrls": ["http://attachments.gfan.com/forum/attachments2/201305/04/181712hd2hv6atncvqntga.jpg", "http://cdnq.duitang.com/uploads/item/201505/20/20150520190429_YfGX4.png"] }
+    , function (responseData) {
+        console.log('qqZoneShare : ' + responseData);
+    }
+);
+
+//qq分享，只分享图片（只支持本地图片）
+window.WebViewJavascriptBridge.callHandler(
+    'qqShare'
+    , { "imageUrl": "本地图片路径" }
+    , function (responseData) {
+        console.log('qq share : ' + responseData);
+    }
+);
+
+//qq分享，分享图文
+window.WebViewJavascriptBridge.callHandler(
+    'qqShare'
+    , { "title": "hello", "summary": "hello world", "url": "http://www.baidu.com", "imageUrl": "http://attachments.gfan.com/forum/attachments2/201305/04/181712hd2hv6atncvqntga.jpg" }
+    , function (responseData) {
+        console.log('qq share : ' + responseData);
+    }
+);
+
+//友盟分享
+window.WebViewJavascriptBridge.callHandler(
+    'umengShare'
+    , { "title": "hello", "summary": "hello world", "url": "http://www.baidu.com", "imageUrl": "http://attachments.gfan.com/forum/attachments2/201305/04/181712hd2hv6atncvqntga.jpg" }
+    , function (responseData) {
+        console.log('umeng share : ' + responseData);
+    }
+);

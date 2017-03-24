@@ -1,8 +1,9 @@
 package cn.ihuoniao.request.base;
 
-import com.platform.http.HttpUtility;
-import com.platform.http.callback.StringCallback;
-import com.platform.http.config.HttpMethod;
+
+import com.mistyrain.http.HttpUtility;
+import com.mistyrain.http.callback.StringCallback;
+import com.mistyrain.http.config.HttpMethod;
 
 import java.util.Map;
 

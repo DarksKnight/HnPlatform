@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.Toast;
@@ -115,6 +116,16 @@ public class CommonUtil {
             e.printStackTrace();
         }
         return "";
+    }
+
+    /**
+     * 获取应用名称
+     * @param context
+     * @return
+     */
+    public static String getAppName(Context context) {
+        PackageManager pm = context.getPackageManager();
+        return context.getApplicationInfo().loadLabel(pm).toString();
     }
 
     public static void bomb() {

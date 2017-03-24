@@ -1,7 +1,8 @@
 package cn.ihuoniao.function.command;
 
-import com.sina.weibo.sdk.auth.WeiboAuthListener;
-import com.sina.weibo.sdk.auth.sso.SsoHandler;
+import android.app.Activity;
+
+import com.umeng.socialize.UMAuthListener;
 
 import java.util.Map;
 
@@ -21,8 +22,12 @@ public class WeiboLoginCommand extends Command<Object, WeiboLoginReceiver> {
 
     @Override
     public void execute(Map<String, Object> params, final ResultListener<Object> listener) {
-        SsoHandler handler = (SsoHandler)params.get("weiboHandler");
-        WeiboAuthListener weiboAuthListener = (WeiboAuthListener)params.get("weiboAuthListener");
-        receiver.login(handler, weiboAuthListener);
+        Activity activity = (Activity)params.get("activity");
+        UMAuthListener umAuthListener = (UMAuthListener)params.get("umAuthListener");
+        receiver.login(activity, umAuthListener);
+
+//        SsoHandler handler = (SsoHandler)params.get("weiboHandler");
+//        WeiboAuthListener weiboAuthListener = (WeiboAuthListener)params.get("weiboAuthListener");
+//        receiver.login(handler, weiboAuthListener);
     }
 }

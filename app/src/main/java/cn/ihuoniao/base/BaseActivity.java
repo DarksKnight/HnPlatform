@@ -13,7 +13,7 @@ import cn.ihuoniao.actions.base.ActionsCreator;
 import cn.ihuoniao.dispatcher.Dispatcher;
 import cn.ihuoniao.function.command.base.Control;
 import cn.ihuoniao.function.util.CommonUtil;
-import cn.ihuoniao.model.AppInfo;
+import cn.ihuoniao.model.AppInfoModel;
 import cn.ihuoniao.store.base.Store;
 
 /**
@@ -24,7 +24,7 @@ public abstract class BaseActivity extends FragmentActivity {
 
     protected Dispatcher dispatcher = Dispatcher.INSTANCE;
     protected ActionsCreator actionsCreator = ActionsCreator.INSTANCE;
-    protected AppInfo appInfo = AppInfo.INSTANCE;
+    protected AppInfoModel appInfo = AppInfoModel.INSTANCE;
     protected LVCircularRing lvc = null;
     protected Control control = Control.INSTANCE;
     protected boolean isDebug = false;

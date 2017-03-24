@@ -1,5 +1,11 @@
 package cn.ihuoniao.function.command;
 
+import android.app.Activity;
+
+import com.tencent.tauth.IUiListener;
+import com.tencent.tauth.Tencent;
+
+import java.util.ArrayList;
 import java.util.Map;
 
 import cn.ihuoniao.function.command.base.Command;
@@ -18,6 +24,13 @@ public class QQZoneShareCommand extends Command<Object, QQShareReceiver> {
 
     @Override
     public void execute(Map<String, Object> params, ResultListener<Object> listener) {
-        receiver.shareQQZone();
+        Activity activity = (Activity)params.get("activity");
+        Tencent tencent = (Tencent)params.get("tencent");
+        IUiListener iUiListener = (IUiListener)params.get("listener");
+        String title = params.get("qqZoneTitle").toString();
+        String summary = params.get("qqZoneSummary").toString();
+        String url = params.get("qqZoneUrl").toString();
+        ArrayList<String> imageUrls = (ArrayList<String>)params.get("imageUrls");
+        receiver.shareQQZone(tencent, activity, title, summary, url, imageUrls, iUiListener);
     }
 }
