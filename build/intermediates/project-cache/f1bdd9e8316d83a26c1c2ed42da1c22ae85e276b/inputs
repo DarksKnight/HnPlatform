@@ -1,0 +1,6 @@
+COMMAND=PREDEX_LIBRARY_TO_DEX_ARCHIVE
+FILE_PATH=/Users/sdk-app-shy/Documents/other/HnPlatform/function-library/build/intermediates/bundles/default/libs/umeng_shareboard_widget.jar
+FILE_HASH=bbf940eb41c869970b3ddcf0117e9718f687af71
+DX_VERSION=1.12
+JUMBO_MODE=true
+OPTIMIZE=true

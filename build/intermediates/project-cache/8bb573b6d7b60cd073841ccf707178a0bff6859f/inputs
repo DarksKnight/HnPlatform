@@ -1,0 +1,6 @@
+COMMAND=PREDEX_LIBRARY_TO_DEX_ARCHIVE
+FILE_PATH=/Users/sdk-app-shy/Documents/other/HnPlatform/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar
+FILE_HASH=a590ed70847269a0974f35ff296a0ddeea8e856f
+DX_VERSION=1.12
+JUMBO_MODE=true
+OPTIMIZE=true

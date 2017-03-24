@@ -23,13 +23,16 @@ public class UMengShareReceiver extends Receiver {
         image.compressStyle = UMImage.CompressStyle.SCALE;
         UMWeb web = new UMWeb(url);
         web.setTitle(title);
-        web.setThumb(image);
+        if (imageUrl.trim().length() != 0) {
+            web.setThumb(image);
+        }
         web.setDescription(summary);
         if (title.trim().length() == 0) {
             shareAction.withMedia(image);
         } else {
             shareAction.withMedia(web);
         }
+        shareAction.withText(summary);
         shareAction.setDisplayList(SHARE_MEDIA.SINA, SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE, SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE);
         shareAction.setCallback(listener);
         Config.DEBUG = true;

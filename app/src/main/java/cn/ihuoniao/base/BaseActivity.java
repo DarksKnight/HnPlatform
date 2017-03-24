@@ -1,5 +1,6 @@
 package cn.ihuoniao.base;
 
+import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,13 +65,23 @@ public abstract class BaseActivity extends FragmentActivity {
     }
 
     protected void showLoading() {
-        lvc.setVisibility(View.VISIBLE);
-        lvc.startAnim();
+        new Handler(getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                lvc.setVisibility(View.VISIBLE);
+                lvc.startAnim();
+            }
+        });
     }
 
     protected void hideLoading() {
-        lvc.setVisibility(View.GONE);
-        lvc.stopAnim();
+        new Handler(getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                lvc.setVisibility(View.GONE);
+                lvc.stopAnim();
+            }
+        });
     }
 
     @Override
