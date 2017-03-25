@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sdv_splash"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/splash"/>
+    
+    <TextView
+        android:id="@+id/tv_advTime"
+        android:layout_width="@dimen/hn_50dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/hn_5dp"
+        android:textSize="@dimen/hn_16sp"
+        android:textColor="@android:color/white"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/hn_20dp"
+        android:layout_marginTop="@dimen/hn_20dp"
+        android:background="@drawable/view_splash_number_bg"
+        android:gravity="center"
+        android:alpha="100"
+        android:visibility="gone"/>
+
+</RelativeLayout>

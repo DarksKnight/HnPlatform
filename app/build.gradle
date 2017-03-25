@@ -1,0 +1,86 @@
+import java.text.SimpleDateFormat
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "cn.ihuoniao.platform"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    signingConfigs {
+        debug {
+            storePassword "kuman123"
+            keyAlias "kuman"
+            keyPassword "kuman123"
+            storeFile file('kuman.jks')
+        }
+
+        release {
+            storePassword "kuman123"
+            keyAlias "kuman"
+            keyPassword "kuman123"
+            storeFile file('kuman.jks')
+        }
+    }
+
+    buildTypes {
+//        debug {
+//            zipAlignEnabled true
+//            minifyEnabled true
+//            signingConfig signingConfigs.release
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//        }
+
+        release {
+            zipAlignEnabled true
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            applicationVariants.all {
+                variant ->
+                    variant.outputs.each {
+                        output ->
+                            if (output.outputFile != null && output.outputFile.name.endsWith('.apk') && 'release'.equals(variant.buildType.name)) {
+                                def apkFile = new File("testclient", "hn_platform_" + getBuildTime() + ".apk")
+                                output.outputFile = apkFile
+                            }
+                    }
+            }
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/ASL2.0'
+    }
+
+    repositories {
+        flatDir {
+            dirs '../libs'
+        }
+    }
+}
+
+def getBuildTime() {
+    return new SimpleDateFormat("yyyyMMddhhmm").format(Calendar.getInstance().getTime());
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':business-library')
+}
