@@ -35,33 +35,6 @@
                     }
                 );
             });
-            $('#btnQQZoneShare').click(function() {
-                window.WebViewJavascriptBridge.callHandler(
-                    'qqZoneShare'
-                    , {"title":"hello", "summary": "hello world", "url": "http://www.baidu.com", "imageUrls":["http://attachments.gfan.com/forum/attachments2/201305/04/181712hd2hv6atncvqntga.jpg", "http://cdnq.duitang.com/uploads/item/201505/20/20150520190429_YfGX4.png"]}
-                    , function (responseData) {
-                        console.log('qqZoneShare : ' + responseData);
-                    }
-                );
-            });
-            $('#btnQQShareImage').click(function() {
-                window.WebViewJavascriptBridge.callHandler(
-                    'qqShare'
-                    , {"imageUrl":"/mnt/sdkcard/20161209_180530.jpg"}
-                    , function (responseData) {
-                        console.log('qq share : ' + responseData);
-                    }
-                );
-            });
-            $('#btnQQShareTextImage').click(function() {
-                window.WebViewJavascriptBridge.callHandler(
-                    'qqShare'
-                    , {"title":"hello", "summary": "hello world", "url": "http://www.baidu.com", "imageUrl":"http://attachments.gfan.com/forum/attachments2/201305/04/181712hd2hv6atncvqntga.jpg"}
-                    , function (responseData) {
-                        console.log('qq share : ' + responseData);
-                    }
-                );
-            });
             $('#btnUmengShare').click(function() {
                 window.WebViewJavascriptBridge.callHandler(
                     'umengShare'
@@ -83,12 +56,6 @@
             <li><input type="button" value="wechatLogin" id="btnWeChatLogin" style="width:200px;height:100px;" />
             </li>
             <li><input type="button" value="weiboLogin" id="btnWeiboLogin" style="width:200px;height:100px;" />
-            </li>
-            <li><input type="button" value="qqZoneShare" id="btnQQZoneShare" style="width:200px;height:100px;" />
-            </li>
-            <li><input type="button" value="qqShareImage" id="btnQQShareImage" style="width:200px;height:100px;" />
-            </li>
-            <li><input type="button" value="qqShareTextImage" id="btnQQShareTextImage" style="width:200px;height:100px;" />
             </li>
             <li><input type="button" value="umengShare" id="btnUmengShare" style="width:200px;height:100px;" />
             </li>

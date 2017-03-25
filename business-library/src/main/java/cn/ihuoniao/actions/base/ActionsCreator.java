@@ -32,24 +32,8 @@ public enum  ActionsCreator {
         Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_GET_APP_INFO, new AppInfoAction(TYPE.TYPE_GET_APP_INFO, params));
     }
 
-    public void init_qq() {
-        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_QQ, new QQAction(TYPE.TYPE_QQ_INIT, params));
-    }
-
     public void register_qqLogin() {
         Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_QQ, new QQAction(TYPE.TYPE_QQ_LOGIN, params));
-    }
-
-    public void register_qqShare() {
-        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_QQ, new QQAction(TYPE.TYPE_QQ_SHARE, params));
-    }
-
-    public void register_qqZoneShare() {
-        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_QQ, new QQAction(TYPE.TYPE_QQ_ZONE_SHARE, params));
-    }
-
-    public void init_wechat() {
-        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_WECHAT, new WeChatAction(TYPE.TYPE_WECHAT_INIT, params));
     }
 
     public void register_wechatLogin() {
@@ -58,10 +42,6 @@ public enum  ActionsCreator {
 
     public void request_getWeChatLoginInfo() {
         Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_WECHAT, new WeChatAction(TYPE.TYPE_LOGIN_WECHAT_INFO, params));
-    }
-
-    public void init_weibo() {
-        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STROE_WEIBO, new WeiboAction(TYPE.TYPE_WEIBO_INIT, params));
     }
 
     public void register_weiboLogin() {

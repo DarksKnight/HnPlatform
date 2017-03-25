@@ -1,9 +1,8 @@
 package cn.ihuoniao.function.command;
 
-import android.app.Activity;
+import com.umeng.socialize.UMAuthListener;
 
-import com.tencent.tauth.IUiListener;
-import com.tencent.tauth.Tencent;
+import android.app.Activity;
 
 import java.util.Map;
 
@@ -24,8 +23,7 @@ public class QQLoginCommand extends Command<Object, QQLoginReceiver> {
     @Override
     public void execute(Map<String, Object> params, ResultListener<Object> listener) {
         Activity activity = (Activity)params.get("activity");
-        Tencent tencent = (Tencent)params.get("tencent");
-        IUiListener iUiListener = (IUiListener)params.get("listener");
-        receiver.login(tencent, activity, iUiListener);
+        UMAuthListener umAuthListener = (UMAuthListener)params.get("umAuthListener");
+        receiver.login(activity, umAuthListener);
     }
 }

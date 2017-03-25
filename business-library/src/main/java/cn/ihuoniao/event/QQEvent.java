@@ -1,8 +1,5 @@
 package cn.ihuoniao.event;
 
-import com.tencent.tauth.IUiListener;
-import com.tencent.tauth.Tencent;
-
 import cn.ihuoniao.event.base.StoreChangeEvent;
 
 /**
@@ -11,7 +8,4 @@ import cn.ihuoniao.event.base.StoreChangeEvent;
 
 public class QQEvent extends StoreChangeEvent {
 
-    public Tencent tencent = null;
-
-    public IUiListener listener = null;
 }

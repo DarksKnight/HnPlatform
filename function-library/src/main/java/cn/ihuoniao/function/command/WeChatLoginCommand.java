@@ -1,6 +1,8 @@
 package cn.ihuoniao.function.command;
 
-import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.umeng.socialize.UMAuthListener;
+
+import android.app.Activity;
 
 import java.util.Map;
 
@@ -20,7 +22,8 @@ public class WeChatLoginCommand extends Command<Object, WeChatLoginReceiver> {
 
     @Override
     public void execute(Map<String, Object> params, ResultListener<Object> listener) {
-        IWXAPI wxapi = (IWXAPI)params.get("wxApi");
-        receiver.login(wxapi);
+        Activity activity = (Activity)params.get("activity");
+        UMAuthListener umAuthListener = (UMAuthListener)params.get("umAuthListener");
+        receiver.login(activity, umAuthListener);
     }
 }

@@ -1,7 +1,10 @@
 package cn.ihuoniao.function.receiver;
 
-import com.tencent.mm.opensdk.modelmsg.SendAuth;
-import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.umeng.socialize.UMAuthListener;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+
+import android.app.Activity;
 
 import cn.ihuoniao.function.command.base.Receiver;
 
@@ -11,10 +14,7 @@ import cn.ihuoniao.function.command.base.Receiver;
 
 public class WeChatLoginReceiver extends Receiver {
 
-    public void login(IWXAPI wxapi) {
-        SendAuth.Req req = new SendAuth.Req();
-        req.scope = "snsapi_userinfo";
-        req.state = "none";
-        wxapi.sendReq(req);
+    public void login(Activity activity, UMAuthListener umAuthListener) {
+        UMShareAPI.get(activity).getPlatformInfo(activity, SHARE_MEDIA.WEIXIN, umAuthListener);
     }
 }

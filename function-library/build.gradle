@@ -28,7 +28,5 @@ dependencies {
     compile project(':uikit-library')
     compile 'com.alibaba:fastjson:1.1.56.android'
     compile 'com.squareup:otto:1.3.8'
-    compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:1.0.2'
     compile 'com.mistyrain.http:ft_http:1.0.0'
-//    compile(name: 'openDefault-1.0.0', ext: 'aar')
 }

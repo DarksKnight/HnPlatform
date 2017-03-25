@@ -10,5 +10,4 @@ import cn.ihuoniao.event.base.StoreChangeEvent;
 
 public class WeiboEvent extends StoreChangeEvent {
 
-//    public SsoHandler handler = null;
 }

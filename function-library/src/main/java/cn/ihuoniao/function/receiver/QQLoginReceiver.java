@@ -1,9 +1,10 @@
 package cn.ihuoniao.function.receiver;
 
-import android.app.Activity;
+import com.umeng.socialize.UMAuthListener;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 
-import com.tencent.tauth.IUiListener;
-import com.tencent.tauth.Tencent;
+import android.app.Activity;
 
 import cn.ihuoniao.function.command.base.Receiver;
 
@@ -13,7 +14,7 @@ import cn.ihuoniao.function.command.base.Receiver;
 
 public class QQLoginReceiver extends Receiver {
 
-    public void login(Tencent tencent, Activity activity, IUiListener listener) {
-        tencent.login(activity, "all", listener);
+    public void login(Activity activity, UMAuthListener umAuthListener) {
+        UMShareAPI.get(activity).getPlatformInfo(activity, SHARE_MEDIA.QQ, umAuthListener);
     }
 }

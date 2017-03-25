@@ -1,5 +1,13 @@
 package cn.ihuoniao.activity;
 
+import com.alibaba.fastjson.JSON;
+import com.apkfuns.jsbridge.JSBridge;
+import com.squareup.otto.Subscribe;
+import com.tencent.connect.common.Constants;
+import com.tencent.tauth.IUiListener;
+import com.tencent.tauth.Tencent;
+import com.umeng.socialize.UMShareAPI;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,22 +24,11 @@ import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import com.alibaba.fastjson.JSON;
-import com.apkfuns.jsbridge.JSBridge;
-import com.squareup.otto.Subscribe;
-import com.tencent.connect.common.Constants;
-import com.tencent.tauth.IUiListener;
-import com.tencent.tauth.Tencent;
-import com.umeng.socialize.UMShareAPI;
-
 import cn.ihuoniao.Constant;
-import cn.ihuoniao.Event;
 import cn.ihuoniao.R;
 import cn.ihuoniao.TYPE;
 import cn.ihuoniao.base.BaseActivity;
 import cn.ihuoniao.event.AppConfigEvent;
-import cn.ihuoniao.event.QQEvent;
-import cn.ihuoniao.event.WeChatEvent;
 import cn.ihuoniao.function.listener.StatusListener;
 import cn.ihuoniao.function.util.CommonUtil;
 import cn.ihuoniao.function.util.Logger;
@@ -39,7 +36,6 @@ import cn.ihuoniao.platform.firstdeploy.FirstDeployView;
 import cn.ihuoniao.platform.splash.SplashView;
 import cn.ihuoniao.platform.webview.BridgeWebView;
 import cn.ihuoniao.platform.webview.BridgeWebViewClient;
-import cn.ihuoniao.platform.webview.CallBackFunction;
 import cn.ihuoniao.platform.webview.DefaultHandler;
 import cn.ihuoniao.store.AppConfigStore;
 import cn.ihuoniao.store.AppInfoStore;
@@ -57,10 +53,6 @@ public class MainActivity extends BaseActivity {
     private SplashView spv = null;
 
     private FirstDeployView firstDeployView = null;
-
-    private Tencent tencent = null;
-
-//    private SsoHandler handler = null;
 
     private boolean isClickAdv = false;
 
@@ -290,9 +282,6 @@ public class MainActivity extends BaseActivity {
                 Tencent.handleResultData(data, iUiListener);
             }
         }
-//        if (null != handler) {
-//            handler.authorizeCallBack(requestCode, resultCode, data);
-//        }
         UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -300,76 +289,16 @@ public class MainActivity extends BaseActivity {
     private void initWebView() {
         infos.put("qqAppId", JSON.parseObject(appInfo.loginInfo.qq).getString("appid"));
         infos.put("qqAppKey", JSON.parseObject(appInfo.loginInfo.qq).getString("appkey"));
-        actionsCreator.init_qq();
         infos.put("wechatAppId", JSON.parseObject(appInfo.loginInfo.wechat).getString("appid"));
         infos.put("wechatSecret", JSON.parseObject(appInfo.loginInfo.wechat).getString("appsecret"));
-        actionsCreator.init_wechat();
         infos.put("weiboAkey", JSON.parseObject(appInfo.loginInfo.sina).getString("akey"));
         infos.put("weiboSkey", JSON.parseObject(appInfo.loginInfo.sina).getString("skey"));
-        actionsCreator.init_weibo();
         actionsCreator.init_umeng();
 
         actionsCreator.register_getAppInfo();
         actionsCreator.register_umengShare();
+        actionsCreator.register_qqLogin();
+        actionsCreator.register_wechatLogin();
         actionsCreator.register_weiboLogin();
     }
-
-    @Subscribe
-    public void onStoreChange(QQEvent event) {
-        switch (event.eventName) {
-            case Event.INIT_QQ:
-                tencent = event.tencent;
-                infos.put("tencent", tencent);
-                actionsCreator.register_qqLogin();
-                actionsCreator.register_qqShare();
-                actionsCreator.register_qqZoneShare();
-                break;
-            case Event.LOGIN_QQ:
-                this.iUiListener = event.listener;
-                break;
-            case Event.SHARE_QQ_ZONE:
-                this.iUiListener = event.listener;
-                break;
-            case Event.SHARE_QQ:
-                this.iUiListener = event.listener;
-                break;
-            default:
-                break;
-        }
-    }
-
-    private CallBackFunction function = null;
-
-    @Subscribe
-    public void onStoreChange(WeChatEvent event) {
-        switch (event.eventName) {
-            case Event.INIT_WECHAT:
-                appInfo.wxApi = event.wxApi;
-                infos.put("wxApi", appInfo.wxApi);
-                actionsCreator.register_wechatLogin();
-                break;
-            case Event.GET_LOGIN_WECHAT_INFO:
-                if (event.wxLoginInfo.equals("")) {
-                    function = event.function;
-                } else {
-                    function.onCallBack(event.wxLoginInfo);
-                }
-                break;
-            default:
-                break;
-        }
-    }
-
-//    @Subscribe
-//    public void onStoreChange(WeiboEvent event) {
-//        switch (event.eventName) {
-//            case Event.INIT_WEIBO:
-//                this.handler = event.handler;
-//                infos.put("weiboHandler", handler);
-//                actionsCreator.register_weiboLogin();
-//                break;
-//            default:
-//                break;
-//        }
-//    }
 }
