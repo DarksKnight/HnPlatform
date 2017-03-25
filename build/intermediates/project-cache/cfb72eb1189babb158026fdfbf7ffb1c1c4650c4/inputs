@@ -1,0 +1,6 @@
+COMMAND=PREDEX_LIBRARY_TO_DEX_ARCHIVE
+FILE_PATH=/Users/apple/Documents/demo/HnPlatform/function-library/build/intermediates/bundles/default/libs/SocialSDK_QQ_Full.jar
+FILE_HASH=5eb2403cdce0ed752c1f784b1788c7d1f5daa7a8
+DX_VERSION=1.12
+JUMBO_MODE=false
+OPTIMIZE=true

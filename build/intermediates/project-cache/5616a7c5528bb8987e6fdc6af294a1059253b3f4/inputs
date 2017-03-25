@@ -1,0 +1,6 @@
+COMMAND=PREDEX_LIBRARY_TO_DEX_ARCHIVE
+FILE_PATH=/Users/apple/Documents/demo/HnPlatform/function-library/build/intermediates/bundles/default/libs/umeng_social_api.jar
+FILE_HASH=29a544700d326e652dd7ddb1c8f0a8f03475df4c
+DX_VERSION=1.12
+JUMBO_MODE=false
+OPTIMIZE=true

@@ -1,0 +1,6 @@
+COMMAND=PREDEX_LIBRARY_TO_DEX_ARCHIVE
+FILE_PATH=/Users/apple/Documents/demo/HnPlatform/function-library/build/intermediates/bundles/default/libs/wup-1.0.0.E-SNAPSHOT.jar
+FILE_HASH=e435c9a0f4a55d45cff005d3a72e27d6882a353c
+DX_VERSION=1.12
+JUMBO_MODE=false
+OPTIMIZE=true

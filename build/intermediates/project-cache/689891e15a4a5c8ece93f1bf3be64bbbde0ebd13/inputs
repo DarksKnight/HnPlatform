@@ -1,0 +1,6 @@
+COMMAND=PREDEX_LIBRARY_TO_DEX_ARCHIVE
+FILE_PATH=/Users/apple/Documents/demo/HnPlatform/function-library/build/intermediates/bundles/default/libs/Xg_sdk_v3.0_20170301_1733.jar
+FILE_HASH=0d8a33a0f096bf88d87a6ad72a5d5eb68c2b303b
+DX_VERSION=1.12
+JUMBO_MODE=false
+OPTIMIZE=true
