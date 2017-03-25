@@ -6,9 +6,9 @@ import cn.ihuoniao.actions.base.BaseAction;
  * Created by sdk-app-shy on 2017/3/17.
  */
 
-public class AppConfigAction extends BaseAction {
+public class AppAction extends BaseAction {
 
-    public AppConfigAction(String type, Object data) {
+    public AppAction(String type, Object data) {
         super(type, data);
     }
 }

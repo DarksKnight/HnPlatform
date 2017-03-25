@@ -28,7 +28,7 @@ import cn.ihuoniao.Constant;
 import cn.ihuoniao.R;
 import cn.ihuoniao.TYPE;
 import cn.ihuoniao.base.BaseActivity;
-import cn.ihuoniao.event.AppConfigEvent;
+import cn.ihuoniao.event.AppEvent;
 import cn.ihuoniao.function.listener.StatusListener;
 import cn.ihuoniao.function.util.CommonUtil;
 import cn.ihuoniao.function.util.Logger;
@@ -37,8 +37,7 @@ import cn.ihuoniao.platform.splash.SplashView;
 import cn.ihuoniao.platform.webview.BridgeWebView;
 import cn.ihuoniao.platform.webview.BridgeWebViewClient;
 import cn.ihuoniao.platform.webview.DefaultHandler;
-import cn.ihuoniao.store.AppConfigStore;
-import cn.ihuoniao.store.AppInfoStore;
+import cn.ihuoniao.store.AppStore;
 import cn.ihuoniao.store.QQStore;
 import cn.ihuoniao.store.UMengStore;
 import cn.ihuoniao.store.WeChatStore;
@@ -198,8 +197,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void registerStores() {
-        registerStore(TYPE.REGISTER_GET_APP_INFO, new AppInfoStore());
-        registerStore(TYPE.REGISTER_STORE_APP_CONFIG, new AppConfigStore());
+        registerStore(TYPE.REGISTER_STORE_APP, new AppStore());
         registerStore(TYPE.REGISTER_STORE_QQ, new QQStore());
         registerStore(TYPE.REGISTER_STORE_WECHAT, new WeChatStore());
         registerStore(TYPE.REGISTER_STROE_WEIBO, new WeiboStore());
@@ -235,7 +233,7 @@ public class MainActivity extends BaseActivity {
     }
 
     @Subscribe
-    public void onStoreChange(final AppConfigEvent event) {
+    public void onStoreChange(final AppEvent event) {
         if (null != firstDeployView) {
             firstDeployView.setUrls(event.appConfig.cfg_guide.android);
         }
@@ -296,6 +294,7 @@ public class MainActivity extends BaseActivity {
         actionsCreator.init_umeng();
 
         actionsCreator.register_getAppInfo();
+        actionsCreator.register_appLogout();
         actionsCreator.register_umengShare();
         actionsCreator.register_qqLogin();
         actionsCreator.register_wechatLogin();

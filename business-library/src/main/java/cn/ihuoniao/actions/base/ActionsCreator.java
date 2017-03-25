@@ -3,8 +3,7 @@ package cn.ihuoniao.actions.base;
 import java.util.Map;
 
 import cn.ihuoniao.TYPE;
-import cn.ihuoniao.actions.AppConfigAction;
-import cn.ihuoniao.actions.AppInfoAction;
+import cn.ihuoniao.actions.AppAction;
 import cn.ihuoniao.actions.QQAction;
 import cn.ihuoniao.actions.UMengAction;
 import cn.ihuoniao.actions.WeChatAction;
@@ -25,11 +24,15 @@ public enum  ActionsCreator {
     }
 
     public void request_getAppConfig() {
-        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP_CONFIG, new AppConfigAction(TYPE.TYPE_APP_CONFIG, null));
+        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP, new AppAction(TYPE.TYPE_APP_CONFIG, null));
     }
 
     public void register_getAppInfo() {
-        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_GET_APP_INFO, new AppInfoAction(TYPE.TYPE_GET_APP_INFO, params));
+        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP, new AppAction(TYPE.TYPE_GET_APP_INFO, params));
+    }
+
+    public void register_appLogout() {
+        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP, new AppAction(TYPE.TYPE_APP_LOGOUT, params));
     }
 
     public void register_qqLogin() {
@@ -38,10 +41,6 @@ public enum  ActionsCreator {
 
     public void register_wechatLogin() {
         Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_WECHAT, new WeChatAction(TYPE.TYPE_WECHAT_LOGIN, params));
-    }
-
-    public void request_getWeChatLoginInfo() {
-        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_WECHAT, new WeChatAction(TYPE.TYPE_LOGIN_WECHAT_INFO, params));
     }
 
     public void register_weiboLogin() {

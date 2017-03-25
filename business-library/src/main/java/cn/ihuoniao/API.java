@@ -12,5 +12,4 @@ public class API {
 
     public static final String APP_CONFIG  = HTTP + IP + "api/appConfig.json";
 
-    public static final String WECHAT_LOGIN = "https://api.weixin.qq.com/sns/oauth2/access_token";
 }

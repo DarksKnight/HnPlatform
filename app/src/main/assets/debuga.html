@@ -35,12 +35,21 @@
                     }
                 );
             });
-            $('#btnUmengShare').click(function() {
+            $('#btnUmengShare').click(function () {
                 window.WebViewJavascriptBridge.callHandler(
                     'umengShare'
-                    , {"title":"hello", "summary": "hello world", "url": "http://www.baidu.com", "imageUrl":"http://attachments.gfan.com/forum/attachments2/201305/04/181712hd2hv6atncvqntga.jpg"}
+                    , { "title": "hello", "summary": "hello world", "url": "http://www.baidu.com", "imageUrl": "http://attachments.gfan.com/forum/attachments2/201305/04/181712hd2hv6atncvqntga.jpg" }
                     , function (responseData) {
                         console.log('umeng share : ' + responseData);
+                    }
+                );
+            });
+            $('#btnLogout').click(function () {
+                window.WebViewJavascriptBridge.callHandler(
+                    'appLogout'
+                    , {}
+                    , function (responseData) {
+                        console.log('app already logout');
                     }
                 );
             });
@@ -58,6 +67,8 @@
             <li><input type="button" value="weiboLogin" id="btnWeiboLogin" style="width:200px;height:100px;" />
             </li>
             <li><input type="button" value="umengShare" id="btnUmengShare" style="width:200px;height:100px;" />
+            </li>
+            <li><input type="button" value="logout" id="btnLogout" style="width:200px;height:100px;" />
             </li>
         </ul>
     </div>

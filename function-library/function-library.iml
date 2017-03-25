@@ -102,6 +102,7 @@
     <orderEntry type="library" exported="" name="imagepipeline-base-1.1.0" level="project" />
     <orderEntry type="library" exported="" name="fastjson-1.1.56.android" level="project" />
     <orderEntry type="library" exported="" name="SocialSDK_Sina_Full" level="project" />
+    <orderEntry type="library" exported="" name="umeng_social_shareview" level="project" />
     <orderEntry type="library" exported="" name="transition-25.1.0" level="project" />
     <orderEntry type="library" exported="" name="open_sdk_r5781" level="project" />
     <orderEntry type="library" exported="" name="weiboSDKCore_3.1.4" level="project" />

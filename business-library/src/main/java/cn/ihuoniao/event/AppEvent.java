@@ -7,7 +7,7 @@ import cn.ihuoniao.model.AppConfigModel;
  * Created by sdk-app-shy on 2017/3/17.
  */
 
-public class AppConfigEvent extends StoreChangeEvent {
+public class AppEvent extends StoreChangeEvent {
 
     public AppConfigModel appConfig = null;
 
