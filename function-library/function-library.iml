@@ -89,7 +89,6 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/res" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/rs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/shaders" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/symbols" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/transforms" />
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
@@ -100,7 +99,7 @@
     <orderEntry type="library" exported="" name="loadingviewlib-1.0" level="project" />
     <orderEntry type="library" exported="" name="design-25.1.0" level="project" />
     <orderEntry type="library" exported="" name="imagepipeline-base-1.1.0" level="project" />
-    <orderEntry type="library" exported="" name="fastjson-1.1.56.android" level="project" />
+    <orderEntry type="library" exported="" name="gson-2.8.0" level="project" />
     <orderEntry type="library" exported="" name="SocialSDK_Sina_Full" level="project" />
     <orderEntry type="library" exported="" name="alipaySdk-20170309" level="project" />
     <orderEntry type="library" exported="" name="umeng_social_shareview" level="project" />
@@ -122,6 +121,7 @@
     <orderEntry type="library" exported="" name="mid-core-sdk-3.7.2" level="project" />
     <orderEntry type="library" exported="" name="bugly_crash_release" level="project" />
     <orderEntry type="library" exported="" name="umeng_social_net" level="project" />
+    <orderEntry type="library" exported="" name="fastjson-1.2.29" level="project" />
     <orderEntry type="library" exported="" name="imagepipeline-1.1.0" level="project" />
     <orderEntry type="library" exported="" name="umeng_social_api" level="project" />
     <orderEntry type="library" exported="" name="mta-sdk-1.6.2" level="project" />

@@ -27,14 +27,29 @@
 -dontwarn com.facebook.**
 -dontwarn com.ldoublem.**
 -dontwarn com.mistyrain.**
--dontwarn com.squareup.**
 -dontwarn com.alibaba.**
+-dontwarn javax.**
+-dontwarn android.**
+-dontwarn com.squareup.**
+-dontwarn com.google.**
+-dontwarn java.**
+-dontwarn cn.ihuoniao.model.**
+-keep class javax.**{*;}
+-keep class android.**{*;}
 -keep public class com.tencent.bugly.**{*;}
 -keep public class com.facebook.**{*;}
 -keep public class com.ldoublem.**{*;}
 -keep public class com.mistyrain.**{*;}
--keep public class com.squareup.**{*;}
--keep public class com.alibaba.**{*;}
+-keep class java.**{*;}
+-keep class cn.ihuoniao.model.**{*;}
+-keep class com.squareup.**{*;}
+-keep class com.google.**{*;}
+-keepattributes *Annotation*
+-keepclassmembers class ** {
+    @com.squareup.otto.Subscribe public *;
+    @com.squareup.otto.Produce public *;
+}
+-keep class com.alibaba.fastjson.** { *; }
 -keep class com.tencent.mm.opensdk.** {
    *;
 }
@@ -44,7 +59,6 @@
 -keep class com.tencent.mm.sdk.** {
    *;
 }
--libraryjars libs/alipaySDK-20150602.jar
 
 -keep class com.alipay.android.app.IAlixPay{*;}
 -keep class com.alipay.android.app.IAlixPay$Stub{*;}

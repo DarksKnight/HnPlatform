@@ -1,8 +1,8 @@
 package cn.ihuoniao.store.base;
 
-import android.app.Activity;
-
 import com.squareup.otto.Bus;
+
+import android.app.Activity;
 
 import java.util.Map;
 
@@ -10,6 +10,7 @@ import cn.ihuoniao.actions.base.BaseAction;
 import cn.ihuoniao.event.base.StoreChangeEvent;
 import cn.ihuoniao.function.command.base.Control;
 import cn.ihuoniao.function.listener.StatusListener;
+import cn.ihuoniao.function.util.Logger;
 import cn.ihuoniao.platform.webview.BridgeWebView;
 
 /**
@@ -29,15 +30,15 @@ public abstract class Store<T extends BaseAction> {
     }
 
     public void register(final Object view) {
-        this.bus.register(view);
+        bus.register(view);
     }
 
     public void unregister(final Object view) {
-        this.bus.unregister(view);
+        bus.unregister(view);
     }
 
     protected void emitStoreChange(StoreChangeEvent event) {
-        this.bus.post(event);
+        bus.post(event);
     }
 
     public void onAction(T action) {

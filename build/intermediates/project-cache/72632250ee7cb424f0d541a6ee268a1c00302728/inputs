@@ -1,6 +1,0 @@
-COMMAND=PREDEX_LIBRARY_TO_DEX_ARCHIVE
-FILE_PATH=/Users/apple/Documents/demo/HnPlatform/function-library/build/intermediates/bundles/default/libs/wechat-sdk-android-with-mta-1.0.2.jar
-FILE_HASH=11b103caa35b055f5c9de822fd3e4df14e7961f9
-DX_VERSION=1.12
-JUMBO_MODE=false
-OPTIMIZE=true

@@ -62,6 +62,7 @@ public class UMengStore extends Store<UMengAction> {
                 UMShareListener listener = new UMShareListener() {
                     @Override
                     public void onStart(SHARE_MEDIA share_media) {
+
                     }
 
                     @Override

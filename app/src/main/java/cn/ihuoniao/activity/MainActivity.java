@@ -1,6 +1,7 @@
 package cn.ihuoniao.activity;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.apkfuns.jsbridge.JSBridge;
 import com.squareup.otto.Subscribe;
 import com.tencent.connect.common.Constants;
@@ -23,6 +24,9 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import cn.ihuoniao.Constant;
 import cn.ihuoniao.R;
