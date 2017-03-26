@@ -63,4 +63,8 @@ public enum  ActionsCreator {
     public void register_wechatPay() {
         Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_WECHAT, new WeChatAction(TYPE.TYPE_WECHAT_PAY, params));
     }
+
+    public void register_appLoginFinish() {
+        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP, new AppAction(TYPE.TYPE_APP_LOGIN_FINISH, params));
+    }
 }

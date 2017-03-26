@@ -1,6 +1,0 @@
-COMMAND=PREDEX_LIBRARY_TO_DEX_ARCHIVE
-FILE_PATH=/Users/apple/Documents/demo/HnPlatform/function-library/build/intermediates/bundles/default/libs/umeng_social_shareview.jar
-FILE_HASH=361d05a2ec53db44c4dc6b94de24caf319b99626
-DX_VERSION=1.12
-JUMBO_MODE=false
-OPTIMIZE=true

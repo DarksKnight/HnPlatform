@@ -65,9 +65,18 @@
             $('#btnWechatPay').click(function () {
                 window.WebViewJavascriptBridge.callHandler(
                     'wechatPay'
-                    , {"partnerId":"1900000109", "prepayId":"1101000000140415649af9fc314aa427", "nonceStr":"1101000000140429eb40476f8896f4c9", "timeStamp" :"1398746574", "sign":"7FFECB600D7157C5AA49810D2D8F28BC2811827B"}
+                    , { "partnerId": "1900000109", "prepayId": "1101000000140415649af9fc314aa427", "nonceStr": "1101000000140429eb40476f8896f4c9", "timeStamp": "1398746574", "sign": "7FFECB600D7157C5AA49810D2D8F28BC2811827B" }
                     , function (responseData) {
                         console.log('wechatPay : ' + responseData);
+                    }
+                );
+            });
+            $('#btnLoginFinish').click(function () {
+                window.WebViewJavascriptBridge.callHandler(
+                    'appLoginFinish'
+                    , { "passport": "" }
+                    , function (responseData) {
+                        console.log('loginFinish : ' + responseData);
                     }
                 );
             });
@@ -85,6 +94,8 @@
             <li><input type="button" value="weiboLogin" id="btnWeiboLogin" style="width:200px;height:100px;" />
             </li>
             <li><input type="button" value="appShare" id="btnAppShare" style="width:200px;height:100px;" />
+            </li>
+            <li><input type="button" value="loginFinish" id="btnLoginFinish" style="width:200px;height:100px;" />
             </li>
             <li><input type="button" value="logout" id="btnLogout" style="width:200px;height:100px;" />
             </li>

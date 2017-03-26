@@ -42,3 +42,30 @@ window.WebViewJavascriptBridge.callHandler(
         console.log('app already logout');
     }
 );
+
+//app登录成功后调用
+window.WebViewJavascriptBridge.callHandler(
+    'appLoginFinish'
+    , { "passport": "" }
+    , function (responseData) {
+        console.log('loginFinish : ' + responseData);
+    }
+);
+
+//支付宝支付
+window.WebViewJavascriptBridge.callHandler(
+    'aliPay'
+    , { "orderInfo": "" }
+    , function (responseData) {
+        console.log('alipay : ' + responseData);
+    }
+);
+
+//微信支付
+window.WebViewJavascriptBridge.callHandler(
+    'wechatPay'
+    , { "partnerId": "1900000109", "prepayId": "1101000000140415649af9fc314aa427", "nonceStr": "1101000000140429eb40476f8896f4c9", "timeStamp": "1398746574", "sign": "7FFECB600D7157C5AA49810D2D8F28BC2811827B" }
+    , function (responseData) {
+        console.log('wechatPay : ' + responseData);
+    }
+);

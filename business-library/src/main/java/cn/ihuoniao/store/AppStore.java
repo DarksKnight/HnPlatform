@@ -1,5 +1,6 @@
 package cn.ihuoniao.store;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -11,9 +12,12 @@ import cn.ihuoniao.Event;
 import cn.ihuoniao.TYPE;
 import cn.ihuoniao.event.AppEvent;
 import cn.ihuoniao.function.command.LogoutCommand;
+import cn.ihuoniao.function.command.XGRegisterCommand;
 import cn.ihuoniao.function.receiver.LogoutReceiver;
+import cn.ihuoniao.function.receiver.XGReceiver;
 import cn.ihuoniao.function.util.CommonUtil;
 import cn.ihuoniao.model.AppConfigModel;
+import cn.ihuoniao.model.LoginFinishModel;
 import cn.ihuoniao.platform.webview.BridgeHandler;
 import cn.ihuoniao.platform.webview.CallBackFunction;
 import cn.ihuoniao.request.AppConfigRequest;
@@ -38,6 +42,9 @@ public class AppStore extends Store<cn.ihuoniao.actions.AppAction> {
                 break;
             case TYPE.TYPE_APP_LOGOUT:
                 logout();
+                break;
+            case TYPE.TYPE_APP_LOGIN_FINISH:
+                loginFinish();
                 break;
             default:
                 break;
@@ -106,6 +113,19 @@ public class AppStore extends Store<cn.ihuoniao.actions.AppAction> {
                 params.put("activity", activity);
                 params.put("umAuthListener", umAuthListener);
                 control.doCommand(new LogoutCommand(new LogoutReceiver()), params, null);
+            }
+        });
+    }
+
+    private void loginFinish() {
+        webView.registerHandler(Event.APP_LOGIN_FINISH, new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                LoginFinishModel loginFinishInfo = JSON.parseObject(data, LoginFinishModel.class);
+                Map<String, Object> params = new HashMap<>();
+                params.put("activity", activity);
+                params.put("passport", loginFinishInfo.passport);
+                control.doCommand(new XGRegisterCommand(new XGReceiver()), params, null);
             }
         });
     }

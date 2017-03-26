@@ -8,6 +8,7 @@ public class Event {
     public static final String GET_APP_INFO = "getAppInfo";
     public static final String APP_LOGOUT = "appLogout";
     public static final String SHARE_APP = "appShare";
+    public static final String APP_LOGIN_FINISH = "appLoginFinish";
 
     public static final String LOGIN_QQ = "qqLogin";
     public static final String LOGIN_WECHAT = "wechatLogin";

@@ -1,6 +1,0 @@
-COMMAND=PREDEX_LIBRARY_TO_DEX_ARCHIVE
-FILE_PATH=/Users/apple/Documents/demo/HnPlatform/uikit-library/build/intermediates/bundles/default/classes.jar
-FILE_HASH=80ebb9112ca0c4a1a4f2870298f8b7cad45464e6
-DX_VERSION=1.12
-JUMBO_MODE=false
-OPTIMIZE=true

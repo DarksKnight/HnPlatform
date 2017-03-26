@@ -3,7 +3,6 @@ package cn.ihuoniao.activity;
 import com.alibaba.fastjson.JSON;
 import com.apkfuns.jsbridge.JSBridge;
 import com.squareup.otto.Subscribe;
-import com.tencent.tauth.IUiListener;
 import com.umeng.socialize.UMShareAPI;
 
 import android.app.AlertDialog;
@@ -53,8 +52,6 @@ public class MainActivity extends BaseActivity {
     private FirstDeployView firstDeployView = null;
 
     private boolean isClickAdv = false;
-
-    private IUiListener iUiListener = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -288,6 +285,7 @@ public class MainActivity extends BaseActivity {
 
         actionsCreator.register_getAppInfo();
         actionsCreator.register_appLogout();
+        actionsCreator.register_appLoginFinish();
         actionsCreator.register_umengShare();
         actionsCreator.register_qqLogin();
         actionsCreator.register_wechatLogin();
