@@ -3,6 +3,7 @@ package cn.ihuoniao.actions.base;
 import java.util.Map;
 
 import cn.ihuoniao.TYPE;
+import cn.ihuoniao.actions.AlipayAction;
 import cn.ihuoniao.actions.AppAction;
 import cn.ihuoniao.actions.QQAction;
 import cn.ihuoniao.actions.UMengAction;
@@ -53,5 +54,13 @@ public enum  ActionsCreator {
 
     public void register_umengShare() {
         Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_UMENG, new UMengAction(TYPE.TYPE_UMENG_SHARE, params));
+    }
+
+    public void register_alipay() {
+        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_ALIPAY, new AlipayAction(TYPE.TYPE_ALIPAY_PAY, params));
+    }
+
+    public void register_wechatPay() {
+        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_WECHAT, new WeChatAction(TYPE.TYPE_WECHAT_PAY, params));
     }
 }

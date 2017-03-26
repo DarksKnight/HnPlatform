@@ -25,12 +25,12 @@ window.WebViewJavascriptBridge.callHandler(
     }
 );
 
-//友盟分享
+//分享
 window.WebViewJavascriptBridge.callHandler(
-    'umengShare'
+    'appShare'
     , { "title": "hello", "summary": "hello world", "url": "http://www.baidu.com", "imageUrl": "http://attachments.gfan.com/forum/attachments2/201305/04/181712hd2hv6atncvqntga.jpg" }
     , function (responseData) {
-        console.log('umeng share : ' + responseData);
+        console.log('app share : ' + responseData);
     }
 );
 

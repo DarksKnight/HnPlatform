@@ -1,0 +1,6 @@
+COMMAND=PREDEX_LIBRARY_TO_DEX_ARCHIVE
+FILE_PATH=/Users/apple/Documents/demo/HnPlatform/function-library/build/intermediates/bundles/default/libs/alipaySdk-20170309.jar
+FILE_HASH=81f6b0ac0007799c742a72293b88b3f1707860c2
+DX_VERSION=1.12
+JUMBO_MODE=false
+OPTIMIZE=true

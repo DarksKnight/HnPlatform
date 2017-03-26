@@ -12,4 +12,6 @@ public class API {
 
     public static final String APP_CONFIG  = HTTP + IP + "api/appConfig.json";
 
+    public static final String ALIPAY_ORDER_INFO = HTTP + IP + "api/appConfig.json";
+
 }

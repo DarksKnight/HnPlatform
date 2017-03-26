@@ -1,12 +1,9 @@
 package cn.ihuoniao.activity;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.apkfuns.jsbridge.JSBridge;
 import com.squareup.otto.Subscribe;
-import com.tencent.connect.common.Constants;
 import com.tencent.tauth.IUiListener;
-import com.tencent.tauth.Tencent;
 import com.umeng.socialize.UMShareAPI;
 
 import android.app.AlertDialog;
@@ -25,9 +22,6 @@ import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import cn.ihuoniao.Constant;
 import cn.ihuoniao.R;
 import cn.ihuoniao.TYPE;
@@ -41,6 +35,7 @@ import cn.ihuoniao.platform.splash.SplashView;
 import cn.ihuoniao.platform.webview.BridgeWebView;
 import cn.ihuoniao.platform.webview.BridgeWebViewClient;
 import cn.ihuoniao.platform.webview.DefaultHandler;
+import cn.ihuoniao.store.AlipayStore;
 import cn.ihuoniao.store.AppStore;
 import cn.ihuoniao.store.QQStore;
 import cn.ihuoniao.store.UMengStore;
@@ -206,6 +201,7 @@ public class MainActivity extends BaseActivity {
         registerStore(TYPE.REGISTER_STORE_WECHAT, new WeChatStore());
         registerStore(TYPE.REGISTER_STROE_WEIBO, new WeiboStore());
         registerStore(TYPE.REGISTER_STORE_UMENG, new UMengStore());
+        registerStore(TYPE.REGISTER_STORE_ALIPAY, new AlipayStore());
     }
 
     @Override
@@ -277,13 +273,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == Constants.REQUEST_LOGIN
-                || requestCode == Constants.REQUEST_QZONE_SHARE
-                || requestCode == Constants.REQUEST_QQ_SHARE) {
-            if (iUiListener != null) {
-                Tencent.handleResultData(data, iUiListener);
-            }
-        }
         UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -303,5 +292,7 @@ public class MainActivity extends BaseActivity {
         actionsCreator.register_qqLogin();
         actionsCreator.register_wechatLogin();
         actionsCreator.register_weiboLogin();
+        actionsCreator.register_alipay();
+        actionsCreator.register_wechatPay();
     }
 }

@@ -15,10 +15,13 @@ public class TYPE {
     public static final String TYPE_WEIBO_LOGIN = "type_weibo_login";
     public static final String TYPE_UMENG_INIT = "type_umeng_init";
     public static final String TYPE_UMENG_SHARE = "type_umeng_share";
+    public static final String TYPE_ALIPAY_PAY = "type_alipay_pay";
+    public static final String TYPE_WECHAT_PAY = "type_wechat_pay";
 
     public static final String REGISTER_STORE_APP = "store_app_config";
     public static final String REGISTER_STORE_QQ = "store_qq";
     public static final String REGISTER_STORE_WECHAT = "store_wechat";
     public static final String REGISTER_STROE_WEIBO = "store_weibo";
     public static final String REGISTER_STORE_UMENG = "store_umeng";
+    public static final String REGISTER_STORE_ALIPAY = "store_alipay";
 }

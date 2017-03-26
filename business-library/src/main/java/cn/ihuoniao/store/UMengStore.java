@@ -55,7 +55,7 @@ public class UMengStore extends Store<UMengAction> {
     }
 
     private void share() {
-        webView.registerHandler(Event.SHARE_UMENG, new BridgeHandler() {
+        webView.registerHandler(Event.SHARE_APP, new BridgeHandler() {
             @Override
             public void handler(String data, final CallBackFunction function) {
                 ShareInfoModel shareInfo = JSON.parseObject(data, ShareInfoModel.class);

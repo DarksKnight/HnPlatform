@@ -35,9 +35,9 @@
                     }
                 );
             });
-            $('#btnUmengShare').click(function () {
+            $('#btnAppShare').click(function () {
                 window.WebViewJavascriptBridge.callHandler(
-                    'umengShare'
+                    'appShare'
                     , { "title": "hello", "summary": "hello world", "url": "http://www.baidu.com", "imageUrl": "http://attachments.gfan.com/forum/attachments2/201305/04/181712hd2hv6atncvqntga.jpg" }
                     , function (responseData) {
                         console.log('umeng share : ' + responseData);
@@ -50,6 +50,24 @@
                     , {}
                     , function (responseData) {
                         console.log('app already logout');
+                    }
+                );
+            });
+            $('#btnAlipay').click(function () {
+                window.WebViewJavascriptBridge.callHandler(
+                    'aliPay'
+                    , { "orderInfo": "" }
+                    , function (responseData) {
+                        console.log('alipay : ' + responseData);
+                    }
+                );
+            });
+            $('#btnWechatPay').click(function () {
+                window.WebViewJavascriptBridge.callHandler(
+                    'wechatPay'
+                    , {"partnerId":"1900000109", "prepayId":"1101000000140415649af9fc314aa427", "nonceStr":"1101000000140429eb40476f8896f4c9", "timeStamp" :"1398746574", "sign":"7FFECB600D7157C5AA49810D2D8F28BC2811827B"}
+                    , function (responseData) {
+                        console.log('wechatPay : ' + responseData);
                     }
                 );
             });
@@ -66,9 +84,13 @@
             </li>
             <li><input type="button" value="weiboLogin" id="btnWeiboLogin" style="width:200px;height:100px;" />
             </li>
-            <li><input type="button" value="umengShare" id="btnUmengShare" style="width:200px;height:100px;" />
+            <li><input type="button" value="appShare" id="btnAppShare" style="width:200px;height:100px;" />
             </li>
             <li><input type="button" value="logout" id="btnLogout" style="width:200px;height:100px;" />
+            </li>
+            <li><input type="button" value="alipay" id="btnAlipay" style="width:200px;height:100px;" />
+            </li>
+            <li><input type="button" value="wechatPay" id="btnWechatPay" style="width:200px;height:100px;" />
             </li>
         </ul>
     </div>

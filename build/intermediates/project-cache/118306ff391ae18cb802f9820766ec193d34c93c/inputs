@@ -1,0 +1,6 @@
+COMMAND=PREDEX_LIBRARY_TO_DEX_ARCHIVE
+FILE_PATH=/Users/apple/Documents/demo/HnPlatform/function-library/build/intermediates/bundles/default/libs/weiboSDKCore_3.1.4.jar
+FILE_HASH=2bc78160e85f56f81c91271dfa44bd8c8293cb94
+DX_VERSION=1.12
+JUMBO_MODE=false
+OPTIMIZE=true

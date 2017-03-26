@@ -1,0 +1,6 @@
+COMMAND=PREDEX_LIBRARY_TO_DEX_ARCHIVE
+FILE_PATH=/Users/apple/Documents/demo/HnPlatform/function-library/build/intermediates/bundles/default/libs/SocialSDK_Sina_Full.jar
+FILE_HASH=bf4dab84f244292584eec9534c4eb296c77643e4
+DX_VERSION=1.12
+JUMBO_MODE=false
+OPTIMIZE=true
