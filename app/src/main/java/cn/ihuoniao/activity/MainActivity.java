@@ -1,10 +1,5 @@
 package cn.ihuoniao.activity;
 
-import com.alibaba.fastjson.JSON;
-import com.apkfuns.jsbridge.JSBridge;
-import com.squareup.otto.Subscribe;
-import com.umeng.socialize.UMShareAPI;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,13 +8,13 @@ import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.JsPromptResult;
-import android.webkit.JsResult;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
-import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+
+import com.alibaba.fastjson.JSON;
+import com.squareup.otto.Subscribe;
+import com.umeng.socialize.UMShareAPI;
 
 import cn.ihuoniao.Constant;
 import cn.ihuoniao.R;
@@ -113,34 +108,23 @@ public class MainActivity extends BaseActivity {
         bwvContent.getSettings().setUseWideViewPort(true);
         bwvContent.getSettings().setLoadWithOverviewMode(true);
         bwvContent.getSettings().setDomStorageEnabled(true);
+        bwvContent.getSettings().setLayoutAlgorithm(com.tencent.smtt.sdk.WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
 
         bwvContent.setWebViewClient(new BridgeWebViewClient(bwvContent) {
 
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            public boolean shouldOverrideUrlLoading(com.tencent.smtt.sdk.WebView view, String url) {
                 Logger.i("url : " + url);
                 if (url.contains("http://")) {
                     showLoading();
                 }
                 return super.shouldOverrideUrlLoading(view, url);
             }
-
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-            }
         });
 
-        bwvContent.setWebChromeClient(new WebChromeClient() {
-
+        bwvContent.setWebChromeClient(new com.tencent.smtt.sdk.WebChromeClient() {
             @Override
-            public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, JsPromptResult result) {
-                result.confirm(JSBridge.callJsPrompt(MainActivity.this, view, message));
-                return super.onJsPrompt(view, url, message, defaultValue, result);
-            }
-
-            @Override
-            public boolean onJsAlert(final WebView view, String url, final String message, final JsResult result) {
+            public boolean onJsAlert(com.tencent.smtt.sdk.WebView view, String url, String message, final com.tencent.smtt.export.external.interfaces.JsResult result) {
                 AlertDialog.Builder b = new AlertDialog.Builder(MainActivity.this);
                 b.setMessage(message);
                 b.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
@@ -155,7 +139,7 @@ public class MainActivity extends BaseActivity {
             }
 
             @Override
-            public void onProgressChanged(WebView view, int newProgress) {
+            public void onProgressChanged(com.tencent.smtt.sdk.WebView view, int newProgress) {
                 if (isClickAdv) {
                     if (null != view.getOriginalUrl()) {
                         if (view.getOriginalUrl().equals(spv.getLink())) {

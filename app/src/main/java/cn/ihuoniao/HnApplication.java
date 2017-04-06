@@ -1,11 +1,12 @@
 package cn.ihuoniao;
 
+import android.app.Application;
+
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.tencent.android.tpush.XGIOperateCallback;
 import com.tencent.android.tpush.XGPushManager;
 import com.tencent.bugly.crashreport.CrashReport;
-
-import android.app.Application;
+import com.tencent.smtt.sdk.QbSdk;
 
 import cn.ihuoniao.function.util.Logger;
 
@@ -19,6 +20,7 @@ public class HnApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        QbSdk.initX5Environment(getApplicationContext(), null);
         Fresco.initialize(this);
         XGPushManager.registerPush(getApplicationContext(), new XGIOperateCallback() {
             @Override

@@ -67,7 +67,7 @@ public class BridgeUtil {
 		view.loadUrl("javascript:" + js);
 	}
 
-    public static void webViewLoadLocalJs(WebView view, String path){
+    public static void webViewLoadLocalJs(com.tencent.smtt.sdk.WebView view, String path){
         String jsContent = assetFile2Str(view.getContext(), path);
         view.loadUrl("javascript:" + jsContent);
     }

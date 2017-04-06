@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @SuppressLint("SetJavaScriptEnabled")
-public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
+public class BridgeWebView extends com.tencent.smtt.sdk.WebView implements WebViewJavascriptBridge {
 
 	private final String TAG = "BridgeWebView";
 
