@@ -53,6 +53,10 @@ public class AppStore extends Store<cn.ihuoniao.actions.AppAction> {
     }
 
     private void getAppConfigRequest() {
+        Map<String, Object> params = new HashMap<>();
+        params.put("activity", activity);
+        params.put("passport", "");
+        control.doCommand(new XGRegisterCommand(new XGReceiver()), params, null);
         new AppConfigRequest().request(null, new RequestCallBack() {
             @Override
             public void onSuccess(String content) {
@@ -112,7 +116,9 @@ public class AppStore extends Store<cn.ihuoniao.actions.AppAction> {
                 Map<String, Object> params = new HashMap<>();
                 params.put("activity", activity);
                 params.put("umAuthListener", umAuthListener);
+                params.put("passport", "");
                 control.doCommand(new LogoutCommand(new LogoutReceiver()), params, null);
+                control.doCommand(new XGRegisterCommand(new XGReceiver()), params, null);
             }
         });
     }

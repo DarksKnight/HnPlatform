@@ -1,9 +1,9 @@
 package cn.ihuoniao.function.receiver;
 
+import android.app.Activity;
+
 import com.tencent.android.tpush.XGIOperateCallback;
 import com.tencent.android.tpush.XGPushManager;
-
-import android.app.Activity;
 
 import cn.ihuoniao.function.command.base.Receiver;
 import cn.ihuoniao.function.util.Logger;
@@ -19,17 +19,31 @@ public class XGReceiver extends Receiver {
             @Override
             public void onSuccess(Object o, int i) {
                 Logger.i("xgpush unregister success");
-                XGPushManager.registerPush(activity, passport, new XGIOperateCallback() {
-                    @Override
-                    public void onSuccess(Object o, int i) {
-                        Logger.i("xgpush register success");
-                    }
+                if (passport.trim().length() == 0) {
+                    XGPushManager.registerPush(activity, new XGIOperateCallback() {
+                        @Override
+                        public void onSuccess(Object o, int i) {
+                            Logger.i("xgpush register success, no passport");
+                        }
 
-                    @Override
-                    public void onFail(Object o, int i, String s) {
-                        Logger.i("xgpush register fail : " + s);
-                    }
-                });
+                        @Override
+                        public void onFail(Object o, int i, String s) {
+                            Logger.i("xgpush register fail : " + s);
+                        }
+                    });
+                } else {
+                    XGPushManager.registerPush(activity, passport, new XGIOperateCallback() {
+                        @Override
+                        public void onSuccess(Object o, int i) {
+                            Logger.i("xgpush register success");
+                        }
+
+                        @Override
+                        public void onFail(Object o, int i, String s) {
+                            Logger.i("xgpush register fail : " + s);
+                        }
+                    });
+                }
             }
 
             @Override

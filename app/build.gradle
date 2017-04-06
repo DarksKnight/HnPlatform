@@ -45,6 +45,7 @@ android {
             zipAlignEnabled true
             minifyEnabled true
             signingConfig signingConfigs.release
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
             applicationVariants.all {
