@@ -11,6 +11,7 @@ import cn.ihuoniao.actions.AlipayAction;
 import cn.ihuoniao.function.command.AlipayCommand;
 import cn.ihuoniao.function.listener.ResultListener;
 import cn.ihuoniao.function.receiver.AlipayReceiver;
+import cn.ihuoniao.function.util.Logger;
 import cn.ihuoniao.model.PayInfoModel;
 import cn.ihuoniao.platform.webview.BridgeHandler;
 import cn.ihuoniao.platform.webview.CallBackFunction;
@@ -48,7 +49,8 @@ public class AlipayStore extends Store<AlipayAction> {
                             @Override
                             public void onResult(String result) {
                                 statusListener.end();
-                                function.onCallBack(result.toString());
+                                Logger.i("alipay result : " + result);
+                                function.onCallBack(result);
                             }
                         });
             }

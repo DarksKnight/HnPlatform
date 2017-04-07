@@ -8,12 +8,16 @@ import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.webkit.WebSettings;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.alibaba.fastjson.JSON;
 import com.squareup.otto.Subscribe;
+import com.tencent.smtt.export.external.interfaces.JsPromptResult;
+import com.tencent.smtt.export.external.interfaces.JsResult;
+import com.tencent.smtt.sdk.WebView;
 import com.umeng.socialize.UMShareAPI;
 
 import cn.ihuoniao.Constant;
@@ -123,18 +127,22 @@ public class MainActivity extends BaseActivity {
         });
 
         bwvContent.setWebChromeClient(new com.tencent.smtt.sdk.WebChromeClient() {
+
+            @Override
+            public boolean onJsPrompt(WebView webView, String s, String s1, String s2, JsPromptResult result) {
+                showAlertDialog(2, s2, result);
+                return true;
+            }
+
+            @Override
+            public boolean onJsConfirm(WebView webView, String s, String s1, final JsResult result) {
+                showAlertDialog(1, s1, result);
+                return true;
+            }
+
             @Override
             public boolean onJsAlert(com.tencent.smtt.sdk.WebView view, String url, String message, final com.tencent.smtt.export.external.interfaces.JsResult result) {
-                AlertDialog.Builder b = new AlertDialog.Builder(MainActivity.this);
-                b.setMessage(message);
-                b.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        result.confirm();
-                    }
-                });
-                b.setCancelable(true);
-                b.create().show();
+                showAlertDialog(0, message, result);
                 return true;
             }
 
@@ -242,11 +250,7 @@ public class MainActivity extends BaseActivity {
         appInfo.platformUrl = event.appConfig.cfg_basehost;
         appInfo.loginInfo = event.appConfig.cfg_loginconnect;
         if (!isClickAdv) {
-            if (isDebug) {
-                bwvContent.loadUrl("file:///android_asset/debug.html");
-            } else {
-                bwvContent.loadUrl(appInfo.platformUrl);
-            }
+            bwvContent.loadUrl(appInfo.platformUrl);
         }
 
         initWebView();
@@ -276,5 +280,27 @@ public class MainActivity extends BaseActivity {
         actionsCreator.register_weiboLogin();
         actionsCreator.register_alipay();
         actionsCreator.register_wechatPay();
+    }
+
+    private void showAlertDialog(int type, String message, final JsResult result) {
+        AlertDialog.Builder b = new AlertDialog.Builder(MainActivity.this);
+        b.setMessage(message);
+        b.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                result.confirm();
+            }
+        });
+        if (type != 0) {
+            b.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    result.cancel();
+                }
+            });
+        }
+        b.setCancelable(true);
+        b.create().requestWindowFeature(Window.FEATURE_NO_TITLE);
+        b.create().show();
     }
 }
