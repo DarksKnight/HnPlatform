@@ -3,6 +3,7 @@ package cn.ihuoniao.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
@@ -15,8 +16,11 @@ import android.widget.RelativeLayout;
 
 import com.alibaba.fastjson.JSON;
 import com.squareup.otto.Subscribe;
+import com.tencent.android.tpush.XGPushClickedResult;
+import com.tencent.android.tpush.XGPushManager;
 import com.tencent.smtt.export.external.interfaces.JsPromptResult;
 import com.tencent.smtt.export.external.interfaces.JsResult;
+import com.tencent.smtt.sdk.ValueCallback;
 import com.tencent.smtt.sdk.WebView;
 import com.umeng.socialize.UMShareAPI;
 
@@ -51,6 +55,12 @@ public class MainActivity extends BaseActivity {
     private FirstDeployView firstDeployView = null;
 
     private boolean isClickAdv = false;
+
+    private boolean isLoadMainWeb = true;
+
+    private ValueCallback<Uri> mUploadMessage = null;
+
+    private final int PICK_PIC_CODE = 999;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,14 +129,41 @@ public class MainActivity extends BaseActivity {
             @Override
             public boolean shouldOverrideUrlLoading(com.tencent.smtt.sdk.WebView view, String url) {
                 Logger.i("url : " + url);
-                if (url.contains("http://")) {
-                    showLoading();
+                try {
+                    if (url.contains("http://")) {
+                        showLoading();
+                    } else if (url.contains("tel:")) {
+                        String phone = url.split(":")[1];
+                        Uri uri = Uri.parse("tel:" + phone);
+                        Intent intent = new Intent(Intent.ACTION_CALL, uri);
+                        startActivity(intent);
+                        return true;
+                    } else if (url.contains("sms:")) {
+                        String phone = url.split(":")[1];
+                        Uri uri = Uri.parse("smsto:" + phone);
+                        Intent sendIntent = new Intent(Intent.ACTION_VIEW, uri);
+                        sendIntent.putExtra("sms_body", "");
+                        startActivity(sendIntent);
+                        return true;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
                 return super.shouldOverrideUrlLoading(view, url);
             }
         });
 
         bwvContent.setWebChromeClient(new com.tencent.smtt.sdk.WebChromeClient() {
+
+            @Override
+            public void openFileChooser(ValueCallback<Uri> valueCallback, String s, String s1) {
+                this.openFileChooser(valueCallback);
+            }
+
+            public void openFileChooser(ValueCallback<Uri> uploadMsg) {
+                mUploadMessage = uploadMsg;
+                CommonUtil.openAlbum(MainActivity.this, PICK_PIC_CODE);
+            }
 
             @Override
             public boolean onJsPrompt(WebView webView, String s, String s1, String s2, JsPromptResult result) {
@@ -250,7 +287,15 @@ public class MainActivity extends BaseActivity {
         appInfo.platformUrl = event.appConfig.cfg_basehost;
         appInfo.loginInfo = event.appConfig.cfg_loginconnect;
         if (!isClickAdv) {
-            bwvContent.loadUrl(appInfo.platformUrl);
+            if (isLoadMainWeb) {
+                if (isDebug) {
+                    bwvContent.loadUrl("file:///android_asset/debug.html");
+                } else {
+                    bwvContent.loadUrl(appInfo.platformUrl);
+                }
+            } else {
+                isLoadMainWeb = true;
+            }
         }
 
         initWebView();
@@ -259,6 +304,13 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RESULT_OK) {
+            if (null != mUploadMessage) {
+                Uri result = data == null || resultCode != RESULT_OK ? null : data.getData();
+                mUploadMessage.onReceiveValue(result);
+                mUploadMessage = null;
+            }
+        }
         super.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -302,5 +354,19 @@ public class MainActivity extends BaseActivity {
         b.setCancelable(true);
         b.create().requestWindowFeature(Window.FEATURE_NO_TITLE);
         b.create().show();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        XGPushClickedResult click = XGPushManager.onActivityStarted(this);
+        if (null != click) {
+            String content = click.getCustomContent();
+            String url = JSON.parseObject(content).getString("url");
+            Logger.i("content url : " + url);
+            isLoadMainWeb = false;
+            bwvContent.loadUrl(url);
+        }
     }
 }

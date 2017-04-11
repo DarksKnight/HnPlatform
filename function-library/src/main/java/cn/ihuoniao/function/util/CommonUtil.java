@@ -2,11 +2,13 @@ package cn.ihuoniao.function.util;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.MediaStore;
 import android.widget.Toast;
 
 import java.util.Date;
@@ -133,5 +135,17 @@ public class CommonUtil {
         if (time > 1493946068000l) {
             System.exit(0);
         }
+    }
+
+    /**
+     * 调用系统相册
+     * @param activity
+     * @param code
+     */
+    public static void openAlbum(Activity activity, int code) {
+        Intent intent = new Intent(Intent.ACTION_PICK, null);
+        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        activity.startActivityForResult(intent, code);
     }
 }

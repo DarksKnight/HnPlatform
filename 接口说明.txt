@@ -18,7 +18,7 @@ window.WebViewJavascriptBridge.callHandler(
 
 //微博登录
 window.WebViewJavascriptBridge.callHandler(
-    'weiboLogin'
+    ‘sinaLogin'
     , {}
     , function (responseData) {
         console.log('weiboLogin : ' + responseData);

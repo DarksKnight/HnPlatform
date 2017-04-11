@@ -4,18 +4,6 @@
     <application
             android:allowBackup="true">
 
-        <activity android:name=".activity.LogActivity"
-                  android:launchMode="singleTop"
-                  android:screenOrientation="portrait"
-                  android:label="@string/debug_name"
-                  android:windowSoftInputMode="adjustPan">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-
         <activity
                 android:name="com.tencent.tauth.AuthActivity"
                 android:noHistory="true"

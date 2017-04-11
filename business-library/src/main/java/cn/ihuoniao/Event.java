@@ -12,7 +12,7 @@ public class Event {
 
     public static final String LOGIN_QQ = "qqLogin";
     public static final String LOGIN_WECHAT = "wechatLogin";
-    public static final String LOGIN_WEIBO = "weiboLogin";
+    public static final String LOGIN_WEIBO = "sinaLogin";
     public static final String PAY_ALIPAY = "aliPay";
     public static final String PAY_WECHAT = "wechatPay";
 }
