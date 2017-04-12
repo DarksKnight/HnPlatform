@@ -9,6 +9,8 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.webkit.WebView;
 
+import com.tencent.smtt.export.external.extension.proxy.ProxyWebChromeClientExtension;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -222,4 +224,7 @@ public class BridgeWebView extends com.tencent.smtt.sdk.WebView implements WebVi
 	public void callHandler(String handlerName, String data, CallBackFunction callBack) {
         doSend(handlerName, data, callBack);
 	}
+
+    public void setWebChromeClient(ProxyWebChromeClientExtension proxyWebChromeClientExtension) {
+    }
 }

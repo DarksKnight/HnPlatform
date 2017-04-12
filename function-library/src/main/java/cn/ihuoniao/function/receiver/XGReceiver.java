@@ -54,4 +54,8 @@ public class XGReceiver extends Receiver {
 
     }
 
+    public void updateBadgeValue() {
+        
+    }
+
 }

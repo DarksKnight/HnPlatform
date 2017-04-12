@@ -19,6 +19,7 @@ import com.alibaba.fastjson.JSON;
 import com.squareup.otto.Subscribe;
 import com.tencent.android.tpush.XGPushClickedResult;
 import com.tencent.android.tpush.XGPushManager;
+import com.tencent.smtt.export.external.extension.proxy.ProxyWebChromeClientExtension;
 import com.tencent.smtt.export.external.interfaces.JsPromptResult;
 import com.tencent.smtt.export.external.interfaces.JsResult;
 import com.tencent.smtt.sdk.ValueCallback;
@@ -168,6 +169,14 @@ public class MainActivity extends BaseActivity {
             }
         });
 
+        bwvContent.setWebChromeClient(new ProxyWebChromeClientExtension() {
+
+            @Override
+            public void openFileChooser(android.webkit.ValueCallback<Uri[]> valueCallback, String s, String s1) {
+                super.openFileChooser(valueCallback, s, s1);
+            }
+        });
+
         bwvContent.setWebChromeClient(new com.tencent.smtt.sdk.WebChromeClient() {
 
             @SuppressWarnings("unused")
@@ -175,7 +184,6 @@ public class MainActivity extends BaseActivity {
                 if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
                     this.openFileChooser(uploadMsg);
                 }
-                super.openFileChooser(uploadMsg, AcceptType, capture);
             }
 
             @SuppressWarnings("unused")
@@ -183,21 +191,20 @@ public class MainActivity extends BaseActivity {
                 if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
                     this.openFileChooser(uploadMsg);
                 }
-                super.openFileChooser(uploadMsg, AcceptType, "");
             }
 
             @Override
             public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> valueCallback, FileChooserParams fileChooserParams) {
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
                     mUploadMessageForAndroid5 = valueCallback;
-                    CommonUtil.openAlbum5(MainActivity.this, PICK_PIC_CODE_5);
+                    CommonUtil.openFunction(MainActivity.this, PICK_PIC_CODE_5);
                 }
                 return super.onShowFileChooser(webView, valueCallback, fileChooserParams);
             }
 
             public void openFileChooser(ValueCallback<Uri> uploadMsg) {
                 mUploadMessage = uploadMsg;
-                CommonUtil.openAlbum(MainActivity.this, PICK_PIC_CODE);
+                CommonUtil.openFunction(MainActivity.this, PICK_PIC_CODE);
             }
 
             @Override
@@ -341,16 +348,18 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RESULT_OK) {
+        if (requestCode == PICK_PIC_CODE) {
             if (null != mUploadMessage) {
-                Uri result = data == null || resultCode != RESULT_OK ? null : data.getData();
-                mUploadMessage.onReceiveValue(result);
-                mUploadMessage = null;
+                if (null != data) {
+                    Uri result = data.getData();
+                    mUploadMessage.onReceiveValue(result);
+                    mUploadMessage = null;
+                }
             }
+        } else if (requestCode == PICK_PIC_CODE_5) {
             if (null != mUploadMessageForAndroid5) {
-                Uri result = (data == null || resultCode != RESULT_OK) ? null
-                        : data.getData();
-                if (result != null) {
+                if (null != data) {
+                    Uri result = data.getData();
                     mUploadMessageForAndroid5.onReceiveValue(new Uri[]{result});
                 } else {
                     mUploadMessageForAndroid5.onReceiveValue(new Uri[]{});
@@ -371,6 +380,7 @@ public class MainActivity extends BaseActivity {
         actionsCreator.init_umeng();
 
         actionsCreator.register_getAppInfo();
+        actionsCreator.register_updateBadgeValue();
         actionsCreator.register_appLogout();
         actionsCreator.register_appLoginFinish();
         actionsCreator.register_umengShare();
@@ -425,8 +435,10 @@ public class MainActivity extends BaseActivity {
         receiver.setListener(new MsgPushReceiver.Listener() {
             @Override
             public void receiver(String content) {
-                String url = JSON.parseObject(content).getString("url");
-                bwvContent.loadUrl(url);
+                if (null != content) {
+                    String url = JSON.parseObject(content).getString("url");
+                    bwvContent.loadUrl(url);
+                }
             }
         });
         registerReceiver(receiver, filter);

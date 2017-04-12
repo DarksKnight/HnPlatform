@@ -24,7 +24,6 @@ public class MsgPushReceiver extends XGPushBaseReceiver {
 
     @Override
     public void onRegisterResult(Context context, int i, XGPushRegisterResult xgPushRegisterResult) {
-
     }
 
     @Override
@@ -34,29 +33,29 @@ public class MsgPushReceiver extends XGPushBaseReceiver {
 
     @Override
     public void onSetTagResult(Context context, int i, String s) {
-
+        Logger.i("aaaaaa");
     }
 
     @Override
     public void onDeleteTagResult(Context context, int i, String s) {
-
+        Logger.i("kkkkk");
     }
 
     @Override
     public void onTextMessage(Context context, XGPushTextMessage xgPushTextMessage) {
-
     }
 
     @Override
     public void onNotifactionClickedResult(Context context, XGPushClickedResult xgPushClickedResult) {
         String customContent = xgPushClickedResult.getCustomContent();
         Logger.i("customContent : " + customContent);
-        listener.receiver(customContent);
+        if (null != listener) {
+            listener.receiver(customContent);
+        }
     }
 
     @Override
     public void onNotifactionShowedResult(Context context, XGPushShowedResult xgPushShowedResult) {
-
     }
 
     public interface Listener {

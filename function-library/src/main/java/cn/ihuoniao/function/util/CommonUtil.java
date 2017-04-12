@@ -8,10 +8,8 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.Message;
-import android.provider.MediaStore;
 import android.widget.Toast;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -132,36 +130,15 @@ public class CommonUtil {
         return context.getApplicationInfo().loadLabel(pm).toString();
     }
 
-    public static void bomb() {
-        long time = (new Date()).getTime();
-        if (time > 1493946068000l) {
-            System.exit(0);
-        }
-    }
-
     /**
      * 调用系统相册
      *
      * @param activity
      * @param code
      */
-    public static void openAlbum(Activity activity, int code) {
-        Intent intent = new Intent(Intent.ACTION_PICK, null);
-        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        activity.startActivityForResult(intent, code);
-    }
-
-    public static void openAlbum5(Activity activity, int code) {
-        Intent contentSelectionIntent = new Intent(Intent.ACTION_GET_CONTENT);
-        contentSelectionIntent.addCategory(Intent.CATEGORY_OPENABLE);
-        contentSelectionIntent.setType("image/*");
-
-        Intent chooserIntent = new Intent(Intent.ACTION_CHOOSER);
-        chooserIntent.putExtra(Intent.EXTRA_INTENT, contentSelectionIntent);
-        chooserIntent.putExtra(Intent.EXTRA_TITLE, "Image Chooser");
-
-        activity.startActivityForResult(chooserIntent,
-                code);
+    public static void openFunction(Activity activity, int code) {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("*/*");
+        activity.startActivityForResult(Intent.createChooser(intent,"选择"), code);
     }
 }

@@ -32,6 +32,10 @@ public enum  ActionsCreator {
         Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP, new AppAction(TYPE.TYPE_GET_APP_INFO, params));
     }
 
+    public void register_updateBadgeValue() {
+        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP, new AppAction(TYPE.TYPE_UPDATE_APP_BADGE_VALUE, params));
+    }
+
     public void register_appLogout() {
         Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP, new AppAction(TYPE.TYPE_APP_LOGOUT, params));
     }

@@ -13,6 +13,7 @@ import cn.ihuoniao.TYPE;
 import cn.ihuoniao.event.AppEvent;
 import cn.ihuoniao.function.command.LogoutCommand;
 import cn.ihuoniao.function.command.XGRegisterCommand;
+import cn.ihuoniao.function.command.XGUpdateBadgeCommand;
 import cn.ihuoniao.function.receiver.LogoutReceiver;
 import cn.ihuoniao.function.receiver.XGReceiver;
 import cn.ihuoniao.function.util.CommonUtil;
@@ -45,6 +46,9 @@ public class AppStore extends Store<cn.ihuoniao.actions.AppAction> {
                 break;
             case TYPE.TYPE_APP_LOGIN_FINISH:
                 loginFinish();
+                break;
+            case TYPE.TYPE_UPDATE_APP_BADGE_VALUE:
+                updateBadge();
                 break;
             default:
                 break;
@@ -132,6 +136,16 @@ public class AppStore extends Store<cn.ihuoniao.actions.AppAction> {
                 params.put("activity", activity);
                 params.put("passport", loginFinishInfo.passport);
                 control.doCommand(new XGRegisterCommand(new XGReceiver()), params, null);
+            }
+        });
+    }
+
+    private void updateBadge() {
+        webView.registerHandler(Event.UPDATE_APP_BADGE_VALUE, new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                Map<String, Object> params = new HashMap<>();
+                control.doCommand(new XGUpdateBadgeCommand(new XGReceiver()), params, null);
             }
         });
     }

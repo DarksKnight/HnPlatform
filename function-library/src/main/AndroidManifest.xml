@@ -97,21 +97,21 @@
         </provider>
 
         <!-- 【必须】 请将YOUR_ACCESS_ID修改为APP的AccessId，“21”开头的10位数字，中间没空格 -->
-        <meta-data
-            android:name="XG_V2_ACCESS_ID"
-            android:value="2100254959" />
-        <!-- 【必须】 请将YOUR_ACCESS_KEY修改为APP的AccessKey，“A”开头的12位字符串，中间没空格 -->
-        <meta-data
-            android:name="XG_V2_ACCESS_KEY"
-            android:value="A3185V7JMXJH" />
-
         <!--<meta-data-->
             <!--android:name="XG_V2_ACCESS_ID"-->
-            <!--android:value="2100256400" />-->
+            <!--android:value="2100254959" />-->
         <!--&lt;!&ndash; 【必须】 请将YOUR_ACCESS_KEY修改为APP的AccessKey，“A”开头的12位字符串，中间没空格 &ndash;&gt;-->
         <!--<meta-data-->
             <!--android:name="XG_V2_ACCESS_KEY"-->
-            <!--android:value="AU7ZD5A63V9L" />-->
+            <!--android:value="A3185V7JMXJH" />-->
+
+        <meta-data
+            android:name="XG_V2_ACCESS_ID"
+            android:value="2100256400" />
+        <!-- 【必须】 请将YOUR_ACCESS_KEY修改为APP的AccessKey，“A”开头的12位字符串，中间没空格 -->
+        <meta-data
+            android:name="XG_V2_ACCESS_KEY"
+            android:value="AU7ZD5A63V9L" />
 
         <activity
                 android:name="com.alipay.sdk.app.H5PayActivity"
