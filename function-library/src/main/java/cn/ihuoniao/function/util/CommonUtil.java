@@ -106,6 +106,7 @@ public class CommonUtil {
 
     /**
      * 获取版本号
+     *
      * @param context
      * @return
      */
@@ -122,6 +123,7 @@ public class CommonUtil {
 
     /**
      * 获取应用名称
+     *
      * @param context
      * @return
      */
@@ -139,6 +141,7 @@ public class CommonUtil {
 
     /**
      * 调用系统相册
+     *
      * @param activity
      * @param code
      */
@@ -147,5 +150,18 @@ public class CommonUtil {
         intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         activity.startActivityForResult(intent, code);
+    }
+
+    public static void openAlbum5(Activity activity, int code) {
+        Intent contentSelectionIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        contentSelectionIntent.addCategory(Intent.CATEGORY_OPENABLE);
+        contentSelectionIntent.setType("image/*");
+
+        Intent chooserIntent = new Intent(Intent.ACTION_CHOOSER);
+        chooserIntent.putExtra(Intent.EXTRA_INTENT, contentSelectionIntent);
+        chooserIntent.putExtra(Intent.EXTRA_TITLE, "Image Chooser");
+
+        activity.startActivityForResult(chooserIntent,
+                code);
     }
 }

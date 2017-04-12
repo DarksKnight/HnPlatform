@@ -64,6 +64,16 @@
             </intent-filter>
         </activity>
 
+        <!--<receiver android:name=".receiver.MsgPushReceiver"-->
+            <!--android:exported="true" >-->
+            <!--<intent-filter>-->
+                <!--&lt;!&ndash; 接收消息透传 &ndash;&gt;-->
+                <!--<action android:name="com.tencent.android.tpush.action.PUSH_MESSAGE" />-->
+                <!--&lt;!&ndash; 监听注册、反注册、设置/删除标签、通知被点击等处理结果 &ndash;&gt;-->
+                <!--<action android:name="com.tencent.android.tpush.action.FEEDBACK" />-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
+
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="58cb370404e205aff50009db" >

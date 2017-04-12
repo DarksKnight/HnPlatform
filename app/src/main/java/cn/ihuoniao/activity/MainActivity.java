@@ -3,14 +3,15 @@ package cn.ihuoniao.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.webkit.WebSettings;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -21,6 +22,8 @@ import com.tencent.android.tpush.XGPushManager;
 import com.tencent.smtt.export.external.interfaces.JsPromptResult;
 import com.tencent.smtt.export.external.interfaces.JsResult;
 import com.tencent.smtt.sdk.ValueCallback;
+import com.tencent.smtt.sdk.WebChromeClient;
+import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.umeng.socialize.UMShareAPI;
 
@@ -37,6 +40,7 @@ import cn.ihuoniao.platform.splash.SplashView;
 import cn.ihuoniao.platform.webview.BridgeWebView;
 import cn.ihuoniao.platform.webview.BridgeWebViewClient;
 import cn.ihuoniao.platform.webview.DefaultHandler;
+import cn.ihuoniao.receiver.MsgPushReceiver;
 import cn.ihuoniao.store.AlipayStore;
 import cn.ihuoniao.store.AppStore;
 import cn.ihuoniao.store.QQStore;
@@ -60,7 +64,11 @@ public class MainActivity extends BaseActivity {
 
     private ValueCallback<Uri> mUploadMessage = null;
 
+    public ValueCallback<Uri[]> mUploadMessageForAndroid5 = null;
+
     private final int PICK_PIC_CODE = 999;
+
+    private final int PICK_PIC_CODE_5 = 998;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,12 +125,12 @@ public class MainActivity extends BaseActivity {
         }
 
         bwvContent.setDefaultHandler(new DefaultHandler());
-        bwvContent.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
-        bwvContent.getSettings().setJavaScriptEnabled(true);
-        bwvContent.getSettings().setUseWideViewPort(true);
-        bwvContent.getSettings().setLoadWithOverviewMode(true);
-        bwvContent.getSettings().setDomStorageEnabled(true);
+        bwvContent.getSettings().setCacheMode(WebSettings.LOAD_NORMAL);
         bwvContent.getSettings().setLayoutAlgorithm(com.tencent.smtt.sdk.WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+        bwvContent.getSettings().setUseWideViewPort(true);
+        bwvContent.getSettings().setDisplayZoomControls(true);
+        bwvContent.getSettings().setDomStorageEnabled(true);
+        bwvContent.getSettings().setAllowFileAccess(true);
 
         bwvContent.setWebViewClient(new BridgeWebViewClient(bwvContent) {
 
@@ -153,11 +161,38 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        bwvContent.setWebChromeClient(new com.tencent.smtt.sdk.WebChromeClient() {
-
+        bwvContent.setWebChromeClient(new WebChromeClient() {
             @Override
             public void openFileChooser(ValueCallback<Uri> valueCallback, String s, String s1) {
-                this.openFileChooser(valueCallback);
+                super.openFileChooser(valueCallback, s, s1);
+            }
+        });
+
+        bwvContent.setWebChromeClient(new com.tencent.smtt.sdk.WebChromeClient() {
+
+            @SuppressWarnings("unused")
+            public void openFileChooser(ValueCallback<Uri> uploadMsg, String AcceptType, String capture) {
+                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
+                    this.openFileChooser(uploadMsg);
+                }
+                super.openFileChooser(uploadMsg, AcceptType, capture);
+            }
+
+            @SuppressWarnings("unused")
+            public void openFileChooser(ValueCallback<Uri> uploadMsg, String AcceptType) {
+                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
+                    this.openFileChooser(uploadMsg);
+                }
+                super.openFileChooser(uploadMsg, AcceptType, "");
+            }
+
+            @Override
+            public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> valueCallback, FileChooserParams fileChooserParams) {
+                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+                    mUploadMessageForAndroid5 = valueCallback;
+                    CommonUtil.openAlbum5(MainActivity.this, PICK_PIC_CODE_5);
+                }
+                return super.onShowFileChooser(webView, valueCallback, fileChooserParams);
             }
 
             public void openFileChooser(ValueCallback<Uri> uploadMsg) {
@@ -234,6 +269,7 @@ public class MainActivity extends BaseActivity {
     protected void initData() {
         super.initData();
         actionsCreator.request_getAppConfig();
+        registerReceiver();
     }
 
     @Override
@@ -288,11 +324,12 @@ public class MainActivity extends BaseActivity {
         appInfo.loginInfo = event.appConfig.cfg_loginconnect;
         if (!isClickAdv) {
             if (isLoadMainWeb) {
-                if (isDebug) {
-                    bwvContent.loadUrl("file:///android_asset/debug.html");
-                } else {
-                    bwvContent.loadUrl(appInfo.platformUrl);
-                }
+                bwvContent.loadUrl(appInfo.platformUrl);
+//                if (isDebug) {
+//                    bwvContent.loadUrl("file:///android_asset/debug.html");
+//                } else {
+//                    bwvContent.loadUrl(appInfo.platformUrl);
+//                }
             } else {
                 isLoadMainWeb = true;
             }
@@ -309,6 +346,16 @@ public class MainActivity extends BaseActivity {
                 Uri result = data == null || resultCode != RESULT_OK ? null : data.getData();
                 mUploadMessage.onReceiveValue(result);
                 mUploadMessage = null;
+            }
+            if (null != mUploadMessageForAndroid5) {
+                Uri result = (data == null || resultCode != RESULT_OK) ? null
+                        : data.getData();
+                if (result != null) {
+                    mUploadMessageForAndroid5.onReceiveValue(new Uri[]{result});
+                } else {
+                    mUploadMessageForAndroid5.onReceiveValue(new Uri[]{});
+                }
+                mUploadMessageForAndroid5 = null;
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -368,5 +415,20 @@ public class MainActivity extends BaseActivity {
             isLoadMainWeb = false;
             bwvContent.loadUrl(url);
         }
+    }
+
+    private void registerReceiver() {
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("com.tencent.android.tpush.action.PUSH_MESSAGE");
+        filter.addAction("com.tencent.android.tpush.action.FEEDBACK");
+        MsgPushReceiver receiver = new MsgPushReceiver();
+        receiver.setListener(new MsgPushReceiver.Listener() {
+            @Override
+            public void receiver(String content) {
+                String url = JSON.parseObject(content).getString("url");
+                bwvContent.loadUrl(url);
+            }
+        });
+        registerReceiver(receiver, filter);
     }
 }
