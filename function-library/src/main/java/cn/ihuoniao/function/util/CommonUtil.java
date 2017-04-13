@@ -10,6 +10,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.widget.Toast;
 
+import java.io.File;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -138,7 +140,61 @@ public class CommonUtil {
      */
     public static void openFunction(Activity activity, int code) {
         Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("*/*");
-        activity.startActivityForResult(Intent.createChooser(intent,"选择"), code);
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        activity.startActivityForResult(Intent.createChooser(intent, "选择"), code);
+    }
+
+    /**
+     * 获取缓存总数
+     * @param context
+     * @return
+     */
+    public static String getTotalCacheSize(Context context) {
+        try {
+            long cacheSize = getFolderSize(context.getCacheDir());
+            return getFormatSize(cacheSize);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "0";
+    }
+
+    /**
+     * 清理缓存
+     * @param context
+     */
+    public static void clearCache(Context context) {
+        try {
+            for (File item : context.getCacheDir().listFiles()) {
+                item.delete();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static long getFolderSize(File file) throws Exception {
+        long size = 0;
+        try {
+            File[] fileList = file.listFiles();
+            for (int i = 0; i < fileList.length; i++) {
+                // 如果下面还有文件
+                if (fileList[i].isDirectory()) {
+                    size = size + getFolderSize(fileList[i]);
+                } else {
+                    size = size + fileList[i].length();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return size;
+    }
+
+    public static String getFormatSize(double size) {
+        BigDecimal result2 = new BigDecimal(Double.toString(size / 1024 / 1024));
+        return result2.setScale(2, BigDecimal.ROUND_HALF_UP)
+                .toPlainString();
     }
 }

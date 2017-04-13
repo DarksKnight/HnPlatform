@@ -124,6 +124,7 @@
     <orderEntry type="library" exported="" name="umeng_social_net" level="project" />
     <orderEntry type="library" exported="" name="fastjson-1.2.29" level="project" />
     <orderEntry type="library" exported="" name="imagepipeline-1.1.0" level="project" />
+    <orderEntry type="library" exported="" name="badges-1.0.5" level="project" />
     <orderEntry type="library" exported="" name="umeng_social_api" level="project" />
     <orderEntry type="library" exported="" name="mta-sdk-1.6.2" level="project" />
     <orderEntry type="library" exported="" name="umeng_social_tool" level="project" />

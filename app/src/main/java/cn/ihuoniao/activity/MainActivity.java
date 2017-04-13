@@ -331,12 +331,12 @@ public class MainActivity extends BaseActivity {
         appInfo.loginInfo = event.appConfig.cfg_loginconnect;
         if (!isClickAdv) {
             if (isLoadMainWeb) {
-                bwvContent.loadUrl(appInfo.platformUrl);
-//                if (isDebug) {
-//                    bwvContent.loadUrl("file:///android_asset/debug.html");
-//                } else {
-//                    bwvContent.loadUrl(appInfo.platformUrl);
-//                }
+//                bwvContent.loadUrl(appInfo.platformUrl);
+                if (isDebug) {
+                    bwvContent.loadUrl("file:///android_asset/debug.html");
+                } else {
+                    bwvContent.loadUrl(appInfo.platformUrl);
+                }
             } else {
                 isLoadMainWeb = true;
             }
@@ -353,8 +353,10 @@ public class MainActivity extends BaseActivity {
                 if (null != data) {
                     Uri result = data.getData();
                     mUploadMessage.onReceiveValue(result);
-                    mUploadMessage = null;
+                } else {
+                    mUploadMessage.onReceiveValue(null);
                 }
+                mUploadMessage = null;
             }
         } else if (requestCode == PICK_PIC_CODE_5) {
             if (null != mUploadMessageForAndroid5) {
@@ -381,6 +383,10 @@ public class MainActivity extends BaseActivity {
 
         actionsCreator.register_getAppInfo();
         actionsCreator.register_updateBadgeValue();
+        actionsCreator.register_getPushStatus();
+        actionsCreator.register_setPushStatus();
+        actionsCreator.register_getCacheSize();
+        actionsCreator.register_clearCache();
         actionsCreator.register_appLogout();
         actionsCreator.register_appLoginFinish();
         actionsCreator.register_umengShare();

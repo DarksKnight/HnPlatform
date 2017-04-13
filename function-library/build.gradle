@@ -29,4 +29,5 @@ dependencies {
     compile 'com.squareup:otto:1.3.8'
     compile 'com.mistyrain.http:ft_http:1.0.0'
     compile 'com.google.code.gson:gson:2.8.0'
+    compile 'com.github.arturogutierrez:badges:1.0.5@aar'
 }

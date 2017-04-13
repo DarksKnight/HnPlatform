@@ -6,7 +6,7 @@ android {
     compileSdkVersion 24
     buildToolsVersion "25.0.2"
     defaultConfig {
-        applicationId "cn.ihuoniao.platformaaa"
+        applicationId "cn.ihuoniao.platform"
         minSdkVersion 15
         targetSdkVersion 19
         versionCode 1
