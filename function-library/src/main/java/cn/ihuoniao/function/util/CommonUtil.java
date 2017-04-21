@@ -1,14 +1,19 @@
 package cn.ihuoniao.function.util;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.Message;
+import android.view.Window;
 import android.widget.Toast;
+
+import com.tencent.smtt.export.external.interfaces.JsResult;
 
 import java.io.File;
 import java.math.BigDecimal;
@@ -174,6 +179,12 @@ public class CommonUtil {
         }
     }
 
+    /**
+     * 获取文件夹大小
+     * @param file
+     * @return
+     * @throws Exception
+     */
     public static long getFolderSize(File file) throws Exception {
         long size = 0;
         try {
@@ -192,9 +203,56 @@ public class CommonUtil {
         return size;
     }
 
+    /**
+     * 获得容量
+     * @param size
+     * @return
+     */
     public static String getFormatSize(double size) {
         BigDecimal result2 = new BigDecimal(Double.toString(size / 1024 / 1024));
         return result2.setScale(2, BigDecimal.ROUND_HALF_UP)
                 .toPlainString();
+    }
+
+    /**
+     * 弹窗提示
+     * @param activity
+     * @param type
+     * @param message
+     * @param result
+     */
+    public static void showAlertDialog(Activity activity, int type, String message, final JsResult result) {
+        AlertDialog.Builder b = new AlertDialog.Builder(activity);
+        b.setMessage(message);
+        b.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                result.confirm();
+            }
+        });
+        if (type != 0) {
+            b.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    result.cancel();
+                }
+            });
+        }
+        b.setCancelable(true);
+        b.create().requestWindowFeature(Window.FEATURE_NO_TITLE);
+        b.create().show();
+    }
+
+    /**
+     * 弹窗提示
+     * @param activity
+     * @param message
+     */
+    public static void showAlertDialog(Activity activity, String title, String message) {
+        AlertDialog.Builder b = new AlertDialog.Builder(activity);
+        b.setTitle(title);
+        b.setMessage(message);
+        b.setCancelable(true);
+        b.create().show();
     }
 }

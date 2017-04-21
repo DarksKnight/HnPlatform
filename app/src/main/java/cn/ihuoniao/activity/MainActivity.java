@@ -1,7 +1,5 @@
 package cn.ihuoniao.activity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
@@ -11,7 +9,6 @@ import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -19,11 +16,9 @@ import com.alibaba.fastjson.JSON;
 import com.squareup.otto.Subscribe;
 import com.tencent.android.tpush.XGPushClickedResult;
 import com.tencent.android.tpush.XGPushManager;
-import com.tencent.smtt.export.external.extension.proxy.ProxyWebChromeClientExtension;
 import com.tencent.smtt.export.external.interfaces.JsPromptResult;
 import com.tencent.smtt.export.external.interfaces.JsResult;
 import com.tencent.smtt.sdk.ValueCallback;
-import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.umeng.socialize.UMShareAPI;
@@ -136,6 +131,12 @@ public class MainActivity extends BaseActivity {
         bwvContent.setWebViewClient(new BridgeWebViewClient(bwvContent) {
 
             @Override
+            public void onReceivedError(WebView webView, int i, String s, String s1) {
+                super.onReceivedError(webView, i, s, s1);
+                CommonUtil.showAlertDialog(MainActivity.this, getString(R.string.alert_title), getString(R.string.network_error));
+            }
+
+            @Override
             public boolean shouldOverrideUrlLoading(com.tencent.smtt.sdk.WebView view, String url) {
                 Logger.i("url : " + url);
                 try {
@@ -159,21 +160,6 @@ public class MainActivity extends BaseActivity {
                     e.printStackTrace();
                 }
                 return super.shouldOverrideUrlLoading(view, url);
-            }
-        });
-
-        bwvContent.setWebChromeClient(new WebChromeClient() {
-            @Override
-            public void openFileChooser(ValueCallback<Uri> valueCallback, String s, String s1) {
-                super.openFileChooser(valueCallback, s, s1);
-            }
-        });
-
-        bwvContent.setWebChromeClient(new ProxyWebChromeClientExtension() {
-
-            @Override
-            public void openFileChooser(android.webkit.ValueCallback<Uri[]> valueCallback, String s, String s1) {
-                super.openFileChooser(valueCallback, s, s1);
             }
         });
 
@@ -209,19 +195,19 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public boolean onJsPrompt(WebView webView, String s, String s1, String s2, JsPromptResult result) {
-                showAlertDialog(2, s2, result);
+                CommonUtil.showAlertDialog(MainActivity.this, 2, s2, result);
                 return true;
             }
 
             @Override
             public boolean onJsConfirm(WebView webView, String s, String s1, final JsResult result) {
-                showAlertDialog(1, s1, result);
+                CommonUtil.showAlertDialog(MainActivity.this, 1, s1, result);
                 return true;
             }
 
             @Override
             public boolean onJsAlert(com.tencent.smtt.sdk.WebView view, String url, String message, final com.tencent.smtt.export.external.interfaces.JsResult result) {
-                showAlertDialog(0, message, result);
+                CommonUtil.showAlertDialog(MainActivity.this, 0, message, result);
                 return true;
             }
 
@@ -331,12 +317,12 @@ public class MainActivity extends BaseActivity {
         appInfo.loginInfo = event.appConfig.cfg_loginconnect;
         if (!isClickAdv) {
             if (isLoadMainWeb) {
-//                bwvContent.loadUrl(appInfo.platformUrl);
-                if (isDebug) {
-                    bwvContent.loadUrl("file:///android_asset/debug.html");
-                } else {
-                    bwvContent.loadUrl(appInfo.platformUrl);
-                }
+                bwvContent.loadUrl(appInfo.platformUrl);
+//                if (isDebug) {
+//                    bwvContent.loadUrl("file:///android_asset/debug.html");
+//                } else {
+//                    bwvContent.loadUrl(appInfo.platformUrl);
+//                }
             } else {
                 isLoadMainWeb = true;
             }
@@ -395,28 +381,6 @@ public class MainActivity extends BaseActivity {
         actionsCreator.register_weiboLogin();
         actionsCreator.register_alipay();
         actionsCreator.register_wechatPay();
-    }
-
-    private void showAlertDialog(int type, String message, final JsResult result) {
-        AlertDialog.Builder b = new AlertDialog.Builder(MainActivity.this);
-        b.setMessage(message);
-        b.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                result.confirm();
-            }
-        });
-        if (type != 0) {
-            b.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    result.cancel();
-                }
-            });
-        }
-        b.setCancelable(true);
-        b.create().requestWindowFeature(Window.FEATURE_NO_TITLE);
-        b.create().show();
     }
 
     @Override
