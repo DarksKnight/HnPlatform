@@ -5,6 +5,8 @@
                 android:orientation="vertical"
                 android:id="@+id/rl_content">
 
+
+
     <cn.ihuoniao.platform.webview.BridgeWebView
             android:id="@+id/bwv_content"
             android:layout_width="match_parent"

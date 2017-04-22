@@ -11,12 +11,18 @@ import java.util.Map;
 import cn.ihuoniao.Event;
 import cn.ihuoniao.TYPE;
 import cn.ihuoniao.event.AppEvent;
+import cn.ihuoniao.function.command.BadgeCommand;
 import cn.ihuoniao.function.command.LogoutCommand;
 import cn.ihuoniao.function.command.XGRegisterCommand;
+import cn.ihuoniao.function.command.XGUnRegisterCommand;
+import cn.ihuoniao.function.listener.ResultListener;
+import cn.ihuoniao.function.receiver.BadgeReceiver;
 import cn.ihuoniao.function.receiver.LogoutReceiver;
 import cn.ihuoniao.function.receiver.XGReceiver;
 import cn.ihuoniao.function.util.CommonUtil;
+import cn.ihuoniao.function.util.Logger;
 import cn.ihuoniao.model.AppConfigModel;
+import cn.ihuoniao.model.AppInfoModel;
 import cn.ihuoniao.model.LoginFinishModel;
 import cn.ihuoniao.platform.webview.BridgeHandler;
 import cn.ihuoniao.platform.webview.CallBackFunction;
@@ -45,6 +51,21 @@ public class AppStore extends Store<cn.ihuoniao.actions.AppAction> {
                 break;
             case TYPE.TYPE_APP_LOGIN_FINISH:
                 loginFinish();
+                break;
+            case TYPE.TYPE_UPDATE_APP_BADGE_VALUE:
+                updateBadge();
+                break;
+            case TYPE.TYPE_GET_PUSH_STATUS:
+                getPushStatus();
+                break;
+            case TYPE.TYPE_SET_PUSH_STATUS:
+                setPushStatus();
+                break;
+            case TYPE.TYPE_GET_CACHE_SIZE:
+                getCacheSize();
+                break;
+            case TYPE.TYPE_CLEAR_CACHE:
+                clearCache();
                 break;
             default:
                 break;
@@ -131,7 +152,90 @@ public class AppStore extends Store<cn.ihuoniao.actions.AppAction> {
                 Map<String, Object> params = new HashMap<>();
                 params.put("activity", activity);
                 params.put("passport", loginFinishInfo.passport);
-                control.doCommand(new XGRegisterCommand(new XGReceiver()), params, null);
+                control.doCommand(new XGRegisterCommand(new XGReceiver()), params, new ResultListener() {
+                    @Override
+                    public void onResult(Object result) {
+                        boolean flag = (boolean)result;
+                        if (flag) {
+                            AppInfoModel.INSTANCE.pushStatus = "on";
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    private void getPushStatus() {
+        webView.registerHandler(Event.GET_PUSH_STATUS, new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                function.onCallBack(AppInfoModel.INSTANCE.pushStatus);
+            }
+        });
+    }
+
+    private void setPushStatus() {
+        webView.registerHandler(Event.SET_PUSH_STATUS, new BridgeHandler() {
+            @Override
+            public void handler(String data, final CallBackFunction function) {
+                String status = JSON.parseObject(data).getString("pushStatus");
+                Map<String, Object> params = new HashMap<>();
+                params.put("activity", activity);
+                params.put("passport", "");
+                if (status.equals("on")) {
+                    control.doCommand(new XGRegisterCommand(new XGReceiver()), params, new ResultListener() {
+                        @Override
+                        public void onResult(Object result) {
+                            boolean flag = (boolean)result;
+                            if (flag) {
+                                AppInfoModel.INSTANCE.pushStatus = "on";
+                            }
+                            function.onCallBack(AppInfoModel.INSTANCE.pushStatus);
+                        }
+                    });
+                } else {
+                    control.doCommand(new XGUnRegisterCommand(new XGReceiver()), params, new ResultListener() {
+                        @Override
+                        public void onResult(Object result) {
+                            AppInfoModel.INSTANCE.pushStatus = "off";
+                            function.onCallBack(AppInfoModel.INSTANCE.pushStatus);
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    private void updateBadge() {
+        webView.registerHandler(Event.UPDATE_APP_BADGE_VALUE, new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                String badgeCount = JSON.parseObject(data).getString("badge");
+                Logger.i("data : " + data);
+                Map<String, Object> params = new HashMap<>();
+                params.put("activity", activity);
+                params.put("badgeCount", badgeCount);
+                control.doCommand(new BadgeCommand(new BadgeReceiver()), params, null);
+                function.onCallBack("success");
+            }
+        });
+    }
+
+    private void getCacheSize() {
+        webView.registerHandler(Event.GET_CACHE_SIZE, new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                Logger.i("cache size : " + CommonUtil.getTotalCacheSize(activity));
+            }
+        });
+    }
+
+    private void clearCache() {
+        webView.registerHandler(Event.CLEAR_CACHE, new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                CommonUtil.clearCache(activity);
+                function.onCallBack("缓存清理成功");
             }
         });
     }

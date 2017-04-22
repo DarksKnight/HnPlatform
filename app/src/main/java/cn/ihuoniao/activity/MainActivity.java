@@ -1,16 +1,14 @@
 package cn.ihuoniao.activity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.webkit.WebSettings;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -21,6 +19,7 @@ import com.tencent.android.tpush.XGPushManager;
 import com.tencent.smtt.export.external.interfaces.JsPromptResult;
 import com.tencent.smtt.export.external.interfaces.JsResult;
 import com.tencent.smtt.sdk.ValueCallback;
+import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.umeng.socialize.UMShareAPI;
 
@@ -37,6 +36,7 @@ import cn.ihuoniao.platform.splash.SplashView;
 import cn.ihuoniao.platform.webview.BridgeWebView;
 import cn.ihuoniao.platform.webview.BridgeWebViewClient;
 import cn.ihuoniao.platform.webview.DefaultHandler;
+import cn.ihuoniao.receiver.MsgPushReceiver;
 import cn.ihuoniao.store.AlipayStore;
 import cn.ihuoniao.store.AppStore;
 import cn.ihuoniao.store.QQStore;
@@ -60,7 +60,11 @@ public class MainActivity extends BaseActivity {
 
     private ValueCallback<Uri> mUploadMessage = null;
 
+    public ValueCallback<Uri[]> mUploadMessageForAndroid5 = null;
+
     private final int PICK_PIC_CODE = 999;
+
+    private final int PICK_PIC_CODE_5 = 998;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,14 +121,20 @@ public class MainActivity extends BaseActivity {
         }
 
         bwvContent.setDefaultHandler(new DefaultHandler());
-        bwvContent.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
-        bwvContent.getSettings().setJavaScriptEnabled(true);
-        bwvContent.getSettings().setUseWideViewPort(true);
-        bwvContent.getSettings().setLoadWithOverviewMode(true);
-        bwvContent.getSettings().setDomStorageEnabled(true);
+        bwvContent.getSettings().setCacheMode(WebSettings.LOAD_NORMAL);
         bwvContent.getSettings().setLayoutAlgorithm(com.tencent.smtt.sdk.WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+        bwvContent.getSettings().setUseWideViewPort(true);
+        bwvContent.getSettings().setDisplayZoomControls(true);
+        bwvContent.getSettings().setDomStorageEnabled(true);
+        bwvContent.getSettings().setAllowFileAccess(true);
 
         bwvContent.setWebViewClient(new BridgeWebViewClient(bwvContent) {
+
+            @Override
+            public void onReceivedError(WebView webView, int i, String s, String s1) {
+                super.onReceivedError(webView, i, s, s1);
+                CommonUtil.showAlertDialog(MainActivity.this, getString(R.string.alert_title), getString(R.string.network_error));
+            }
 
             @Override
             public boolean shouldOverrideUrlLoading(com.tencent.smtt.sdk.WebView view, String url) {
@@ -155,31 +165,49 @@ public class MainActivity extends BaseActivity {
 
         bwvContent.setWebChromeClient(new com.tencent.smtt.sdk.WebChromeClient() {
 
+            @SuppressWarnings("unused")
+            public void openFileChooser(ValueCallback<Uri> uploadMsg, String AcceptType, String capture) {
+                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
+                    this.openFileChooser(uploadMsg);
+                }
+            }
+
+            @SuppressWarnings("unused")
+            public void openFileChooser(ValueCallback<Uri> uploadMsg, String AcceptType) {
+                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
+                    this.openFileChooser(uploadMsg);
+                }
+            }
+
             @Override
-            public void openFileChooser(ValueCallback<Uri> valueCallback, String s, String s1) {
-                this.openFileChooser(valueCallback);
+            public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> valueCallback, FileChooserParams fileChooserParams) {
+                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+                    mUploadMessageForAndroid5 = valueCallback;
+                    CommonUtil.openFunction(MainActivity.this, PICK_PIC_CODE_5);
+                }
+                return super.onShowFileChooser(webView, valueCallback, fileChooserParams);
             }
 
             public void openFileChooser(ValueCallback<Uri> uploadMsg) {
                 mUploadMessage = uploadMsg;
-                CommonUtil.openAlbum(MainActivity.this, PICK_PIC_CODE);
+                CommonUtil.openFunction(MainActivity.this, PICK_PIC_CODE);
             }
 
             @Override
             public boolean onJsPrompt(WebView webView, String s, String s1, String s2, JsPromptResult result) {
-                showAlertDialog(2, s2, result);
+                CommonUtil.showAlertDialog(MainActivity.this, 2, s2, result);
                 return true;
             }
 
             @Override
             public boolean onJsConfirm(WebView webView, String s, String s1, final JsResult result) {
-                showAlertDialog(1, s1, result);
+                CommonUtil.showAlertDialog(MainActivity.this, 1, s1, result);
                 return true;
             }
 
             @Override
             public boolean onJsAlert(com.tencent.smtt.sdk.WebView view, String url, String message, final com.tencent.smtt.export.external.interfaces.JsResult result) {
-                showAlertDialog(0, message, result);
+                CommonUtil.showAlertDialog(MainActivity.this, 0, message, result);
                 return true;
             }
 
@@ -234,6 +262,7 @@ public class MainActivity extends BaseActivity {
     protected void initData() {
         super.initData();
         actionsCreator.request_getAppConfig();
+        registerReceiver();
     }
 
     @Override
@@ -288,11 +317,12 @@ public class MainActivity extends BaseActivity {
         appInfo.loginInfo = event.appConfig.cfg_loginconnect;
         if (!isClickAdv) {
             if (isLoadMainWeb) {
-                if (isDebug) {
-                    bwvContent.loadUrl("file:///android_asset/debug.html");
-                } else {
-                    bwvContent.loadUrl(appInfo.platformUrl);
-                }
+                bwvContent.loadUrl(appInfo.platformUrl);
+//                if (isDebug) {
+//                    bwvContent.loadUrl("file:///android_asset/debug.html");
+//                } else {
+//                    bwvContent.loadUrl(appInfo.platformUrl);
+//                }
             } else {
                 isLoadMainWeb = true;
             }
@@ -304,11 +334,25 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RESULT_OK) {
+        if (requestCode == PICK_PIC_CODE) {
             if (null != mUploadMessage) {
-                Uri result = data == null || resultCode != RESULT_OK ? null : data.getData();
-                mUploadMessage.onReceiveValue(result);
+                if (null != data) {
+                    Uri result = data.getData();
+                    mUploadMessage.onReceiveValue(result);
+                } else {
+                    mUploadMessage.onReceiveValue(null);
+                }
                 mUploadMessage = null;
+            }
+        } else if (requestCode == PICK_PIC_CODE_5) {
+            if (null != mUploadMessageForAndroid5) {
+                if (null != data) {
+                    Uri result = data.getData();
+                    mUploadMessageForAndroid5.onReceiveValue(new Uri[]{result});
+                } else {
+                    mUploadMessageForAndroid5.onReceiveValue(new Uri[]{});
+                }
+                mUploadMessageForAndroid5 = null;
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -324,6 +368,11 @@ public class MainActivity extends BaseActivity {
         actionsCreator.init_umeng();
 
         actionsCreator.register_getAppInfo();
+        actionsCreator.register_updateBadgeValue();
+        actionsCreator.register_getPushStatus();
+        actionsCreator.register_setPushStatus();
+        actionsCreator.register_getCacheSize();
+        actionsCreator.register_clearCache();
         actionsCreator.register_appLogout();
         actionsCreator.register_appLoginFinish();
         actionsCreator.register_umengShare();
@@ -332,28 +381,6 @@ public class MainActivity extends BaseActivity {
         actionsCreator.register_weiboLogin();
         actionsCreator.register_alipay();
         actionsCreator.register_wechatPay();
-    }
-
-    private void showAlertDialog(int type, String message, final JsResult result) {
-        AlertDialog.Builder b = new AlertDialog.Builder(MainActivity.this);
-        b.setMessage(message);
-        b.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                result.confirm();
-            }
-        });
-        if (type != 0) {
-            b.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    result.cancel();
-                }
-            });
-        }
-        b.setCancelable(true);
-        b.create().requestWindowFeature(Window.FEATURE_NO_TITLE);
-        b.create().show();
     }
 
     @Override
@@ -368,5 +395,22 @@ public class MainActivity extends BaseActivity {
             isLoadMainWeb = false;
             bwvContent.loadUrl(url);
         }
+    }
+
+    private void registerReceiver() {
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("com.tencent.android.tpush.action.PUSH_MESSAGE");
+        filter.addAction("com.tencent.android.tpush.action.FEEDBACK");
+        MsgPushReceiver receiver = new MsgPushReceiver();
+        receiver.setListener(new MsgPushReceiver.Listener() {
+            @Override
+            public void receiver(String content) {
+                if (null != content) {
+                    String url = JSON.parseObject(content).getString("url");
+                    bwvContent.loadUrl(url);
+                }
+            }
+        });
+        registerReceiver(receiver, filter);
     }
 }

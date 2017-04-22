@@ -22,4 +22,6 @@ public enum AppInfoModel implements Serializable {
     public IWXAPI wxApi = null;
 
     public Map<String, Object> infos = new HashMap<>();
+
+    public String pushStatus = "on";
 }

@@ -32,6 +32,26 @@ public enum  ActionsCreator {
         Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP, new AppAction(TYPE.TYPE_GET_APP_INFO, params));
     }
 
+    public void register_updateBadgeValue() {
+        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP, new AppAction(TYPE.TYPE_UPDATE_APP_BADGE_VALUE, params));
+    }
+
+    public void register_getPushStatus() {
+        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP, new AppAction(TYPE.TYPE_GET_PUSH_STATUS, params));
+    }
+
+    public void register_setPushStatus() {
+        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP, new AppAction(TYPE.TYPE_SET_PUSH_STATUS, params));
+    }
+
+    public void register_getCacheSize() {
+        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP, new AppAction(TYPE.TYPE_GET_CACHE_SIZE, params));
+    }
+
+    public void register_clearCache() {
+        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP, new AppAction(TYPE.TYPE_CLEAR_CACHE, params));
+    }
+
     public void register_appLogout() {
         Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP, new AppAction(TYPE.TYPE_APP_LOGOUT, params));
     }

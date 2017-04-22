@@ -6,22 +6,22 @@ import java.util.Map;
 
 import cn.ihuoniao.function.command.base.Command;
 import cn.ihuoniao.function.listener.ResultListener;
-import cn.ihuoniao.function.receiver.XGReceiver;
+import cn.ihuoniao.function.receiver.BadgeReceiver;
 
 /**
- * Created by apple on 2017/3/26.
+ * Created by sdk-app-shy on 2017/4/13.
  */
 
-public class XGRegisterCommand extends Command<Object, XGReceiver> {
+public class BadgeCommand extends Command<Object, BadgeReceiver> {
 
-    public XGRegisterCommand(XGReceiver receiver) {
+    public BadgeCommand(BadgeReceiver receiver) {
         super(receiver);
     }
 
     @Override
     public void execute(Map<String, Object> params, ResultListener<Object> listener) {
         Activity activity = (Activity)params.get("activity");
-        String passport = params.get("passport").toString();
-        receiver.register(activity, passport, listener);
+        String badgeCount = params.get("badgeCount").toString();
+        receiver.updateBadgeValue(activity, badgeCount);
     }
 }

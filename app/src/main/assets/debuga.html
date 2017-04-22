@@ -80,6 +80,60 @@
                     }
                 );
             });
+            $('#btnOnPush').click(function () {
+                window.WebViewJavascriptBridge.callHandler(
+                    'setAppPushStatus'
+                    , { "pushStatus": "on" }
+                    , function (responseData) {
+
+                    }
+                );
+            });
+            $('#btnOffPush').click(function () {
+                window.WebViewJavascriptBridge.callHandler(
+                    'setAppPushStatus'
+                    , { "pushStatus": "off" }
+                    , function (responseData) {
+
+                    }
+                );
+            });
+            $('#btnGetPushStatus').click(function () {
+                window.WebViewJavascriptBridge.callHandler(
+                    'getAppPushStatus'
+                    , {}
+                    , function (responseData) {
+                        console.log('pushStatus:' + responseData);
+                    }
+                );
+            });
+            $('#btnGetCache').click(function () {
+                window.WebViewJavascriptBridge.callHandler(
+                    'updateCacheSize'
+                    , {}
+                    , function (responseData) {
+                        console.log('cacheSize:' + responseData);
+                    }
+                );
+            });
+            $('#btnClearCache').click(function () {
+                window.WebViewJavascriptBridge.callHandler(
+                    'cleanCache'
+                    , {}
+                    , function (responseData) {
+                        console.log('cache status:' + responseData);
+                    }
+                );
+            });
+            $('#btnUpdateBadge').click(function () {
+                window.WebViewJavascriptBridge.callHandler(
+                    'updateAPPBadgeValue'
+                    , { "badge": "10"}
+                    , function (responseData) {
+
+                    }
+                );
+            });
         });
     </script>
 </head>
@@ -102,6 +156,18 @@
             <li><input type="button" value="alipay" id="btnAlipay" style="width:200px;height:100px;" />
             </li>
             <li><input type="button" value="wechatPay" id="btnWechatPay" style="width:200px;height:100px;" />
+            </li>
+            <li><input type="button" value="pushOn" id="btnOnPush" style="width:200px;height:100px;" />
+            </li>
+            <li><input type="button" value="pushOff" id="btnOffPush" style="width:200px;height:100px;" />
+            </li>
+            <li><input type="button" value="getPushStatus" id="btnGetPushStatus" style="width:200px;height:100px;" />
+            </li>
+            <li><input type="button" value="getCache" id="btnGetCache" style="width:200px;height:100px;" />
+            </li>
+            <li><input type="button" value="clearCache" id="btnClearCache" style="width:200px;height:100px;" />
+            </li>
+            <li><input type="button" value="updateBadge" id="btnUpdateBadge" style="width:200px;height:100px;" />
             </li>
         </ul>
     </div>

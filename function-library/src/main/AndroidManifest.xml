@@ -105,6 +105,14 @@
             android:name="XG_V2_ACCESS_KEY"
             android:value="A3185V7JMXJH" />
 
+        <!--<meta-data-->
+            <!--android:name="XG_V2_ACCESS_ID"-->
+            <!--android:value="2100256400" />-->
+        <!--&lt;!&ndash; 【必须】 请将YOUR_ACCESS_KEY修改为APP的AccessKey，“A”开头的12位字符串，中间没空格 &ndash;&gt;-->
+        <!--<meta-data-->
+            <!--android:name="XG_V2_ACCESS_KEY"-->
+            <!--android:value="AU7ZD5A63V9L" />-->
+
         <activity
                 android:name="com.alipay.sdk.app.H5PayActivity"
                 android:configChanges="orientation|keyboardHidden|navigation"

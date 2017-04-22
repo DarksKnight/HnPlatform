@@ -42,7 +42,6 @@ public abstract class BaseActivity extends FragmentActivity {
 
     protected void initView() {
         isDebug = CommonUtil.isDebug(this);
-        CommonUtil.bomb();
         actionsCreator.setParams(infos);
         lvc = new LVCircularRing(this);
         lvc.setBarColor(getResources().getColor(R.color.colorTitle));
