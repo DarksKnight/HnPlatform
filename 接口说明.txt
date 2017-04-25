@@ -69,3 +69,39 @@ window.WebViewJavascriptBridge.callHandler(
         console.log('wechatPay : ' + responseData);
     }
 );
+
+//设置推送开关
+window.WebViewJavascriptBridge.callHandler(
+    'setAppPushStatus'
+    , { "pushStatus": "off" }
+    , function (responseData) {
+
+    }
+);
+
+//获取推送状态
+window.WebViewJavascriptBridge.callHandler(
+    'getAppPushStatus'
+    , {}
+    , function (responseData) {
+        console.log('pushStatus:' + responseData);
+    }
+);
+
+//获取缓存大小
+window.WebViewJavascriptBridge.callHandler(
+    'updateCacheSize'
+    , {}
+    , function (responseData) {
+        console.log('cacheSize:' + responseData);
+    }
+);
+
+//清理缓存
+window.WebViewJavascriptBridge.callHandler(
+    'cleanCache'
+    , {}
+    , function (responseData) {
+        console.log('cache status:' + responseData);
+    }
+);
