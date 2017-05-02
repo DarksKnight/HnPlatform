@@ -119,5 +119,6 @@
     <orderEntry type="library" exported="" name="fresco-1.1.0" level="project" />
     <orderEntry type="library" exported="" name="support-core-utils-25.2.0" level="project" />
     <orderEntry type="library" exported="" name="support-fragment-25.2.0" level="project" />
+    <orderEntry type="library" exported="" name="xrefreshview-3.6.6" level="project" />
   </component>
 </module>

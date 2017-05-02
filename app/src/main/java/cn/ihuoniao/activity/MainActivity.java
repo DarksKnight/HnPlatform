@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.alibaba.fastjson.JSON;
+import com.andview.refreshview.XRefreshView;
 import com.squareup.otto.Subscribe;
 import com.tencent.android.tpush.XGPushClickedResult;
 import com.tencent.android.tpush.XGPushManager;
@@ -32,6 +33,7 @@ import cn.ihuoniao.function.listener.StatusListener;
 import cn.ihuoniao.function.util.CommonUtil;
 import cn.ihuoniao.function.util.Logger;
 import cn.ihuoniao.platform.firstdeploy.FirstDeployView;
+import cn.ihuoniao.platform.headview.CustomHeadView;
 import cn.ihuoniao.platform.splash.SplashView;
 import cn.ihuoniao.platform.webview.BridgeWebView;
 import cn.ihuoniao.platform.webview.BridgeWebViewClient;
@@ -49,6 +51,8 @@ public class MainActivity extends BaseActivity {
     private BridgeWebView bwvContent = null;
 
     private RelativeLayout rlContent = null;
+
+    private XRefreshView xr = null;
 
     private SplashView spv = null;
 
@@ -79,6 +83,35 @@ public class MainActivity extends BaseActivity {
 
         bwvContent = getView(R.id.bwv_content);
         rlContent = getView(R.id.rl_content);
+        xr = getView(R.id.xr);
+        xr.setPullLoadEnable(false);
+        xr.setCustomHeaderView(new CustomHeadView(this));
+        xr.setXRefreshViewListener(new XRefreshView.XRefreshViewListener() {
+            @Override
+            public void onRefresh() {
+                bwvContent.loadUrl(appInfo.platformUrl);
+            }
+
+            @Override
+            public void onRefresh(boolean b) {
+
+            }
+
+            @Override
+            public void onLoadMore(boolean b) {
+
+            }
+
+            @Override
+            public void onRelease(float v) {
+
+            }
+
+            @Override
+            public void onHeaderMove(double v, int i) {
+
+            }
+        });
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams((int) getResources().getDimension(R.dimen.hn_50dp), (int) getResources().getDimension(R.dimen.hn_50dp));
         lp.addRule(RelativeLayout.CENTER_IN_PARENT);
         rlContent.addView(lvc, lp);
