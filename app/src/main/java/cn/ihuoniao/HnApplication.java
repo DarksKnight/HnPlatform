@@ -1,13 +1,14 @@
 package cn.ihuoniao;
 
-import android.app.Application;
-
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.tencent.android.tpush.XGIOperateCallback;
 import com.tencent.android.tpush.XGPushConfig;
 import com.tencent.android.tpush.XGPushManager;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.smtt.sdk.QbSdk;
+import com.uuzuche.lib_zxing.activity.ZXingLibrary;
+
+import android.app.Application;
 
 import cn.ihuoniao.function.util.Logger;
 import cn.ihuoniao.model.AppInfoModel;
@@ -50,6 +51,7 @@ public class HnApplication extends Application {
                 AppInfoModel.INSTANCE.pushStatus = "off";
             }
         });
+        ZXingLibrary.initDisplayOpinion(this);
         CrashReport.initCrashReport(getApplicationContext(), "2d9143b360", false);
     }
 }

@@ -52,6 +52,14 @@ public enum  ActionsCreator {
         Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP, new AppAction(TYPE.TYPE_CLEAR_CACHE, params));
     }
 
+    public void do_showNavigationBar() {
+        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP, new AppAction(TYPE.TYPE_SHOW_NAVIGATIONBAR, params));
+    }
+
+    public void hide_showNavigationBar() {
+        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP, new AppAction(TYPE.TYPE_HIDE_NAVIGATIONBAR, params));
+    }
+
     public void register_appLogout() {
         Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP, new AppAction(TYPE.TYPE_APP_LOGOUT, params));
     }
