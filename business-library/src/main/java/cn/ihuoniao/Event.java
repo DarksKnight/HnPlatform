@@ -14,6 +14,9 @@ public class Event {
     public static final String SET_PUSH_STATUS = "setAppPushStatus";
     public static final String GET_CACHE_SIZE = "updateCacheSize";
     public static final String CLEAR_CACHE = "cleanCache";
+    public static final String SHOW_NAVIGATIONBAR = "showNavigationBar";
+    public static final String HIDE_NAVIGATIONBAR = "hideNavigationBar";
+    public static final String SHOW_QRCODE_SCAN = "QRCodeScan";
 
     public static final String LOGIN_QQ = "qqLogin";
     public static final String LOGIN_WECHAT = "wechatLogin";

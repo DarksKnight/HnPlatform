@@ -4,10 +4,14 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.uuzuche.lib_zxing.activity.CaptureActivity;
+
+import android.content.Intent;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import cn.ihuoniao.Constant;
 import cn.ihuoniao.Event;
 import cn.ihuoniao.TYPE;
 import cn.ihuoniao.event.AppEvent;
@@ -66,6 +70,15 @@ public class AppStore extends Store<cn.ihuoniao.actions.AppAction> {
                 break;
             case TYPE.TYPE_CLEAR_CACHE:
                 clearCache();
+                break;
+            case TYPE.TYPE_SHOW_NAVIGATIONBAR:
+                showNavigationBar();
+                break;
+            case TYPE.TYPE_HIDE_NAVIGATIONBAR:
+                hideNavigationBar();
+                break;
+            case TYPE.TYPE_SHOW_QRCODE_SCAN:
+                showQRCodeScan();
                 break;
             default:
                 break;
@@ -236,6 +249,34 @@ public class AppStore extends Store<cn.ihuoniao.actions.AppAction> {
             public void handler(String data, CallBackFunction function) {
                 CommonUtil.clearCache(activity);
                 function.onCallBack("缓存清理成功");
+            }
+        });
+    }
+
+    private void showNavigationBar() {
+        webView.callHandler(Event.SHOW_NAVIGATIONBAR, "", new CallBackFunction() {
+            @Override
+            public void onCallBack(String data) {
+
+            }
+        });
+    }
+
+    private void hideNavigationBar() {
+        webView.callHandler(Event.HIDE_NAVIGATIONBAR, "", new CallBackFunction() {
+            @Override
+            public void onCallBack(String data) {
+
+            }
+        });
+    }
+
+    public void showQRCodeScan() {
+        webView.registerHandler(Event.SHOW_QRCODE_SCAN, new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                Intent intent = new Intent(activity, CaptureActivity.class);
+                activity.startActivityForResult(intent, Constant.CODE_SCAN_RESULT);
             }
         });
     }

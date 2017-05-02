@@ -128,11 +128,35 @@
             $('#btnUpdateBadge').click(function () {
                 window.WebViewJavascriptBridge.callHandler(
                     'updateAPPBadgeValue'
-                    , { "badge": "10"}
+                    , { "badge": "10" }
                     , function (responseData) {
 
                     }
                 );
+            });
+
+            function connectWebViewJavascriptBridge(callback) {
+                if (window.WebViewJavascriptBridge) {
+                    callback(WebViewJavascriptBridge)
+                } else {
+                    document.addEventListener(
+                        'WebViewJavascriptBridgeReady'
+                        , function () {
+                            callback(WebViewJavascriptBridge)
+                        },
+                        false
+                    );
+                }
+            }
+
+            connectWebViewJavascriptBridge(function (bridge) {
+                bridge.registerHandler("showNavigationBar", function (data, responseCallback) {
+                    console.log('html show navigationbar');
+                });
+
+                bridge.registerHandler("hideNavigationBar", function (data, responseCallback) {
+                    console.log('hide show navigationbar');
+                });
             });
         });
     </script>

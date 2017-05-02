@@ -1,17 +1,5 @@
 package cn.ihuoniao.activity;
 
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-
 import com.alibaba.fastjson.JSON;
 import com.andview.refreshview.XRefreshView;
 import com.squareup.otto.Subscribe;
@@ -23,6 +11,20 @@ import com.tencent.smtt.sdk.ValueCallback;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.umeng.socialize.UMShareAPI;
+import com.uuzuche.lib_zxing.activity.CodeUtils;
+
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import cn.ihuoniao.Constant;
 import cn.ihuoniao.R;
@@ -66,10 +68,6 @@ public class MainActivity extends BaseActivity {
 
     public ValueCallback<Uri[]> mUploadMessageForAndroid5 = null;
 
-    private final int PICK_PIC_CODE = 999;
-
-    private final int PICK_PIC_CODE_5 = 998;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +82,34 @@ public class MainActivity extends BaseActivity {
         bwvContent = getView(R.id.bwv_content);
         rlContent = getView(R.id.rl_content);
         xr = getView(R.id.xr);
+        xr.setPullLoadEnable(false);
+        xr.setCustomHeaderView(new CustomHeadView(this));
+        xr.setXRefreshViewListener(new XRefreshView.XRefreshViewListener() {
+            @Override
+            public void onRefresh() {
+                bwvContent.loadUrl(bwvContent.getUrl());
+            }
+
+            @Override
+            public void onRefresh(boolean b) {
+
+            }
+
+            @Override
+            public void onLoadMore(boolean b) {
+
+            }
+
+            @Override
+            public void onRelease(float v) {
+
+            }
+
+            @Override
+            public void onHeaderMove(double v, int i) {
+
+            }
+        });
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams((int) getResources().getDimension(R.dimen.hn_50dp), (int) getResources().getDimension(R.dimen.hn_50dp));
         lp.addRule(RelativeLayout.CENTER_IN_PARENT);
         rlContent.addView(lvc, lp);
@@ -145,7 +171,7 @@ public class MainActivity extends BaseActivity {
             public boolean shouldOverrideUrlLoading(com.tencent.smtt.sdk.WebView view, String url) {
                 Logger.i("url : " + url);
                 try {
-                    if (url.contains("http://")) {
+                    if (url.contains("http://") || url.contains("https://")) {
                         showLoading();
                     } else if (url.contains("tel:")) {
                         String phone = url.split(":")[1];
@@ -188,14 +214,14 @@ public class MainActivity extends BaseActivity {
             public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> valueCallback, FileChooserParams fileChooserParams) {
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
                     mUploadMessageForAndroid5 = valueCallback;
-                    CommonUtil.openFunction(MainActivity.this, PICK_PIC_CODE_5);
+                    CommonUtil.openFunction(MainActivity.this, Constant.CODE_PICK_PIC_5);
                 }
                 return super.onShowFileChooser(webView, valueCallback, fileChooserParams);
             }
 
             public void openFileChooser(ValueCallback<Uri> uploadMsg) {
                 mUploadMessage = uploadMsg;
-                CommonUtil.openFunction(MainActivity.this, PICK_PIC_CODE);
+                CommonUtil.openFunction(MainActivity.this, Constant.CODE_PICK_PIC);
             }
 
             @Override
@@ -229,6 +255,7 @@ public class MainActivity extends BaseActivity {
                     }
                 } else {
                     if (newProgress > 70) {
+                        xr.stopRefresh();
                         appInfo.isLoadFinish = true;
                         hideLoading();
                     }
@@ -249,35 +276,6 @@ public class MainActivity extends BaseActivity {
             @Override
             public void end() {
                 hideLoading();
-            }
-        });
-
-        xr.setPullLoadEnable(true);
-        xr.setCustomHeaderView(new CustomHeadView(this));
-        xr.setXRefreshViewListener(new XRefreshView.XRefreshViewListener() {
-            @Override
-            public void onRefresh() {
-                bwvContent.loadUrl(appInfo.platformUrl);
-            }
-
-            @Override
-            public void onRefresh(boolean b) {
-
-            }
-
-            @Override
-            public void onLoadMore(boolean b) {
-
-            }
-
-            @Override
-            public void onRelease(float v) {
-
-            }
-
-            @Override
-            public void onHeaderMove(double v, int i) {
-
             }
         });
     }
@@ -351,12 +349,12 @@ public class MainActivity extends BaseActivity {
         appInfo.loginInfo = event.appConfig.cfg_loginconnect;
         if (!isClickAdv) {
             if (isLoadMainWeb) {
-                bwvContent.loadUrl(appInfo.platformUrl);
-//                if (isDebug) {
-//                    bwvContent.loadUrl("file:///android_asset/debug.html");
-//                } else {
-//                    bwvContent.loadUrl(appInfo.platformUrl);
-//                }
+//                bwvContent.loadUrl(appInfo.platformUrl);
+                if (isDebug) {
+                    bwvContent.loadUrl("file:///android_asset/debug.html");
+                } else {
+                    bwvContent.loadUrl(appInfo.platformUrl);
+                }
             } else {
                 isLoadMainWeb = true;
             }
@@ -368,7 +366,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PICK_PIC_CODE) {
+        if (requestCode == Constant.CODE_PICK_PIC) {
             if (null != mUploadMessage) {
                 if (null != data) {
                     Uri result = data.getData();
@@ -378,7 +376,7 @@ public class MainActivity extends BaseActivity {
                 }
                 mUploadMessage = null;
             }
-        } else if (requestCode == PICK_PIC_CODE_5) {
+        } else if (requestCode == Constant.CODE_PICK_PIC_5) {
             if (null != mUploadMessageForAndroid5) {
                 if (null != data) {
                     Uri result = data.getData();
@@ -387,6 +385,19 @@ public class MainActivity extends BaseActivity {
                     mUploadMessageForAndroid5.onReceiveValue(new Uri[]{});
                 }
                 mUploadMessageForAndroid5 = null;
+            }
+        } else if (requestCode == Constant.CODE_SCAN_RESULT) {
+            if (null != data) {
+                Bundle bundle = data.getExtras();
+                if (bundle == null) {
+                    return;
+                }
+                if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
+                    String result = bundle.getString(CodeUtils.RESULT_STRING);
+
+                } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
+                    Toast.makeText(MainActivity.this, "解析二维码失败", Toast.LENGTH_LONG).show();
+                }
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
