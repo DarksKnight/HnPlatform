@@ -15,8 +15,6 @@ import cn.ihuoniao.platform.R;
 
 public class CustomHeadView extends LinearLayout implements IHeaderCallBack {
 
-    private LinearLayout mContent = null;
-
     public CustomHeadView(Context context) {
         super(context);
         initView(context);
@@ -32,9 +30,8 @@ public class CustomHeadView extends LinearLayout implements IHeaderCallBack {
     }
 
     private void initView(Context context) {
-        mContent = (LinearLayout) LayoutInflater.from(context).inflate(
+        LayoutInflater.from(context).inflate(
                 R.layout.view_header, null);
-        addView(mContent);
     }
 
     @Override

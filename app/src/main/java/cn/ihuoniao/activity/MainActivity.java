@@ -84,34 +84,6 @@ public class MainActivity extends BaseActivity {
         bwvContent = getView(R.id.bwv_content);
         rlContent = getView(R.id.rl_content);
         xr = getView(R.id.xr);
-        xr.setPullLoadEnable(false);
-        xr.setCustomHeaderView(new CustomHeadView(this));
-        xr.setXRefreshViewListener(new XRefreshView.XRefreshViewListener() {
-            @Override
-            public void onRefresh() {
-                bwvContent.loadUrl(appInfo.platformUrl);
-            }
-
-            @Override
-            public void onRefresh(boolean b) {
-
-            }
-
-            @Override
-            public void onLoadMore(boolean b) {
-
-            }
-
-            @Override
-            public void onRelease(float v) {
-
-            }
-
-            @Override
-            public void onHeaderMove(double v, int i) {
-
-            }
-        });
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams((int) getResources().getDimension(R.dimen.hn_50dp), (int) getResources().getDimension(R.dimen.hn_50dp));
         lp.addRule(RelativeLayout.CENTER_IN_PARENT);
         rlContent.addView(lvc, lp);
@@ -277,6 +249,35 @@ public class MainActivity extends BaseActivity {
             @Override
             public void end() {
                 hideLoading();
+            }
+        });
+
+        xr.setPullLoadEnable(true);
+        xr.setCustomHeaderView(new CustomHeadView(this));
+        xr.setXRefreshViewListener(new XRefreshView.XRefreshViewListener() {
+            @Override
+            public void onRefresh() {
+                bwvContent.loadUrl(appInfo.platformUrl);
+            }
+
+            @Override
+            public void onRefresh(boolean b) {
+
+            }
+
+            @Override
+            public void onLoadMore(boolean b) {
+
+            }
+
+            @Override
+            public void onRelease(float v) {
+
+            }
+
+            @Override
+            public void onHeaderMove(double v, int i) {
+
             }
         });
     }
