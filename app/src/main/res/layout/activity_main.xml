@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:xrefreshview="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rl_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,9 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/xr"
-        android:background="@color/white"
-        xrefreshview:isHeightMatchParent="true"
-        xrefreshview:isWidthMatchParent="true">
+        android:background="@color/white">
 
         <cn.ihuoniao.platform.webview.BridgeWebView
             android:id="@+id/bwv_content"

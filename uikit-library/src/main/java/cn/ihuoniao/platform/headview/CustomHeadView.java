@@ -1,11 +1,12 @@
 package cn.ihuoniao.platform.headview;
 
+import com.andview.refreshview.callback.IHeaderCallBack;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.LinearLayout;
-
-import com.andview.refreshview.callback.IHeaderCallBack;
 
 import cn.ihuoniao.platform.R;
 
@@ -14,8 +15,6 @@ import cn.ihuoniao.platform.R;
  */
 
 public class CustomHeadView extends LinearLayout implements IHeaderCallBack {
-
-    private LinearLayout mContent = null;
 
     public CustomHeadView(Context context) {
         super(context);
@@ -32,9 +31,8 @@ public class CustomHeadView extends LinearLayout implements IHeaderCallBack {
     }
 
     private void initView(Context context) {
-        mContent = (LinearLayout) LayoutInflater.from(context).inflate(
-                R.layout.view_header, null);
-        addView(mContent);
+        LayoutInflater.from(context).inflate(
+                R.layout.view_header, this);
     }
 
     @Override
@@ -69,16 +67,16 @@ public class CustomHeadView extends LinearLayout implements IHeaderCallBack {
 
     @Override
     public void hide() {
-
+        setVisibility(View.GONE);
     }
 
     @Override
     public void show() {
-
+        setVisibility(View.VISIBLE);
     }
 
     @Override
     public int getHeaderHeight() {
-        return 0;
+        return this.getMeasuredHeight();
     }
 }
