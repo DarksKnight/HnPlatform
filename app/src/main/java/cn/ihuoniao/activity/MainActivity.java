@@ -349,12 +349,12 @@ public class MainActivity extends BaseActivity {
         appInfo.loginInfo = event.appConfig.cfg_loginconnect;
         if (!isClickAdv) {
             if (isLoadMainWeb) {
-//                bwvContent.loadUrl(appInfo.platformUrl);
-                if (isDebug) {
-                    bwvContent.loadUrl("file:///android_asset/debug.html");
-                } else {
-                    bwvContent.loadUrl(appInfo.platformUrl);
-                }
+                bwvContent.loadUrl("http://ihuoniao.cn/android");
+//                if (isDebug) {
+//                    bwvContent.loadUrl("file:///android_asset/debug.html");
+//                } else {
+//                    bwvContent.loadUrl(appInfo.platformUrl);
+//                }
             } else {
                 isLoadMainWeb = true;
             }
