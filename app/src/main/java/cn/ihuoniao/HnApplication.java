@@ -1,14 +1,17 @@
 package cn.ihuoniao;
 
+import android.app.Application;
+import android.content.Context;
+import android.support.multidex.MultiDex;
+
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.tencent.android.tpush.XGIOperateCallback;
 import com.tencent.android.tpush.XGPushConfig;
 import com.tencent.android.tpush.XGPushManager;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.smtt.sdk.QbSdk;
-import com.uuzuche.lib_zxing.activity.ZXingLibrary;
-
-import android.app.Application;
+import com.umeng.message.IUmengRegisterCallback;
+import com.umeng.message.PushAgent;
 
 import cn.ihuoniao.function.util.Logger;
 import cn.ihuoniao.model.AppInfoModel;
@@ -38,6 +41,19 @@ public class HnApplication extends Application {
         XGPushConfig.enableDebug(this, true);
         QbSdk.initX5Environment(getApplicationContext(), cb);
         Fresco.initialize(this);
+        PushAgent mPushAgent = PushAgent.getInstance(this);
+        mPushAgent.setDebugMode(true);
+        mPushAgent.register(new IUmengRegisterCallback() {
+            @Override
+            public void onSuccess(String s) {
+                Logger.i("umeng push success : " + s);
+            }
+
+            @Override
+            public void onFailure(String s, String s1) {
+                Logger.i("umeng push error : " + s + " : " + s1);
+            }
+        });
         XGPushManager.registerPush(getApplicationContext(), new XGIOperateCallback() {
             @Override
             public void onSuccess(Object o, int i) {
@@ -51,7 +67,12 @@ public class HnApplication extends Application {
                 AppInfoModel.INSTANCE.pushStatus = "off";
             }
         });
-        ZXingLibrary.initDisplayOpinion(this);
         CrashReport.initCrashReport(getApplicationContext(), "2d9143b360", false);
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 }
