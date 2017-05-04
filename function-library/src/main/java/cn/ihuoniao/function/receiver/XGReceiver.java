@@ -4,6 +4,9 @@ import android.app.Activity;
 
 import com.tencent.android.tpush.XGIOperateCallback;
 import com.tencent.android.tpush.XGPushManager;
+import com.umeng.message.IUmengCallback;
+import com.umeng.message.PushAgent;
+import com.umeng.message.UTrack;
 
 import cn.ihuoniao.function.command.base.Receiver;
 import cn.ihuoniao.function.listener.ResultListener;
@@ -56,10 +59,54 @@ public class XGReceiver extends Receiver {
 
             }
         });
+
+        final PushAgent mPushAgent = PushAgent.getInstance(activity);
+        mPushAgent.disable(new IUmengCallback() {
+            @Override
+            public void onSuccess() {
+                mPushAgent.enable(new IUmengCallback() {
+                    @Override
+                    public void onSuccess() {
+                        if (passport.trim().length() != 0) {
+                            mPushAgent.addExclusiveAlias(passport, "user", new UTrack.ICallBack() {
+                                @Override
+                                public void onMessage(boolean isSuccess, String message) {
+                                    Logger.i("umeng msg : " + message);
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(String s, String s1) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(String s, String s1) {
+
+            }
+        });
+
     }
 
     public void unregister(Activity activity, ResultListener listener) {
         XGPushManager.unregisterPush(activity);
+
+        PushAgent mPushAgent = PushAgent.getInstance(activity);
+        mPushAgent.disable(new IUmengCallback() {
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onFailure(String s, String s1) {
+
+            }
+        });
         listener.onResult(null);
     }
 

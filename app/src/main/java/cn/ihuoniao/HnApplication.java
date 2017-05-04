@@ -42,7 +42,7 @@ public class HnApplication extends Application {
         QbSdk.initX5Environment(getApplicationContext(), cb);
         Fresco.initialize(this);
         PushAgent mPushAgent = PushAgent.getInstance(this);
-        mPushAgent.setDebugMode(true);
+        mPushAgent.setDebugMode(false);
         mPushAgent.register(new IUmengRegisterCallback() {
             @Override
             public void onSuccess(String s) {

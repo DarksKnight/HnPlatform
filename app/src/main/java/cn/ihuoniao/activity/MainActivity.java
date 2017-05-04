@@ -1,18 +1,6 @@
 package cn.ihuoniao.activity;
 
-import com.alibaba.fastjson.JSON;
-import com.andview.refreshview.XRefreshView;
-import com.squareup.otto.Subscribe;
-import com.tencent.android.tpush.XGPushClickedResult;
-import com.tencent.android.tpush.XGPushManager;
-import com.tencent.smtt.export.external.interfaces.JsPromptResult;
-import com.tencent.smtt.export.external.interfaces.JsResult;
-import com.tencent.smtt.sdk.ValueCallback;
-import com.tencent.smtt.sdk.WebSettings;
-import com.tencent.smtt.sdk.WebView;
-import com.umeng.socialize.UMShareAPI;
-import com.uuzuche.lib_zxing.activity.CodeUtils;
-
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
@@ -25,6 +13,24 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import com.alibaba.fastjson.JSON;
+import com.andview.refreshview.XRefreshView;
+import com.squareup.otto.Subscribe;
+import com.tencent.android.tpush.XGPushClickedResult;
+import com.tencent.android.tpush.XGPushManager;
+import com.tencent.smtt.export.external.interfaces.JsPromptResult;
+import com.tencent.smtt.export.external.interfaces.JsResult;
+import com.tencent.smtt.sdk.ValueCallback;
+import com.tencent.smtt.sdk.WebSettings;
+import com.tencent.smtt.sdk.WebView;
+import com.umeng.message.PushAgent;
+import com.umeng.message.UmengNotificationClickHandler;
+import com.umeng.message.entity.UMessage;
+import com.umeng.socialize.UMShareAPI;
+import com.uuzuche.lib_zxing.activity.CodeUtils;
+
+import java.util.Map;
 
 import cn.ihuoniao.Constant;
 import cn.ihuoniao.R;
@@ -295,6 +301,20 @@ public class MainActivity extends BaseActivity {
         super.initData();
         actionsCreator.request_getAppConfig();
         registerReceiver();
+
+        PushAgent mPushAgent = PushAgent.getInstance(this);
+        UmengNotificationClickHandler messageHandler = new UmengNotificationClickHandler() {
+            @Override
+            public void launchApp(Context context, UMessage uMessage) {
+                Map<String, String> info = uMessage.extra;
+                String url = info.get("url");
+                Logger.i("content url : " + url);
+                isLoadMainWeb = false;
+                bwvContent.loadUrl(url);
+                super.launchApp(context, uMessage);
+            }
+        };
+        mPushAgent.setNotificationClickHandler(messageHandler);
     }
 
     @Override
@@ -349,12 +369,12 @@ public class MainActivity extends BaseActivity {
         appInfo.loginInfo = event.appConfig.cfg_loginconnect;
         if (!isClickAdv) {
             if (isLoadMainWeb) {
-                bwvContent.loadUrl("http://ihuoniao.cn/android");
-//                if (isDebug) {
-//                    bwvContent.loadUrl("file:///android_asset/debug.html");
-//                } else {
-//                    bwvContent.loadUrl(appInfo.platformUrl);
-//                }
+//                bwvContent.loadUrl("http://ihuoniao.cn/android");
+                if (isDebug) {
+                    bwvContent.loadUrl("file:///android_asset/debug.html");
+                } else {
+                    bwvContent.loadUrl(appInfo.platformUrl);
+                }
             } else {
                 isLoadMainWeb = true;
             }
