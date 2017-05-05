@@ -41,7 +41,7 @@ public class HnApplication extends Application {
         };
 
         XGPushConfig.enableDebug(this, true);
-//        QbSdk.initX5Environment(getApplicationContext(), cb);
+        QbSdk.initX5Environment(getApplicationContext(), cb);
         Fresco.initialize(this);
         PushAgent mPushAgent = PushAgent.getInstance(this);
         mPushAgent.setDebugMode(false);

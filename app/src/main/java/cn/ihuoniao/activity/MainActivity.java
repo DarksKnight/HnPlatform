@@ -10,19 +10,20 @@ import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.JsPromptResult;
-import android.webkit.JsResult;
-import android.webkit.ValueCallback;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.alibaba.fastjson.JSON;
 import com.andview.refreshview.XRefreshView;
+import com.andview.refreshview.listener.OnTopRefreshTime;
 import com.squareup.otto.Subscribe;
 import com.tencent.android.tpush.XGPushClickedResult;
 import com.tencent.android.tpush.XGPushManager;
+import com.tencent.smtt.export.external.interfaces.JsPromptResult;
+import com.tencent.smtt.export.external.interfaces.JsResult;
+import com.tencent.smtt.sdk.ValueCallback;
+import com.tencent.smtt.sdk.WebChromeClient;
+import com.tencent.smtt.sdk.WebView;
 import com.umeng.message.PushAgent;
 import com.umeng.message.UmengNotificationClickHandler;
 import com.umeng.message.entity.UMessage;
@@ -134,6 +135,12 @@ public class MainActivity extends BaseActivity {
 
         rl.setCustomHeaderView(new CustomHeadView(this));
         rl.setPullLoadEnable(false);
+        rl.setOnTopRefreshTime(new OnTopRefreshTime() {
+            @Override
+            public boolean isTop() {
+                return bwvContent.getWebScrollY() == 0;
+            }
+        });
         disableRefresh();
         rl.setXRefreshViewListener(new XRefreshView.SimpleXRefreshListener() {
             @Override
@@ -166,6 +173,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 Logger.i("url : " + url);
+                disableRefresh();
                 try {
                     if (url.contains("http://") || url.contains("https://")) {
                         showLoading();

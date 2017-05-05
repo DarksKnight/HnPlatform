@@ -11,8 +11,9 @@ import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.Message;
 import android.view.Window;
-import android.webkit.JsResult;
 import android.widget.Toast;
+
+import com.tencent.smtt.export.external.interfaces.JsResult;
 
 import java.io.File;
 import java.math.BigDecimal;
