@@ -67,6 +67,11 @@ public enum  ActionsCreator {
         Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP, new AppAction(TYPE.TYPE_SHOW_QRCODE_SCAN, params));
     }
 
+    public void register_setDragRefresh(ResultListener<String> listener) {
+        params.put("listener", listener);
+        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP, new AppAction(TYPE.TYPE_SET_DRAG_REFRESH, params));
+    }
+
     public void register_appLogout() {
         Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP, new AppAction(TYPE.TYPE_APP_LOGOUT, params));
     }

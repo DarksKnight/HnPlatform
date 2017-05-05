@@ -134,6 +134,24 @@
                     }
                 );
             });
+            $('#btnRefreshOn').click(function () {
+                window.WebViewJavascriptBridge.callHandler(
+                    'setDragRefresh'
+                    , { "value": "on" }
+                    , function (responseData) {
+
+                    }
+                );
+            });
+            $('#btnRefreshOff').click(function () {
+                window.WebViewJavascriptBridge.callHandler(
+                    'setDragRefresh'
+                    , { "value": "off" }
+                    , function (responseData) {
+
+                    }
+                );
+            });
 
             function connectWebViewJavascriptBridge(callback) {
                 if (window.WebViewJavascriptBridge) {
@@ -192,6 +210,10 @@
             <li><input type="button" value="clearCache" id="btnClearCache" style="width:200px;height:100px;" />
             </li>
             <li><input type="button" value="updateBadge" id="btnUpdateBadge" style="width:200px;height:100px;" />
+            </li>
+            <li><input type="button" value="refreshOn" id="btnRefreshOn" style="width:200px;height:100px;" />
+            </li>
+            <li><input type="button" value="refreshOff" id="btnRefreshOff" style="width:200px;height:100px;" />
             </li>
         </ul>
     </div>

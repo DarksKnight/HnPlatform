@@ -81,6 +81,9 @@ public class AppStore extends Store<cn.ihuoniao.actions.AppAction> {
             case TYPE.TYPE_SHOW_QRCODE_SCAN:
                 showQRCodeScan((ResultListener<CallBackFunction>)infos.get("listener"));
                 break;
+            case TYPE.TYPE_SET_DRAG_REFRESH:
+                setDragRefresh((ResultListener<String>)infos.get("listener"));
+                break;
             default:
                 break;
         }
@@ -280,6 +283,16 @@ public class AppStore extends Store<cn.ihuoniao.actions.AppAction> {
                 listener.onResult(function);
                 Intent intent = new Intent(activity, CaptureActivity.class);
                 activity.startActivityForResult(intent, Constant.CODE_SCAN_RESULT);
+            }
+        });
+    }
+
+    public void setDragRefresh(final ResultListener<String> listener) {
+        webView.registerHandler(Event.SET_DRAG_REFRESH, new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                String status = JSON.parseObject(data).getString("value");
+                listener.onResult(status);
             }
         });
     }

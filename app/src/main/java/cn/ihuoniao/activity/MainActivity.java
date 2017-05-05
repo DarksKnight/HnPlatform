@@ -132,8 +132,9 @@ public class MainActivity extends BaseActivity {
             });
         }
 
-        rl.setPullLoadEnable(false);
         rl.setCustomHeaderView(new CustomHeadView(this));
+        rl.setPullLoadEnable(false);
+        disableRefresh();
         rl.setXRefreshViewListener(new XRefreshView.SimpleXRefreshListener() {
             @Override
             public void onRefresh(boolean isPullDown) {
@@ -441,6 +442,16 @@ public class MainActivity extends BaseActivity {
                 function = result;
             }
         });
+        actionsCreator.register_setDragRefresh(new ResultListener<String>() {
+            @Override
+            public void onResult(String result) {
+                if (result.equals("on")) {
+                    enbleRefresh();
+                } else {
+                    disableRefresh();
+                }
+            }
+        });
     }
 
     @Override
@@ -472,5 +483,15 @@ public class MainActivity extends BaseActivity {
             }
         });
         registerReceiver(receiver, filter);
+    }
+
+    private void enbleRefresh() {
+        rl.setPullRefreshEnable(true);
+        rl.setMoveHeadWhenDisablePullRefresh(true);
+    }
+
+    private void disableRefresh() {
+        rl.setPullRefreshEnable(false);
+        rl.setMoveHeadWhenDisablePullRefresh(false);
     }
 }

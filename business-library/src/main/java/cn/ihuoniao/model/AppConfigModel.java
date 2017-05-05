@@ -15,6 +15,8 @@ public class AppConfigModel implements Serializable {
 
     public String cfg_shortname = "";
 
+    public String cfg_android_index = "";
+
     public Guide cfg_guide = null;
 
     public Started cfg_startad = null;

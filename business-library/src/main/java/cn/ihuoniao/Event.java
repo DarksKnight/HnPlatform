@@ -12,6 +12,7 @@ public class Event {
     public static final String UPDATE_APP_BADGE_VALUE = "updateAPPBadgeValue";
     public static final String GET_PUSH_STATUS = "getAppPushStatus";
     public static final String SET_PUSH_STATUS = "setAppPushStatus";
+    public static final String SET_DRAG_REFRESH = "setDragRefresh";
     public static final String GET_CACHE_SIZE = "updateCacheSize";
     public static final String CLEAR_CACHE = "cleanCache";
     public static final String SHOW_NAVIGATIONBAR = "showNavigationBar";

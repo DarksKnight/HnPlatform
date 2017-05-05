@@ -10,14 +10,12 @@
         <com.andview.refreshview.XRefreshView
             android:id="@+id/refreshLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            xrefreshview:isHeightMatchParent="true"
-            xrefreshview:isWidthMatchParent="true">
+            android:layout_height="match_parent">
 
                 <cn.ihuoniao.platform.webview.BridgeWebView
                     android:id="@+id/bwv_content"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="wrap_content"/>
 
 
         </com.andview.refreshview.XRefreshView>
