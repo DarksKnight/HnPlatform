@@ -206,17 +206,17 @@ public class MainActivity extends BaseActivity {
             }
 
             @Override
-            public boolean onShowFileChooser(WebView webView, android.webkit.ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
+            public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
                     mUploadMessageForAndroid5 = filePathCallback;
                     CommonUtil.openFunction(MainActivity.this, Constant.CODE_PICK_PIC_5);
                 }
-                return super.onShowFileChooser(webView, filePathCallback, fileChooserParams);
+                return true;
             }
 
             public void openFileChooser(ValueCallback<Uri> uploadMsg) {
                 mUploadMessage = uploadMsg;
-                CommonUtil.openFunction(MainActivity.this, Constant.CODE_PICK_PIC);
+                CommonUtil.openFunction(MainActivity.this, Constant.CODE_PICK_PIC_5);
             }
 
             @Override
@@ -392,7 +392,7 @@ public class MainActivity extends BaseActivity {
                     Uri result = data.getData();
                     mUploadMessageForAndroid5.onReceiveValue(new Uri[]{result});
                 } else {
-                    mUploadMessageForAndroid5.onReceiveValue(new Uri[]{});
+                    mUploadMessageForAndroid5.onReceiveValue(null);
                 }
                 mUploadMessageForAndroid5 = null;
             }
