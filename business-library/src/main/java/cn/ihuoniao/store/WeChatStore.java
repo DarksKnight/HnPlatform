@@ -17,6 +17,7 @@ import cn.ihuoniao.function.receiver.WeChatLoginReceiver;
 import cn.ihuoniao.function.receiver.WeChatPayReceiver;
 import cn.ihuoniao.function.util.Logger;
 import cn.ihuoniao.model.PayInfoModel;
+import cn.ihuoniao.model.WechatPayInfoModel;
 import cn.ihuoniao.platform.webview.BridgeHandler;
 import cn.ihuoniao.platform.webview.CallBackFunction;
 import cn.ihuoniao.store.base.Store;
@@ -87,7 +88,9 @@ public class WeChatStore extends Store<WeChatAction> {
             @Override
             public void handler(String data, final CallBackFunction function) {
                 statusListener.start();
-                PayInfoModel payInfo = JSON.parseObject(data, PayInfoModel.class);
+                Logger.i("wechat pay data : " + data);
+                WechatPayInfoModel wechatPayInfo = JSON.parseObject(data, WechatPayInfoModel.class);
+                PayInfoModel payInfo = wechatPayInfo.orderInfo;
                 Map<String, Object> params = new HashMap<>();
                 params.put("activity", activity);
                 params.put("appId", wxAppId);

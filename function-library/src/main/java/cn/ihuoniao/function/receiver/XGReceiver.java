@@ -68,7 +68,7 @@ public class XGReceiver extends Receiver {
                     @Override
                     public void onSuccess() {
                         if (passport.trim().length() != 0) {
-                            mPushAgent.addExclusiveAlias(passport, "user", new UTrack.ICallBack() {
+                            mPushAgent.addExclusiveAlias(passport, "userID", new UTrack.ICallBack() {
                                 @Override
                                 public void onMessage(boolean isSuccess, String message) {
                                     Logger.i("umeng msg : " + message);

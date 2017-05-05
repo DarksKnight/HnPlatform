@@ -19,4 +19,5 @@ public class PayInfoModel implements Serializable {
     public String timeStamp = "";
 
     public String sign = "";
+
 }
