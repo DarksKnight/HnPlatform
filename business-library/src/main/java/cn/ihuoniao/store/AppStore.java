@@ -1,12 +1,11 @@
 package cn.ihuoniao.store;
 
+import android.content.Intent;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
-import com.uuzuche.lib_zxing.activity.CaptureActivity;
-
-import android.content.Intent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,6 +32,7 @@ import cn.ihuoniao.platform.webview.CallBackFunction;
 import cn.ihuoniao.request.AppConfigRequest;
 import cn.ihuoniao.request.base.RequestCallBack;
 import cn.ihuoniao.store.base.Store;
+import io.github.xudaojie.qrcodelib.CaptureActivity;
 
 /**
  * Created by sdk-app-shy on 2017/3/17.
@@ -43,6 +43,7 @@ public class AppStore extends Store<cn.ihuoniao.actions.AppAction> {
     @Override
     public void onAction(cn.ihuoniao.actions.AppAction action) {
         super.onAction(action);
+        Map<String, Object> infos = (Map<String, Object>)action.getData();
         switch (action.getType()) {
             case TYPE.TYPE_APP_CONFIG:
                 getAppConfigRequest();
@@ -78,7 +79,7 @@ public class AppStore extends Store<cn.ihuoniao.actions.AppAction> {
                 hideNavigationBar();
                 break;
             case TYPE.TYPE_SHOW_QRCODE_SCAN:
-                showQRCodeScan();
+                showQRCodeScan((ResultListener<CallBackFunction>)infos.get("listener"));
                 break;
             default:
                 break;
@@ -114,6 +115,7 @@ public class AppStore extends Store<cn.ihuoniao.actions.AppAction> {
                 JSONObject json = new JSONObject();
                 json.put("device", "android");
                 json.put("version", CommonUtil.getVersionName(activity));
+                json.put("pushToken", AppInfoModel.INSTANCE.pushToken);
                 function.onCallBack(json.toJSONString());
             }
         });
@@ -271,10 +273,11 @@ public class AppStore extends Store<cn.ihuoniao.actions.AppAction> {
         });
     }
 
-    public void showQRCodeScan() {
+    public void showQRCodeScan(final ResultListener<CallBackFunction> listener) {
         webView.registerHandler(Event.SHOW_QRCODE_SCAN, new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
+                listener.onResult(function);
                 Intent intent = new Intent(activity, CaptureActivity.class);
                 activity.startActivityForResult(intent, Constant.CODE_SCAN_RESULT);
             }

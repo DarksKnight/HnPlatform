@@ -22,6 +22,8 @@ import cn.ihuoniao.model.AppInfoModel;
 
 public class HnApplication extends Application {
 
+    private AppInfoModel appInfoModel = AppInfoModel.INSTANCE;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -39,7 +41,7 @@ public class HnApplication extends Application {
         };
 
         XGPushConfig.enableDebug(this, true);
-        QbSdk.initX5Environment(getApplicationContext(), cb);
+//        QbSdk.initX5Environment(getApplicationContext(), cb);
         Fresco.initialize(this);
         PushAgent mPushAgent = PushAgent.getInstance(this);
         mPushAgent.setDebugMode(false);
@@ -47,6 +49,7 @@ public class HnApplication extends Application {
             @Override
             public void onSuccess(String s) {
                 Logger.i("umeng push success : " + s);
+                appInfoModel.pushToken = s;
             }
 
             @Override
@@ -58,13 +61,13 @@ public class HnApplication extends Application {
             @Override
             public void onSuccess(Object o, int i) {
                 Logger.i("xgpush success : " + o.toString());
-                AppInfoModel.INSTANCE.pushStatus = "on";
+                appInfoModel.pushStatus = "on";
             }
 
             @Override
             public void onFail(Object o, int i, String s) {
                 Logger.i("xgpush failed : " + s + " code : " + i);
-                AppInfoModel.INSTANCE.pushStatus = "off";
+                appInfoModel.pushStatus = "off";
             }
         });
         CrashReport.initCrashReport(getApplicationContext(), "2d9143b360", false);

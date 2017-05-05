@@ -10,6 +10,8 @@ import cn.ihuoniao.actions.UMengAction;
 import cn.ihuoniao.actions.WeChatAction;
 import cn.ihuoniao.actions.WeiboAction;
 import cn.ihuoniao.dispatcher.Dispatcher;
+import cn.ihuoniao.function.listener.ResultListener;
+import cn.ihuoniao.platform.webview.CallBackFunction;
 
 /**
  * Created by sdk-app-shy on 2017/3/16.
@@ -56,8 +58,13 @@ public enum  ActionsCreator {
         Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP, new AppAction(TYPE.TYPE_SHOW_NAVIGATIONBAR, params));
     }
 
-    public void hide_showNavigationBar() {
+    public void do_hideNavigationBar() {
         Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP, new AppAction(TYPE.TYPE_HIDE_NAVIGATIONBAR, params));
+    }
+
+    public void register_qr_scan(ResultListener<CallBackFunction> listener) {
+        params.put("listener", listener);
+        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP, new AppAction(TYPE.TYPE_SHOW_QRCODE_SCAN, params));
     }
 
     public void register_appLogout() {

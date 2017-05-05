@@ -19,9 +19,9 @@ public enum AppInfoModel implements Serializable {
 
     public AppConfigModel.Login loginInfo = null;
 
-    public IWXAPI wxApi = null;
-
     public Map<String, Object> infos = new HashMap<>();
 
     public String pushStatus = "on";
+
+    public String pushToken = "";
 }

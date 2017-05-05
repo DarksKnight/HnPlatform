@@ -1,12 +1,15 @@
 package cn.ihuoniao.platform.webview;
 
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
 /**
  * Created by bruce on 10/28/15.
  */
-public class BridgeWebViewClient extends com.tencent.smtt.sdk.WebViewClient {
+public class BridgeWebViewClient extends WebViewClient {
     private BridgeWebView webView;
 
     public BridgeWebViewClient(BridgeWebView webView) {
@@ -14,7 +17,7 @@ public class BridgeWebViewClient extends com.tencent.smtt.sdk.WebViewClient {
     }
 
     @Override
-    public boolean shouldOverrideUrlLoading(com.tencent.smtt.sdk.WebView view, String url) {
+    public boolean shouldOverrideUrlLoading(WebView view, String url) {
         try {
             url = URLDecoder.decode(url, "UTF-8");
         } catch (UnsupportedEncodingException e) {
@@ -33,7 +36,7 @@ public class BridgeWebViewClient extends com.tencent.smtt.sdk.WebViewClient {
     }
 
     @Override
-    public void onPageFinished(com.tencent.smtt.sdk.WebView view, String url) {
+    public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);
 
         if (BridgeWebView.toLoadJs != null) {

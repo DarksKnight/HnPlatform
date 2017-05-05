@@ -10,25 +10,23 @@ import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.JsPromptResult;
+import android.webkit.JsResult;
+import android.webkit.ValueCallback;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.andview.refreshview.XRefreshView;
 import com.squareup.otto.Subscribe;
 import com.tencent.android.tpush.XGPushClickedResult;
 import com.tencent.android.tpush.XGPushManager;
-import com.tencent.smtt.export.external.interfaces.JsPromptResult;
-import com.tencent.smtt.export.external.interfaces.JsResult;
-import com.tencent.smtt.sdk.ValueCallback;
-import com.tencent.smtt.sdk.WebSettings;
-import com.tencent.smtt.sdk.WebView;
 import com.umeng.message.PushAgent;
 import com.umeng.message.UmengNotificationClickHandler;
 import com.umeng.message.entity.UMessage;
 import com.umeng.socialize.UMShareAPI;
-import com.uuzuche.lib_zxing.activity.CodeUtils;
 
 import java.util.Map;
 
@@ -37,6 +35,7 @@ import cn.ihuoniao.R;
 import cn.ihuoniao.TYPE;
 import cn.ihuoniao.base.BaseActivity;
 import cn.ihuoniao.event.AppEvent;
+import cn.ihuoniao.function.listener.ResultListener;
 import cn.ihuoniao.function.listener.StatusListener;
 import cn.ihuoniao.function.util.CommonUtil;
 import cn.ihuoniao.function.util.Logger;
@@ -45,6 +44,7 @@ import cn.ihuoniao.platform.headview.CustomHeadView;
 import cn.ihuoniao.platform.splash.SplashView;
 import cn.ihuoniao.platform.webview.BridgeWebView;
 import cn.ihuoniao.platform.webview.BridgeWebViewClient;
+import cn.ihuoniao.platform.webview.CallBackFunction;
 import cn.ihuoniao.platform.webview.DefaultHandler;
 import cn.ihuoniao.receiver.MsgPushReceiver;
 import cn.ihuoniao.store.AlipayStore;
@@ -60,8 +60,6 @@ public class MainActivity extends BaseActivity {
 
     private RelativeLayout rlContent = null;
 
-    private XRefreshView xr = null;
-
     private SplashView spv = null;
 
     private FirstDeployView firstDeployView = null;
@@ -73,6 +71,10 @@ public class MainActivity extends BaseActivity {
     private ValueCallback<Uri> mUploadMessage = null;
 
     public ValueCallback<Uri[]> mUploadMessageForAndroid5 = null;
+
+    private XRefreshView rl = null;
+
+    private CallBackFunction function = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,35 +89,8 @@ public class MainActivity extends BaseActivity {
 
         bwvContent = getView(R.id.bwv_content);
         rlContent = getView(R.id.rl_content);
-        xr = getView(R.id.xr);
-        xr.setPullLoadEnable(false);
-        xr.setCustomHeaderView(new CustomHeadView(this));
-        xr.setXRefreshViewListener(new XRefreshView.XRefreshViewListener() {
-            @Override
-            public void onRefresh() {
-                bwvContent.loadUrl(bwvContent.getUrl());
-            }
+        rl = getView(R.id.refreshLayout);
 
-            @Override
-            public void onRefresh(boolean b) {
-
-            }
-
-            @Override
-            public void onLoadMore(boolean b) {
-
-            }
-
-            @Override
-            public void onRelease(float v) {
-
-            }
-
-            @Override
-            public void onHeaderMove(double v, int i) {
-
-            }
-        });
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams((int) getResources().getDimension(R.dimen.hn_50dp), (int) getResources().getDimension(R.dimen.hn_50dp));
         lp.addRule(RelativeLayout.CENTER_IN_PARENT);
         rlContent.addView(lvc, lp);
@@ -157,9 +132,23 @@ public class MainActivity extends BaseActivity {
             });
         }
 
+        rl.setPullLoadEnable(false);
+        rl.setCustomHeaderView(new CustomHeadView(this));
+        rl.setXRefreshViewListener(new XRefreshView.SimpleXRefreshListener() {
+            @Override
+            public void onRefresh(boolean isPullDown) {
+                if (isPullDown) {
+                    actionsCreator.do_hideNavigationBar();
+                    bwvContent.loadUrl(bwvContent.getUrl());
+                } else {
+                    actionsCreator.do_showNavigationBar();
+                }
+            }
+        });
+
         bwvContent.setDefaultHandler(new DefaultHandler());
-        bwvContent.getSettings().setCacheMode(WebSettings.LOAD_NORMAL);
-        bwvContent.getSettings().setLayoutAlgorithm(com.tencent.smtt.sdk.WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+//        bwvContent.getSettings().setCacheMode(WebSettings.LOAD_NORMAL);
+//        bwvContent.getSettings().setLayoutAlgorithm(com.tencent.smtt.sdk.WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
         bwvContent.getSettings().setUseWideViewPort(true);
         bwvContent.getSettings().setDisplayZoomControls(true);
         bwvContent.getSettings().setDomStorageEnabled(true);
@@ -174,7 +163,7 @@ public class MainActivity extends BaseActivity {
             }
 
             @Override
-            public boolean shouldOverrideUrlLoading(com.tencent.smtt.sdk.WebView view, String url) {
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 Logger.i("url : " + url);
                 try {
                     if (url.contains("http://") || url.contains("https://")) {
@@ -200,7 +189,7 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        bwvContent.setWebChromeClient(new com.tencent.smtt.sdk.WebChromeClient() {
+        bwvContent.setWebChromeClient(new WebChromeClient() {
 
             @SuppressWarnings("unused")
             public void openFileChooser(ValueCallback<Uri> uploadMsg, String AcceptType, String capture) {
@@ -217,12 +206,12 @@ public class MainActivity extends BaseActivity {
             }
 
             @Override
-            public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> valueCallback, FileChooserParams fileChooserParams) {
+            public boolean onShowFileChooser(WebView webView, android.webkit.ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
-                    mUploadMessageForAndroid5 = valueCallback;
+                    mUploadMessageForAndroid5 = filePathCallback;
                     CommonUtil.openFunction(MainActivity.this, Constant.CODE_PICK_PIC_5);
                 }
-                return super.onShowFileChooser(webView, valueCallback, fileChooserParams);
+                return super.onShowFileChooser(webView, filePathCallback, fileChooserParams);
             }
 
             public void openFileChooser(ValueCallback<Uri> uploadMsg) {
@@ -243,13 +232,13 @@ public class MainActivity extends BaseActivity {
             }
 
             @Override
-            public boolean onJsAlert(com.tencent.smtt.sdk.WebView view, String url, String message, final com.tencent.smtt.export.external.interfaces.JsResult result) {
+            public boolean onJsAlert(WebView view, String url, String message, final JsResult result) {
                 CommonUtil.showAlertDialog(MainActivity.this, 0, message, result);
                 return true;
             }
 
             @Override
-            public void onProgressChanged(com.tencent.smtt.sdk.WebView view, int newProgress) {
+            public void onProgressChanged(WebView view, int newProgress) {
                 if (isClickAdv) {
                     if (null != view.getOriginalUrl()) {
                         if (view.getOriginalUrl().equals(spv.getLink())) {
@@ -261,7 +250,7 @@ public class MainActivity extends BaseActivity {
                     }
                 } else {
                     if (newProgress > 70) {
-                        xr.stopRefresh();
+                        rl.stopRefresh();
                         appInfo.isLoadFinish = true;
                         hideLoading();
                     }
@@ -304,14 +293,15 @@ public class MainActivity extends BaseActivity {
 
         PushAgent mPushAgent = PushAgent.getInstance(this);
         UmengNotificationClickHandler messageHandler = new UmengNotificationClickHandler() {
+
             @Override
             public void launchApp(Context context, UMessage uMessage) {
+                super.launchApp(context, uMessage);
                 Map<String, String> info = uMessage.extra;
                 String url = info.get("url");
                 Logger.i("content url : " + url);
                 isLoadMainWeb = false;
                 bwvContent.loadUrl(url);
-                super.launchApp(context, uMessage);
             }
         };
         mPushAgent.setNotificationClickHandler(messageHandler);
@@ -412,11 +402,10 @@ public class MainActivity extends BaseActivity {
                 if (bundle == null) {
                     return;
                 }
-                if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
-                    String result = bundle.getString(CodeUtils.RESULT_STRING);
-
-                } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
-                    Toast.makeText(MainActivity.this, "解析二维码失败", Toast.LENGTH_LONG).show();
+                String result = data.getStringExtra("result");
+                if (null != function) {
+                    Logger.i("scan result : " + result);
+                    function.onCallBack(result);
                 }
             }
         }
@@ -446,6 +435,12 @@ public class MainActivity extends BaseActivity {
         actionsCreator.register_weiboLogin();
         actionsCreator.register_alipay();
         actionsCreator.register_wechatPay();
+        actionsCreator.register_qr_scan(new ResultListener<CallBackFunction>() {
+            @Override
+            public void onResult(CallBackFunction result) {
+                function = result;
+            }
+        });
     }
 
     @Override

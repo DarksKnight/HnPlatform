@@ -8,7 +8,7 @@ android {
     defaultConfig {
         applicationId "cn.ihuoniao.platform"
         minSdkVersion 15
-        targetSdkVersion 19
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -44,9 +44,9 @@ android {
 
         release {
             zipAlignEnabled true
-            minifyEnabled true
+            minifyEnabled false
             signingConfig signingConfigs.release
-            shrinkResources true
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
             applicationVariants.all {
@@ -85,4 +85,5 @@ def getBuildTime() {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':business-library')
+    compile 'com.android.support:multidex:latest.integration'
 }
