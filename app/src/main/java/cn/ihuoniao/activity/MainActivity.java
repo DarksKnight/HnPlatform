@@ -23,6 +23,7 @@ import com.tencent.smtt.export.external.interfaces.JsPromptResult;
 import com.tencent.smtt.export.external.interfaces.JsResult;
 import com.tencent.smtt.sdk.ValueCallback;
 import com.tencent.smtt.sdk.WebChromeClient;
+import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.umeng.message.PushAgent;
 import com.umeng.message.UmengNotificationClickHandler;
@@ -155,8 +156,8 @@ public class MainActivity extends BaseActivity {
         });
 
         bwvContent.setDefaultHandler(new DefaultHandler());
-//        bwvContent.getSettings().setCacheMode(WebSettings.LOAD_NORMAL);
-//        bwvContent.getSettings().setLayoutAlgorithm(com.tencent.smtt.sdk.WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+        bwvContent.getSettings().setCacheMode(WebSettings.LOAD_NORMAL);
+        bwvContent.getSettings().setLayoutAlgorithm(com.tencent.smtt.sdk.WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
         bwvContent.getSettings().setUseWideViewPort(true);
         bwvContent.getSettings().setDisplayZoomControls(true);
         bwvContent.getSettings().setDomStorageEnabled(true);
@@ -368,12 +369,12 @@ public class MainActivity extends BaseActivity {
         appInfo.loginInfo = event.appConfig.cfg_loginconnect;
         if (!isClickAdv) {
             if (isLoadMainWeb) {
-//                bwvContent.loadUrl("http://ihuoniao.cn/android");
-                if (isDebug) {
-                    bwvContent.loadUrl("file:///android_asset/debug.html");
-                } else {
-                    bwvContent.loadUrl(appInfo.platformUrl);
-                }
+                bwvContent.loadUrl("http://ihuoniao.cn/android");
+//                if (isDebug) {
+//                    bwvContent.loadUrl("file:///android_asset/debug.html");
+//                } else {
+//                    bwvContent.loadUrl(appInfo.platformUrl);
+//                }
             } else {
                 isLoadMainWeb = true;
             }
