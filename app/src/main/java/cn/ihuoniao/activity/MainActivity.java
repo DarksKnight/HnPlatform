@@ -1,18 +1,5 @@
 package cn.ihuoniao.activity;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-
 import com.alibaba.fastjson.JSON;
 import com.andview.refreshview.XRefreshView;
 import com.andview.refreshview.listener.OnTopRefreshTime;
@@ -29,6 +16,19 @@ import com.umeng.message.PushAgent;
 import com.umeng.message.UmengNotificationClickHandler;
 import com.umeng.message.entity.UMessage;
 import com.umeng.socialize.UMShareAPI;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import java.util.Map;
 
@@ -136,9 +136,11 @@ public class MainActivity extends BaseActivity {
 
         rl.setCustomHeaderView(new CustomHeadView(this));
         rl.setPullLoadEnable(false);
+        rl.setMoveFootWhenDisablePullLoadMore(false);
         rl.setOnTopRefreshTime(new OnTopRefreshTime() {
             @Override
             public boolean isTop() {
+                Logger.i("y : " + bwvContent.getWebScrollY());
                 return bwvContent.getWebScrollY() == 0;
             }
         });
