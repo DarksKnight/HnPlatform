@@ -1,22 +1,5 @@
 package cn.ihuoniao.activity;
 
-import com.alibaba.fastjson.JSON;
-import com.andview.refreshview.XRefreshView;
-import com.andview.refreshview.listener.OnTopRefreshTime;
-import com.squareup.otto.Subscribe;
-import com.tencent.android.tpush.XGPushClickedResult;
-import com.tencent.android.tpush.XGPushManager;
-import com.tencent.smtt.export.external.interfaces.JsPromptResult;
-import com.tencent.smtt.export.external.interfaces.JsResult;
-import com.tencent.smtt.sdk.ValueCallback;
-import com.tencent.smtt.sdk.WebChromeClient;
-import com.tencent.smtt.sdk.WebSettings;
-import com.tencent.smtt.sdk.WebView;
-import com.umeng.message.PushAgent;
-import com.umeng.message.UmengNotificationClickHandler;
-import com.umeng.message.entity.UMessage;
-import com.umeng.socialize.UMShareAPI;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -29,6 +12,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+
+import com.alibaba.fastjson.JSON;
+import com.andview.refreshview.XRefreshView;
+import com.andview.refreshview.listener.OnTopRefreshTime;
+import com.squareup.otto.Subscribe;
+import com.tencent.android.tpush.XGPushClickedResult;
+import com.tencent.android.tpush.XGPushManager;
+import com.tencent.smtt.export.external.interfaces.JsPromptResult;
+import com.tencent.smtt.export.external.interfaces.JsResult;
+import com.tencent.smtt.sdk.DownloadListener;
+import com.tencent.smtt.sdk.ValueCallback;
+import com.tencent.smtt.sdk.WebChromeClient;
+import com.tencent.smtt.sdk.WebSettings;
+import com.tencent.smtt.sdk.WebView;
+import com.umeng.message.PushAgent;
+import com.umeng.message.UmengNotificationClickHandler;
+import com.umeng.message.entity.UMessage;
+import com.umeng.socialize.UMShareAPI;
 
 import java.util.Map;
 
@@ -140,7 +141,6 @@ public class MainActivity extends BaseActivity {
         rl.setOnTopRefreshTime(new OnTopRefreshTime() {
             @Override
             public boolean isTop() {
-                Logger.i("y : " + bwvContent.getWebScrollY());
                 return bwvContent.getWebScrollY() == 0;
             }
         });
@@ -198,6 +198,15 @@ public class MainActivity extends BaseActivity {
                     e.printStackTrace();
                 }
                 return super.shouldOverrideUrlLoading(view, url);
+            }
+        });
+
+        bwvContent.setDownloadListener(new DownloadListener() {
+            @Override
+            public void onDownloadStart(String s, String s1, String s2, String s3, long l) {
+                Uri uri = Uri.parse(s);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
         });
 
@@ -371,7 +380,8 @@ public class MainActivity extends BaseActivity {
         appInfo.loginInfo = event.appConfig.cfg_loginconnect;
         if (!isClickAdv) {
             if (isLoadMainWeb) {
-                bwvContent.loadUrl("http://ihuoniao.cn/android");
+                bwvContent.loadUrl(appInfo.platformUrl);
+//                bwvContent.loadUrl("http://ihuoniao.cn/android");
 //                if (isDebug) {
 //                    bwvContent.loadUrl("file:///android_asset/debug.html");
 //                } else {
@@ -415,6 +425,11 @@ public class MainActivity extends BaseActivity {
                     return;
                 }
                 String result = data.getStringExtra("result");
+                if (result.contains("http")) {
+                    bwvContent.loadUrl(result);
+                } else {
+                    CommonUtil.toast(this, result);
+                }
                 if (null != function) {
                     Logger.i("scan result : " + result);
                     function.onCallBack(result);
