@@ -27,7 +27,7 @@ public enum  ActionsCreator {
     }
 
     public void request_getAppConfig() {
-        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP, new AppAction(TYPE.TYPE_APP_CONFIG, null));
+        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP, new AppAction(TYPE.TYPE_APP_CONFIG, params));
     }
 
     public void register_getAppInfo() {

@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 
 import com.alibaba.fastjson.JSON;
 import com.andview.refreshview.XRefreshView;
+import com.andview.refreshview.listener.OnBottomLoadMoreTime;
 import com.andview.refreshview.listener.OnTopRefreshTime;
 import com.squareup.otto.Subscribe;
 import com.tencent.android.tpush.XGPushClickedResult;
@@ -94,12 +95,13 @@ public class MainActivity extends BaseActivity {
         rlContent = getView(R.id.rl_content);
         rl = getView(R.id.refreshLayout);
 
+        bwvContent.setLinearLayout(rl);
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams((int) getResources().getDimension(R.dimen.hn_50dp), (int) getResources().getDimension(R.dimen.hn_50dp));
         lp.addRule(RelativeLayout.CENTER_IN_PARENT);
         rlContent.addView(lvc, lp);
 
         //判断是否第一次启动
-        if (!CommonUtil.isFirstRun(this, Constant.HN_SETTING)) {
+        if (!appInfo.isFirstRun) {
             spv = new SplashView(this);
             rlContent.addView(spv, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT));
@@ -138,10 +140,10 @@ public class MainActivity extends BaseActivity {
         rl.setCustomHeaderView(new CustomHeadView(this));
         rl.setPullLoadEnable(false);
         rl.setMoveFootWhenDisablePullLoadMore(false);
-        rl.setOnTopRefreshTime(new OnTopRefreshTime() {
+        rl.setOnBottomLoadMoreTime(new OnBottomLoadMoreTime() {
             @Override
-            public boolean isTop() {
-                return bwvContent.getWebScrollY() == 0;
+            public boolean isBottom() {
+                return false;
             }
         });
         disableRefresh();
@@ -176,9 +178,9 @@ public class MainActivity extends BaseActivity {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 Logger.i("url : " + url);
-                disableRefresh();
                 try {
                     if (url.contains("http://") || url.contains("https://")) {
+                        disableRefresh();
                         showLoading();
                     } else if (url.contains("tel:")) {
                         String phone = url.split(":")[1];
@@ -376,17 +378,12 @@ public class MainActivity extends BaseActivity {
             }, 1000);
         }
 
-        appInfo.platformUrl = event.appConfig.cfg_basehost;
+        appInfo.platformUrl = event.appConfig.cfg_android_index;
         appInfo.loginInfo = event.appConfig.cfg_loginconnect;
         if (!isClickAdv) {
             if (isLoadMainWeb) {
                 bwvContent.loadUrl(appInfo.platformUrl);
-//                bwvContent.loadUrl("http://ihuoniao.cn/android");
-//                if (isDebug) {
-//                    bwvContent.loadUrl("file:///android_asset/debug.html");
-//                } else {
-//                    bwvContent.loadUrl(appInfo.platformUrl);
-//                }
+//                bwvContent.loadUrl("file:///android_asset/debuga.html");
             } else {
                 isLoadMainWeb = true;
             }
@@ -514,10 +511,22 @@ public class MainActivity extends BaseActivity {
     private void enbleRefresh() {
         rl.setPullRefreshEnable(true);
         rl.setMoveHeadWhenDisablePullRefresh(true);
+        rl.setOnTopRefreshTime(new OnTopRefreshTime() {
+            @Override
+            public boolean isTop() {
+                return bwvContent.getWebScrollY() == 0;
+            }
+        });
     }
 
     private void disableRefresh() {
         rl.setPullRefreshEnable(false);
         rl.setMoveHeadWhenDisablePullRefresh(false);
+        rl.setOnTopRefreshTime(new OnTopRefreshTime() {
+            @Override
+            public boolean isTop() {
+                return false;
+            }
+        });
     }
 }

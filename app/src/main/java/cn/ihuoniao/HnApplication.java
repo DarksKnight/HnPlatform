@@ -13,7 +13,10 @@ import com.tencent.smtt.sdk.QbSdk;
 import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.PushAgent;
 
+import cn.ihuoniao.function.constant.FunctionConstants;
+import cn.ihuoniao.function.util.CommonUtil;
 import cn.ihuoniao.function.util.Logger;
+import cn.ihuoniao.function.util.SPUtils;
 import cn.ihuoniao.model.AppInfoModel;
 
 /**
@@ -28,6 +31,7 @@ public class HnApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        SPUtils.setApplication(this);
         QbSdk.PreInitCallback cb = new QbSdk.PreInitCallback() {
 
             @Override
@@ -43,33 +47,20 @@ public class HnApplication extends Application {
         XGPushConfig.enableDebug(this, true);
         QbSdk.initX5Environment(getApplicationContext(), cb);
         Fresco.initialize(this);
-        PushAgent mPushAgent = PushAgent.getInstance(this);
-        mPushAgent.setDebugMode(false);
-        mPushAgent.register(new IUmengRegisterCallback() {
-            @Override
-            public void onSuccess(String s) {
-                Logger.i("umeng push success : " + s);
-                appInfoModel.pushToken = s;
-            }
 
-            @Override
-            public void onFailure(String s, String s1) {
-                Logger.i("umeng push error : " + s + " : " + s1);
-            }
-        });
-        XGPushManager.registerPush(getApplicationContext(), new XGIOperateCallback() {
-            @Override
-            public void onSuccess(Object o, int i) {
-                Logger.i("xgpush success : " + o.toString());
+        if (CommonUtil.isFirstRun(this, Constant.HN_SETTING)) {
+            appInfoModel.isFirstRun = true;
+            registerPush();
+        } else {
+            appInfoModel.isFirstRun = false;
+            if (SPUtils.getBoolean(FunctionConstants.PUSH_STATUS)) {
                 appInfoModel.pushStatus = "on";
-            }
-
-            @Override
-            public void onFail(Object o, int i, String s) {
-                Logger.i("xgpush failed : " + s + " code : " + i);
+                registerPush();
+            } else {
                 appInfoModel.pushStatus = "off";
             }
-        });
+        }
+
         CrashReport.initCrashReport(getApplicationContext(), "2d9143b360", false);
     }
 
@@ -77,5 +68,39 @@ public class HnApplication extends Application {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
+    }
+
+    private void registerPush() {
+        PushAgent mPushAgent = PushAgent.getInstance(this);
+        mPushAgent.setDebugMode(false);
+        mPushAgent.register(new IUmengRegisterCallback() {
+            @Override
+            public void onSuccess(String s) {
+                Logger.i("umeng push success : " + s);
+                appInfoModel.pushToken = s;
+                SPUtils.pushBoolean(FunctionConstants.PUSH_STATUS, true);
+            }
+
+            @Override
+            public void onFailure(String s, String s1) {
+                Logger.i("umeng push error : " + s + " : " + s1);
+                SPUtils.pushBoolean(FunctionConstants.PUSH_STATUS, false);
+            }
+        });
+        XGPushManager.registerPush(getApplicationContext(), new XGIOperateCallback() {
+            @Override
+            public void onSuccess(Object o, int i) {
+                Logger.i("xgpush success : " + o.toString());
+                appInfoModel.pushStatus = "on";
+                SPUtils.pushBoolean(FunctionConstants.PUSH_STATUS, true);
+            }
+
+            @Override
+            public void onFail(Object o, int i, String s) {
+                Logger.i("xgpush failed : " + s + " code : " + i);
+                appInfoModel.pushStatus = "off";
+                SPUtils.pushBoolean(FunctionConstants.PUSH_STATUS, false);
+            }
+        });
     }
 }

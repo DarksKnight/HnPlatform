@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.webkit.WebView;
 
+import com.andview.refreshview.XRefreshView;
 import com.tencent.smtt.export.external.extension.proxy.ProxyWebChromeClientExtension;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class BridgeWebView extends com.tencent.smtt.sdk.WebView implements WebVi
 
     private final String TAG = "BridgeWebView";
 
+    private XRefreshView refreshView = null;
     public static final String toLoadJs = "WebViewJavascriptBridge.js";
     Map<String, CallBackFunction> responseCallbacks = new HashMap<String, CallBackFunction>();
     Map<String, BridgeHandler> messageHandlers = new HashMap<String, BridgeHandler>();
@@ -224,5 +226,10 @@ public class BridgeWebView extends com.tencent.smtt.sdk.WebView implements WebVi
     }
 
     public void setWebChromeClient(ProxyWebChromeClientExtension proxyWebChromeClientExtension) {
+
+    }
+
+    public void setLinearLayout(XRefreshView refreshView) {
+        this.refreshView = refreshView;
     }
 }

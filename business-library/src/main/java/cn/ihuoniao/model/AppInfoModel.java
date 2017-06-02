@@ -1,7 +1,5 @@
 package cn.ihuoniao.model;
 
-import com.tencent.mm.opensdk.openapi.IWXAPI;
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,4 +22,6 @@ public enum AppInfoModel implements Serializable {
     public String pushStatus = "on";
 
     public String pushToken = "";
+
+    public boolean isFirstRun = true;
 }
