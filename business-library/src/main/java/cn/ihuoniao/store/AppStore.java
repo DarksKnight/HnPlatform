@@ -16,6 +16,8 @@ import cn.ihuoniao.TYPE;
 import cn.ihuoniao.event.AppEvent;
 import cn.ihuoniao.function.command.BadgeCommand;
 import cn.ihuoniao.function.command.LogoutCommand;
+import cn.ihuoniao.function.command.PushUnRegisterCommand;
+import cn.ihuoniao.function.receiver.PushUnRegisterReceiver;
 import cn.ihuoniao.function.command.XGRegisterCommand;
 import cn.ihuoniao.function.command.XGUnRegisterCommand;
 import cn.ihuoniao.function.listener.ResultListener;
@@ -24,6 +26,7 @@ import cn.ihuoniao.function.receiver.LogoutReceiver;
 import cn.ihuoniao.function.receiver.XGReceiver;
 import cn.ihuoniao.function.util.CommonUtil;
 import cn.ihuoniao.function.util.Logger;
+import cn.ihuoniao.function.util.SPUtils;
 import cn.ihuoniao.model.AppConfigModel;
 import cn.ihuoniao.model.AppInfoModel;
 import cn.ihuoniao.model.LoginFinishModel;
@@ -155,9 +158,9 @@ public class AppStore extends Store<cn.ihuoniao.actions.AppAction> {
                 Map<String, Object> params = new HashMap<>();
                 params.put("activity", activity);
                 params.put("umAuthListener", umAuthListener);
-                params.put("passport", "");
+                params.put("passport", SPUtils.getString("pushPassport"));
                 control.doCommand(new LogoutCommand(new LogoutReceiver()), params, null);
-                control.doCommand(new XGRegisterCommand(new XGReceiver()), params, null);
+                control.doCommand(new PushUnRegisterCommand(new PushUnRegisterReceiver()), params, null);
             }
         });
     }

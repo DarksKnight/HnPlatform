@@ -92,6 +92,7 @@ public class XGReceiver extends Receiver {
         }
 
         if (passport.trim().length() != 0) {
+            SPUtils.pushString("pushPassport", passport);
             mPushAgent.addAlias(passport, "userID", new UTrack.ICallBack() {
                 @Override
                 public void onMessage(boolean isSuccess, String message) {
