@@ -66,6 +66,7 @@ public class XGReceiver extends Receiver {
             @Override
             public void onFail(Object o, int i, String s) {
                 SPUtils.pushBoolean("pushStatus", false);
+                listener.onResult(false);
             }
         });
 
@@ -79,12 +80,14 @@ public class XGReceiver extends Receiver {
                         public void onSuccess(String s) {
                             Logger.i("umeng push success : " + s);
                             SPUtils.pushBoolean(FunctionConstants.PUSH_STATUS, true);
+                            listener.onResult(true);
                         }
 
                         @Override
                         public void onFailure(String s, String s1) {
                             Logger.i("umeng push error : " + s + " : " + s1);
                             SPUtils.pushBoolean(FunctionConstants.PUSH_STATUS, true);
+                            listener.onResult(true);
                         }
                     });
                 }
@@ -105,11 +108,13 @@ public class XGReceiver extends Receiver {
             @Override
             public void onSuccess() {
                 SPUtils.pushBoolean(FunctionConstants.PUSH_STATUS, true);
+                listener.onResult(true);
             }
 
             @Override
             public void onFailure(String s, String s1) {
                 SPUtils.pushBoolean("pushStatus", true);
+                listener.onResult(true);
             }
         });
     }
