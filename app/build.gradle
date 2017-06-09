@@ -6,7 +6,8 @@ android {
     compileSdkVersion 24
     buildToolsVersion "25.0.2"
     defaultConfig {
-        applicationId "cn.ihuoniao.platform"
+//        applicationId "cn.ihuoniao.platform"
+        applicationId "com.jindianshenghuo.platform"
         minSdkVersion 15
         targetSdkVersion 22
         versionCode 1
@@ -19,18 +20,33 @@ android {
     }
 
     signingConfigs {
+        //火鸟平台签名
+//        debug {
+//            storePassword "kuman123"
+//            keyAlias "kuman"
+//            keyPassword "kuman123"
+//            storeFile file('kuman.jks')
+//        }
+//
+//        release {
+//            storePassword "kuman123"
+//            keyAlias "kuman"
+//            keyPassword "kuman123"
+//            storeFile file('kuman.jks')
+//        }
+        //简单生活签名
         debug {
-            storePassword "kuman123"
-            keyAlias "kuman"
-            keyPassword "kuman123"
-            storeFile file('kuman.jks')
+            storePassword "shenghuo123"
+            keyAlias "shenghuo"
+            keyPassword "shenghuo123"
+            storeFile file('jindianshenghuo.jks')
         }
 
         release {
-            storePassword "kuman123"
-            keyAlias "kuman"
-            keyPassword "kuman123"
-            storeFile file('kuman.jks')
+            storePassword "shenghuo123"
+            keyAlias "shenghuo"
+            keyPassword "shenghuo123"
+            storeFile file('jindianshenghuo.jks')
         }
     }
 

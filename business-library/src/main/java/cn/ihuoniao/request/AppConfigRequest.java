@@ -3,7 +3,7 @@ package cn.ihuoniao.request;
 import java.util.HashMap;
 import java.util.Map;
 
-import cn.ihuoniao.API;
+import cn.ihuoniao.function.constant.API;
 import cn.ihuoniao.request.base.BaseRequest;
 import cn.ihuoniao.request.base.Request;
 import cn.ihuoniao.request.base.RequestCallBack;

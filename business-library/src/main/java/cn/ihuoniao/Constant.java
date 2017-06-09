@@ -14,4 +14,6 @@ public class Constant {
 
     public static final int CODE_SCAN_RESULT = 997;
 
+    public static final String HTML_JINGDIANSHENGHUO = "http://www.jindianshenghuo.com/?service=waimai&do=courier";
+
 }

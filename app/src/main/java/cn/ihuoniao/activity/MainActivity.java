@@ -2,7 +2,6 @@ package cn.ihuoniao.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,6 +16,7 @@ import com.alibaba.fastjson.JSON;
 import com.andview.refreshview.XRefreshView;
 import com.andview.refreshview.listener.OnBottomLoadMoreTime;
 import com.andview.refreshview.listener.OnTopRefreshTime;
+import com.baidu.mapapi.BMapManager;
 import com.squareup.otto.Subscribe;
 import com.tencent.android.tpush.XGPushClickedResult;
 import com.tencent.android.tpush.XGPushManager;
@@ -50,7 +50,6 @@ import cn.ihuoniao.platform.webview.BridgeWebView;
 import cn.ihuoniao.platform.webview.BridgeWebViewClient;
 import cn.ihuoniao.platform.webview.CallBackFunction;
 import cn.ihuoniao.platform.webview.DefaultHandler;
-import cn.ihuoniao.receiver.MsgPushReceiver;
 import cn.ihuoniao.store.AlipayStore;
 import cn.ihuoniao.store.AppStore;
 import cn.ihuoniao.store.QQStore;
@@ -100,8 +99,44 @@ public class MainActivity extends BaseActivity {
         lp.addRule(RelativeLayout.CENTER_IN_PARENT);
         rlContent.addView(lvc, lp);
 
-        //判断是否第一次启动
-        if (!appInfo.isFirstRun) {
+        if (!getPackageName().contains("jindianshenghuo")) {
+            //判断是否第一次启动
+            if (!appInfo.isFirstRun) {
+                spv = new SplashView(this);
+                rlContent.addView(spv, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT));
+                spv.setListener(new SplashView.Listener() {
+                    @Override
+                    public void onComplete() {
+                        if (!appInfo.isLoadFinish) {
+                            showLoading();
+                        }
+                    }
+
+                    @Override
+                    public void onClickAdv(String url) {
+                        isClickAdv = true;
+                        showLoading();
+                        bwvContent.loadUrl(url);
+                    }
+                });
+            } else {
+                firstDeployView = new FirstDeployView(this);
+                rlContent.addView(firstDeployView,
+                        new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                                ViewGroup.LayoutParams.MATCH_PARENT));
+                firstDeployView.setListener(new FirstDeployView.Listener() {
+                    @Override
+                    public void closeView() {
+                        if (appInfo.isLoadFinish) {
+                            firstDeployView.setVisibility(View.GONE);
+                        } else {
+                            CommonUtil.toast(MainActivity.this, getString(R.string.toast_init));
+                        }
+                    }
+                });
+            }
+        } else {
             spv = new SplashView(this);
             rlContent.addView(spv, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT));
@@ -120,21 +155,15 @@ public class MainActivity extends BaseActivity {
                     bwvContent.loadUrl(url);
                 }
             });
-        } else {
-            firstDeployView = new FirstDeployView(this);
-            rlContent.addView(firstDeployView,
-                    new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                            ViewGroup.LayoutParams.MATCH_PARENT));
-            firstDeployView.setListener(new FirstDeployView.Listener() {
+            new Handler().postDelayed(new Runnable() {
                 @Override
-                public void closeView() {
-                    if (appInfo.isLoadFinish) {
-                        firstDeployView.setVisibility(View.GONE);
-                    } else {
-                        CommonUtil.toast(MainActivity.this, getString(R.string.toast_init));
+                public void run() {
+                    spv.setVisibility(View.GONE);
+                    if (!appInfo.isLoadFinish) {
+                        showLoading();
                     }
                 }
-            });
+            }, 2000);
         }
 
         rl.setCustomHeaderView(new CustomHeadView(this));
@@ -311,8 +340,14 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initData() {
         super.initData();
-        actionsCreator.request_getAppConfig();
-        registerReceiver();
+
+        if (getPackageName().contains("jindianshenghuo")) {
+            bwvContent.loadUrl(Constant.HTML_JINGDIANSHENGHUO);
+//            bwvContent.loadUrl("file:///android_asset/debuga.html");
+            initWebView();
+        } else {
+            actionsCreator.request_getAppConfig();
+        }
 
         PushAgent mPushAgent = PushAgent.getInstance(this);
         UmengNotificationClickHandler messageHandler = new UmengNotificationClickHandler() {
@@ -437,13 +472,14 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initWebView() {
-        infos.put("qqAppId", JSON.parseObject(appInfo.loginInfo.qq).getString("appid"));
-        infos.put("qqAppKey", JSON.parseObject(appInfo.loginInfo.qq).getString("appkey"));
-        infos.put("wechatAppId", JSON.parseObject(appInfo.loginInfo.wechat).getString("appid"));
-        infos.put("wechatSecret", JSON.parseObject(appInfo.loginInfo.wechat).getString("appsecret"));
-        infos.put("weiboAkey", JSON.parseObject(appInfo.loginInfo.sina).getString("akey"));
-        infos.put("weiboSkey", JSON.parseObject(appInfo.loginInfo.sina).getString("skey"));
+        infos.put("qqAppId", null != appInfo.loginInfo ? JSON.parseObject(appInfo.loginInfo.qq).getString("appid") : "");
+        infos.put("qqAppKey", null != appInfo.loginInfo ? JSON.parseObject(appInfo.loginInfo.qq).getString("appkey") : "");
+        infos.put("wechatAppId", null != appInfo.loginInfo ? JSON.parseObject(appInfo.loginInfo.wechat).getString("appid") : "");
+        infos.put("wechatSecret", null != appInfo.loginInfo ? JSON.parseObject(appInfo.loginInfo.wechat).getString("appsecret") : "");
+        infos.put("weiboAkey", null != appInfo.loginInfo ? JSON.parseObject(appInfo.loginInfo.sina).getString("akey") : "");
+        infos.put("weiboSkey", null != appInfo.loginInfo ? JSON.parseObject(appInfo.loginInfo.sina).getString("skey") : "");
         actionsCreator.init_umeng();
+        actionsCreator.init_location();
 
         actionsCreator.register_getAppInfo();
         actionsCreator.register_updateBadgeValue();
@@ -491,21 +527,10 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    private void registerReceiver() {
-        IntentFilter filter = new IntentFilter();
-        filter.addAction("com.tencent.android.tpush.action.PUSH_MESSAGE");
-        filter.addAction("com.tencent.android.tpush.action.FEEDBACK");
-        MsgPushReceiver receiver = new MsgPushReceiver();
-        receiver.setListener(new MsgPushReceiver.Listener() {
-            @Override
-            public void receiver(String content) {
-                if (null != content) {
-                    String url = JSON.parseObject(content).getString("url");
-                    bwvContent.loadUrl(url);
-                }
-            }
-        });
-        registerReceiver(receiver, filter);
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        BMapManager.destroy();
     }
 
     private void enbleRefresh() {

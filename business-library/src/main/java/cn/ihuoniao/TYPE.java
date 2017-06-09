@@ -19,6 +19,7 @@ public class TYPE {
     public static final String TYPE_SHOW_NAVIGATIONBAR = "type_show_navigationbar";
     public static final String TYPE_HIDE_NAVIGATIONBAR = "type_hide_navigationbar";
     public static final String TYPE_SHOW_QRCODE_SCAN = "type_show_qrcode_scan";
+    public static final String TYPE_INIT_LOCATION = "type_init_location";
 
     public static final String TYPE_QQ_LOGIN = "type_qq_login";
     public static final String TYPE_WECHAT_LOGIN = "type_wechat_login";

@@ -15,14 +15,18 @@ import cn.ihuoniao.Event;
 import cn.ihuoniao.TYPE;
 import cn.ihuoniao.event.AppEvent;
 import cn.ihuoniao.function.command.BadgeCommand;
+import cn.ihuoniao.function.command.InitLocationCommand;
 import cn.ihuoniao.function.command.LogoutCommand;
 import cn.ihuoniao.function.command.PushUnRegisterCommand;
-import cn.ihuoniao.function.receiver.PushUnRegisterReceiver;
+import cn.ihuoniao.function.command.StopLocationCommand;
+import cn.ihuoniao.function.command.UploadLocationCommand;
 import cn.ihuoniao.function.command.XGRegisterCommand;
 import cn.ihuoniao.function.command.XGUnRegisterCommand;
 import cn.ihuoniao.function.listener.ResultListener;
 import cn.ihuoniao.function.receiver.BadgeReceiver;
+import cn.ihuoniao.function.receiver.LocationReceiver;
 import cn.ihuoniao.function.receiver.LogoutReceiver;
+import cn.ihuoniao.function.receiver.PushUnRegisterReceiver;
 import cn.ihuoniao.function.receiver.XGReceiver;
 import cn.ihuoniao.function.util.CommonUtil;
 import cn.ihuoniao.function.util.Logger;
@@ -86,6 +90,9 @@ public class AppStore extends Store<cn.ihuoniao.actions.AppAction> {
                 break;
             case TYPE.TYPE_SET_DRAG_REFRESH:
                 setDragRefresh((ResultListener<String>)infos.get("listener"));
+                break;
+            case TYPE.TYPE_INIT_LOCATION:
+                initLocation();
                 break;
             default:
                 break;
@@ -159,8 +166,9 @@ public class AppStore extends Store<cn.ihuoniao.actions.AppAction> {
                 params.put("activity", activity);
                 params.put("umAuthListener", umAuthListener);
                 params.put("passport", SPUtils.getString("pushPassport"));
-                control.doCommand(new LogoutCommand(new LogoutReceiver()), params, null);
                 control.doCommand(new PushUnRegisterCommand(new PushUnRegisterReceiver()), params, null);
+                control.doCommand(new LogoutCommand(new LogoutReceiver()), params, null);
+                stopLocation();
             }
         });
     }
@@ -173,6 +181,7 @@ public class AppStore extends Store<cn.ihuoniao.actions.AppAction> {
                 Map<String, Object> params = new HashMap<>();
                 params.put("activity", activity);
                 params.put("passport", loginFinishInfo.passport);
+                uploadLocation(loginFinishInfo.passport);
                 control.doCommand(new XGRegisterCommand(new XGReceiver()), params, new ResultListener() {
                     @Override
                     public void onResult(Object result) {
@@ -279,7 +288,7 @@ public class AppStore extends Store<cn.ihuoniao.actions.AppAction> {
         });
     }
 
-    public void showQRCodeScan(final ResultListener<CallBackFunction> listener) {
+    private void showQRCodeScan(final ResultListener<CallBackFunction> listener) {
         webView.registerHandler(Event.SHOW_QRCODE_SCAN, new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
@@ -290,7 +299,7 @@ public class AppStore extends Store<cn.ihuoniao.actions.AppAction> {
         });
     }
 
-    public void setDragRefresh(final ResultListener<String> listener) {
+    private void setDragRefresh(final ResultListener<String> listener) {
         webView.registerHandler(Event.SET_DRAG_REFRESH, new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
@@ -298,5 +307,20 @@ public class AppStore extends Store<cn.ihuoniao.actions.AppAction> {
                 listener.onResult(status);
             }
         });
+    }
+
+    private void initLocation() {
+        Map<String, Object> params = new HashMap<>();
+        params.put("activity", activity);
+        control.doCommand(new InitLocationCommand(LocationReceiver.getDefault()), params, null);
+    }
+
+    private void uploadLocation(String passport) {
+        SPUtils.pushString("locationPassport", passport);
+        control.doCommand(new UploadLocationCommand(LocationReceiver.getDefault()), null ,null);
+    }
+
+    private void stopLocation() {
+        control.doCommand(new StopLocationCommand(LocationReceiver.getDefault()), null, null);
     }
 }

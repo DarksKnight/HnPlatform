@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
+import com.baidu.mapapi.BMapManager;
+import com.baidu.mapapi.SDKInitializer;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.tencent.android.tpush.XGIOperateCallback;
 import com.tencent.android.tpush.XGPushConfig;
@@ -31,6 +33,8 @@ public class HnApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        SDKInitializer.initialize(this);
+        BMapManager.init();
         SPUtils.setApplication(this);
         QbSdk.PreInitCallback cb = new QbSdk.PreInitCallback() {
 

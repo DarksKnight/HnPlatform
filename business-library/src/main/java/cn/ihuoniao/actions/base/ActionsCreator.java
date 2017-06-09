@@ -107,4 +107,8 @@ public enum  ActionsCreator {
     public void register_appLoginFinish() {
         Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP, new AppAction(TYPE.TYPE_APP_LOGIN_FINISH, params));
     }
+
+    public void init_location() {
+        Dispatcher.INSTANCE.dispatch(TYPE.REGISTER_STORE_APP, new AppAction(TYPE.TYPE_INIT_LOCATION, params));
+    }
 }
