@@ -17,6 +17,7 @@ import com.andview.refreshview.XRefreshView;
 import com.andview.refreshview.listener.OnBottomLoadMoreTime;
 import com.andview.refreshview.listener.OnTopRefreshTime;
 import com.baidu.mapapi.BMapManager;
+import com.jindianshenghuo.platform.R;
 import com.squareup.otto.Subscribe;
 import com.tencent.android.tpush.XGPushClickedResult;
 import com.tencent.android.tpush.XGPushManager;
@@ -35,7 +36,6 @@ import com.umeng.socialize.UMShareAPI;
 import java.util.Map;
 
 import cn.ihuoniao.Constant;
-import cn.ihuoniao.R;
 import cn.ihuoniao.TYPE;
 import cn.ihuoniao.base.BaseActivity;
 import cn.ihuoniao.event.AppEvent;
@@ -195,6 +195,7 @@ public class MainActivity extends BaseActivity {
         bwvContent.getSettings().setDisplayZoomControls(true);
         bwvContent.getSettings().setDomStorageEnabled(true);
         bwvContent.getSettings().setAllowFileAccess(true);
+        bwvContent.getSettings().setSavePassword(false);
 
         bwvContent.setWebViewClient(new BridgeWebViewClient(bwvContent) {
 
@@ -273,19 +274,25 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public boolean onJsPrompt(WebView webView, String s, String s1, String s2, JsPromptResult result) {
-                CommonUtil.showAlertDialog(MainActivity.this, 2, s2, result);
+                if (!s2.contains("网络连接错误")) {
+                    CommonUtil.showAlertDialog(MainActivity.this, 2, s2, result);
+                }
                 return true;
             }
 
             @Override
             public boolean onJsConfirm(WebView webView, String s, String s1, final JsResult result) {
-                CommonUtil.showAlertDialog(MainActivity.this, 1, s1, result);
+                if (!s1.contains("网络连接错误")) {
+                    CommonUtil.showAlertDialog(MainActivity.this, 1, s1, result);
+                }
                 return true;
             }
 
             @Override
             public boolean onJsAlert(WebView view, String url, String message, final JsResult result) {
-                CommonUtil.showAlertDialog(MainActivity.this, 0, message, result);
+                if (!message.contains("网络连接错误")) {
+                    CommonUtil.showAlertDialog(MainActivity.this, 0, message, result);
+                }
                 return true;
             }
 
@@ -368,19 +375,37 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && bwvContent.canGoBack()) {
-            if (!bwvContent.getUrl().equals(appInfo.platformUrl + "/")) {
-                showLoading();
-                bwvContent.goBack();
+            if (getPackageName().contains("jindianshenghuo")) {
+                if (!bwvContent.getUrl().contains("http://www.jindianshenghuo.com/?service=waimai&do=courier&template=index")) {
+                    showLoading();
+                    bwvContent.goBack();
+                } else {
+                    CommonUtil.exit(this);
+                }
             } else {
-                CommonUtil.exit(this);
+                if (!bwvContent.getUrl().equals(appInfo.platformUrl + "/")) {
+                    showLoading();
+                    bwvContent.goBack();
+                } else {
+                    CommonUtil.exit(this);
+                }
             }
             return true;
         } else if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (!bwvContent.getUrl().equals(appInfo.platformUrl + "/")) {
-                showLoading();
-                bwvContent.loadUrl(appInfo.platformUrl);
+            if (getPackageName().contains("jindianshenghuo")) {
+                if (!bwvContent.getUrl().contains("http://www.jindianshenghuo.com/?service=waimai&do=courier&template=index")) {
+                    showLoading();
+                    bwvContent.loadUrl("http://www.jindianshenghuo.com/?service=waimai&do=courier&template=index");
+                } else {
+                    CommonUtil.exit(this);
+                }
             } else {
-                CommonUtil.exit(this);
+                if (!bwvContent.getUrl().equals(appInfo.platformUrl + "/")) {
+                    showLoading();
+                    bwvContent.loadUrl(appInfo.platformUrl);
+                } else {
+                    CommonUtil.exit(this);
+                }
             }
             return true;
         }

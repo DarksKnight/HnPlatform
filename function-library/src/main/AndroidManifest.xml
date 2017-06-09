@@ -291,7 +291,7 @@
                 <!--android:name="UMENG_MESSAGE_SECRET"-->
                 <!--android:value="512646f4127e80521c4b6f7e7411dcdf" />-->
 
-        <!-- 简单生活友盟参数 -->
+        <!-- 金点生活友盟参数 -->
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="592e572eb27b0a46920008a6" />

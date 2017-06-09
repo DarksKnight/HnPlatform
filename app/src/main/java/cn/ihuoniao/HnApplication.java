@@ -14,6 +14,7 @@ import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.smtt.sdk.QbSdk;
 import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.PushAgent;
+import com.umeng.socialize.Config;
 
 import cn.ihuoniao.function.constant.FunctionConstants;
 import cn.ihuoniao.function.util.CommonUtil;
@@ -33,6 +34,7 @@ public class HnApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        Config.DEBUG = true;
         SDKInitializer.initialize(this);
         BMapManager.init();
         SPUtils.setApplication(this);
@@ -52,17 +54,21 @@ public class HnApplication extends Application {
         QbSdk.initX5Environment(getApplicationContext(), cb);
         Fresco.initialize(this);
 
-        if (CommonUtil.isFirstRun(this, Constant.HN_SETTING)) {
-            appInfoModel.isFirstRun = true;
-            registerPush();
-        } else {
-            appInfoModel.isFirstRun = false;
-            if (SPUtils.getBoolean(FunctionConstants.PUSH_STATUS)) {
-                appInfoModel.pushStatus = "on";
+        if (!getPackageName().contains("jindianshenghuo")) {
+            if (CommonUtil.isFirstRun(this, Constant.HN_SETTING)) {
+                appInfoModel.isFirstRun = true;
                 registerPush();
             } else {
-                appInfoModel.pushStatus = "off";
+                appInfoModel.isFirstRun = false;
+                if (SPUtils.getBoolean(FunctionConstants.PUSH_STATUS)) {
+                    appInfoModel.pushStatus = "on";
+                    registerPush();
+                } else {
+                    appInfoModel.pushStatus = "off";
+                }
             }
+        } else {
+            registerPush();
         }
 
         CrashReport.initCrashReport(getApplicationContext(), "2d9143b360", false);

@@ -5,11 +5,11 @@ import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.jindianshenghuo.platform.R;
 import com.ldoublem.loadingviewlib.view.LVCircularRing;
 
 import java.util.Map;
 
-import cn.ihuoniao.R;
 import cn.ihuoniao.actions.base.ActionsCreator;
 import cn.ihuoniao.dispatcher.Dispatcher;
 import cn.ihuoniao.function.command.base.Control;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cn.ihuoniao">
+    package="com.jindianshenghuo.platform">
 
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -102,13 +102,13 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
     <application
-        android:name=".HnApplication"
+        android:name="cn.ihuoniao.HnApplication"
         android:allowBackup="true"
         android:label="@string/app_name"
         android:icon="@mipmap/icon"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.MainActivity"
+            android:name="cn.ihuoniao.activity.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden"
@@ -120,7 +120,7 @@
         </activity>
 
         <activity
-            android:name=".platform.wxapi.WXEntryActivity"
+            android:name="${applicationId}.platform.wxapi.WXEntryActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:launchMode="singleTop"
@@ -128,7 +128,7 @@
             android:theme="@android:style/Theme.Holo.Wallpaper.NoTitleBar"/>
 
         <activity
-            android:name=".platform.WBShareActivity"
+            android:name="${applicationId}.platform.WBShareActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
             <intent-filter>
