@@ -22,6 +22,8 @@ public class PushUnRegisterReceiver extends Receiver {
 
             }
         });
-        listener.onResult(null);
+        if (null != listener) {
+            listener.onResult(null);
+        }
     }
 }
