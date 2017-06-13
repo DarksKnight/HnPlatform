@@ -2,8 +2,9 @@ package cn.ihuoniao.function.receiver;
 
 import android.app.Activity;
 
-import com.umeng.message.PushAgent;
-import com.umeng.message.UTrack;
+import com.alibaba.sdk.android.push.CloudPushService;
+import com.alibaba.sdk.android.push.CommonCallback;
+import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory;
 
 import cn.ihuoniao.function.command.base.Receiver;
 import cn.ihuoniao.function.listener.ResultListener;
@@ -15,10 +16,33 @@ import cn.ihuoniao.function.listener.ResultListener;
 public class PushUnRegisterReceiver extends Receiver {
 
     public void unregister(Activity activity, String passport, ResultListener listener) {
-        PushAgent mPushAgent = PushAgent.getInstance(activity);
-        mPushAgent.removeAlias(passport, "userID", new UTrack.ICallBack() {
+//        PushAgent mPushAgent = PushAgent.getInstance(activity);
+//        mPushAgent.removeAlias(passport, "userID", new UTrack.ICallBack() {
+//            @Override
+//            public void onMessage(boolean b, String s) {
+//
+//            }
+//        });
+        CloudPushService pushService = PushServiceFactory.getCloudPushService();
+        pushService.removeAlias(passport, new CommonCallback() {
             @Override
-            public void onMessage(boolean b, String s) {
+            public void onSuccess(String s) {
+
+            }
+
+            @Override
+            public void onFailed(String s, String s1) {
+
+            }
+        });
+        pushService.unbindAccount(new CommonCallback() {
+            @Override
+            public void onSuccess(String s) {
+
+            }
+
+            @Override
+            public void onFailed(String s, String s1) {
 
             }
         });

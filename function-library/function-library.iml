@@ -101,6 +101,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="Xg_sdk_v3.0_20170301_1733" level="project" />
     <orderEntry type="library" exported="" name="gson-2.8.0" level="project" />
+    <orderEntry type="library" exported="" name="alisdk-ut-5" level="project" />
     <orderEntry type="library" exported="" name="SocialSDK_Sina_Full" level="project" />
     <orderEntry type="library" exported="" name="alipaySdk-20170309" level="project" />
     <orderEntry type="library" exported="" name="umeng_social_shareview" level="project" />
@@ -109,6 +110,7 @@
     <orderEntry type="library" exported="" name="com.umeng.message_3.1.1a" level="project" />
     <orderEntry type="library" exported="" name="alicloud-android-sdk-httpdns-1.0.7" level="project" />
     <orderEntry type="library" exported="" name="umeng_social_shareboard" level="project" />
+    <orderEntry type="library" exported="" name="alicloud-android-push-sdk-3.0.8" level="project" />
     <orderEntry type="library" exported="" name="otto-1.3.8" level="project" />
     <orderEntry type="library" exported="" name="BaiduLBS_Android" level="project" />
     <orderEntry type="library" exported="" name="wup-1.0.0.E-SNAPSHOT" level="project" />
@@ -124,6 +126,7 @@
     <orderEntry type="library" exported="" name="jg_filter_sdk_1.1" level="project" />
     <orderEntry type="library" exported="" name="SocialSDK_QQ_Full" level="project" />
     <orderEntry type="library" exported="" name="SocialSDK_WeiXin_Full" level="project" />
+    <orderEntry type="library" exported="" name="utdid4all-1.1.5.3_proguard" level="project" />
     <orderEntry type="library" exported="" name="wechat-sdk-android-with-mta-1.0.2" level="project" />
     <orderEntry type="library" exported="" name="ft_http-1.0.0" level="project" />
     <orderEntry type="module" module-name="uikit-library" exported="" />

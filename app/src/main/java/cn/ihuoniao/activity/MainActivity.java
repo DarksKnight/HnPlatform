@@ -1,6 +1,5 @@
 package cn.ihuoniao.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -13,6 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.sdk.android.push.CloudPushService;
+import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory;
 import com.andview.refreshview.XRefreshView;
 import com.andview.refreshview.listener.OnBottomLoadMoreTime;
 import com.andview.refreshview.listener.OnTopRefreshTime;
@@ -28,12 +29,7 @@ import com.tencent.smtt.sdk.ValueCallback;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
-import com.umeng.message.PushAgent;
-import com.umeng.message.UmengNotificationClickHandler;
-import com.umeng.message.entity.UMessage;
 import com.umeng.socialize.UMShareAPI;
-
-import java.util.Map;
 
 import cn.ihuoniao.Constant;
 import cn.ihuoniao.TYPE;
@@ -59,7 +55,7 @@ import cn.ihuoniao.store.WeiboStore;
 
 public class MainActivity extends BaseActivity {
 
-    private BridgeWebView bwvContent = null;
+    public static BridgeWebView bwvContent = null;
 
     private RelativeLayout rlContent = null;
 
@@ -69,7 +65,7 @@ public class MainActivity extends BaseActivity {
 
     private boolean isClickAdv = false;
 
-    private boolean isLoadMainWeb = true;
+    public static boolean isLoadMainWeb = true;
 
     private ValueCallback<Uri> mUploadMessage = null;
 
@@ -356,20 +352,23 @@ public class MainActivity extends BaseActivity {
             actionsCreator.request_getAppConfig();
         }
 
-        PushAgent mPushAgent = PushAgent.getInstance(this);
-        UmengNotificationClickHandler messageHandler = new UmengNotificationClickHandler() {
+//        PushAgent mPushAgent = PushAgent.getInstance(this);
+//        UmengNotificationClickHandler messageHandler = new UmengNotificationClickHandler() {
+//
+//            @Override
+//            public void launchApp(Context context, UMessage uMessage) {
+//                super.launchApp(context, uMessage);
+//                Map<String, String> info = uMessage.extra;
+//                String url = info.get("url");
+//                Logger.i("content url : " + url);
+//                isLoadMainWeb = false;
+//                bwvContent.loadUrl(url);
+//            }
+//        };
+//        mPushAgent.setNotificationClickHandler(messageHandler);
 
-            @Override
-            public void launchApp(Context context, UMessage uMessage) {
-                super.launchApp(context, uMessage);
-                Map<String, String> info = uMessage.extra;
-                String url = info.get("url");
-                Logger.i("content url : " + url);
-                isLoadMainWeb = false;
-                bwvContent.loadUrl(url);
-            }
-        };
-        mPushAgent.setNotificationClickHandler(messageHandler);
+        CloudPushService pushService = PushServiceFactory.getCloudPushService();
+
     }
 
     @Override

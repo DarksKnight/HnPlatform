@@ -4,16 +4,18 @@ import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
+import com.alibaba.sdk.android.push.CloudPushService;
+import com.alibaba.sdk.android.push.CommonCallback;
+import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory;
 import com.baidu.mapapi.BMapManager;
 import com.baidu.mapapi.SDKInitializer;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.jindianshenghuo.platform.R;
 import com.tencent.android.tpush.XGIOperateCallback;
 import com.tencent.android.tpush.XGPushConfig;
 import com.tencent.android.tpush.XGPushManager;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.smtt.sdk.QbSdk;
-import com.umeng.message.IUmengRegisterCallback;
-import com.umeng.message.PushAgent;
 import com.umeng.socialize.Config;
 
 import cn.ihuoniao.function.constant.FunctionConstants;
@@ -81,22 +83,23 @@ public class HnApplication extends Application {
     }
 
     private void registerPush() {
-        PushAgent mPushAgent = PushAgent.getInstance(this);
-        mPushAgent.setDebugMode(false);
-        mPushAgent.register(new IUmengRegisterCallback() {
-            @Override
-            public void onSuccess(String s) {
-                Logger.i("umeng push success : " + s);
-                appInfoModel.pushToken = s;
-                SPUtils.pushBoolean(FunctionConstants.PUSH_STATUS, true);
-            }
-
-            @Override
-            public void onFailure(String s, String s1) {
-                Logger.i("umeng push error : " + s + " : " + s1);
-                SPUtils.pushBoolean(FunctionConstants.PUSH_STATUS, false);
-            }
-        });
+        initCloudChannel(this);
+//        PushAgent mPushAgent = PushAgent.getInstance(this);
+//        mPushAgent.setDebugMode(false);
+//        mPushAgent.register(new IUmengRegisterCallback() {
+//            @Override
+//            public void onSuccess(String s) {
+//                Logger.i("umeng push success : " + s);
+//                appInfoModel.pushToken = s;
+//                SPUtils.pushBoolean(FunctionConstants.PUSH_STATUS, true);
+//            }
+//
+//            @Override
+//            public void onFailure(String s, String s1) {
+//                Logger.i("umeng push error : " + s + " : " + s1);
+//                SPUtils.pushBoolean(FunctionConstants.PUSH_STATUS, false);
+//            }
+//        });
         XGPushManager.registerPush(getApplicationContext(), new XGIOperateCallback() {
             @Override
             public void onSuccess(Object o, int i) {
@@ -110,6 +113,23 @@ public class HnApplication extends Application {
                 Logger.i("xgpush failed : " + s + " code : " + i);
                 appInfoModel.pushStatus = "off";
                 SPUtils.pushBoolean(FunctionConstants.PUSH_STATUS, false);
+            }
+        });
+    }
+
+    private void initCloudChannel(Context applicationContext) {
+        PushServiceFactory.init(applicationContext);
+        final CloudPushService pushService = PushServiceFactory.getCloudPushService();
+        pushService.setNotificationSoundFilePath("android.resource://" + applicationContext.getPackageName() + "/" + R.raw.notice);
+        pushService.register(applicationContext, new CommonCallback() {
+            @Override
+            public void onSuccess(String response) {
+                Logger.i("aliyun push success : " + response + " deviceid : " + pushService.getDeviceId());
+            }
+
+            @Override
+            public void onFailed(String errorCode, String errorMessage) {
+                Logger.i("aliyun push fail code : " + errorCode + " errorMessage : " + errorMessage);
             }
         });
     }
