@@ -10,7 +10,6 @@ import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory;
 import com.baidu.mapapi.BMapManager;
 import com.baidu.mapapi.SDKInitializer;
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.jindianshenghuo.platform.R;
 import com.tencent.android.tpush.XGIOperateCallback;
 import com.tencent.android.tpush.XGPushConfig;
 import com.tencent.android.tpush.XGPushManager;
@@ -120,7 +119,8 @@ public class HnApplication extends Application {
     private void initCloudChannel(Context applicationContext) {
         PushServiceFactory.init(applicationContext);
         final CloudPushService pushService = PushServiceFactory.getCloudPushService();
-        pushService.setNotificationSoundFilePath("android.resource://" + applicationContext.getPackageName() + "/" + R.raw.notice);
+
+//        pushService.setNotificationSoundFilePath("android.resource://" + applicationContext.getPackageName() + "/" + R.raw.notice);
         pushService.register(applicationContext, new CommonCallback() {
             @Override
             public void onSuccess(String response) {

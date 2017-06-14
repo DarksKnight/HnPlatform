@@ -433,8 +433,8 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="wlE5K8PVIZxy91Nok675AnUL60eYeRK0" />
 
-        <meta-data android:name="com.alibaba.app.appkey" android:value="24322823"/> <!-- 请填写你自己的- appKey -->
-        <meta-data android:name="com.alibaba.app.appsecret" android:value="cb188b432447319bc69de204eac6336a"/> <!-- 请填写你自己的appSecret -->
+        <meta-data android:name="com.alibaba.app.appkey" android:value="24324205"/> <!-- 请填写你自己的- appKey -->
+        <meta-data android:name="com.alibaba.app.appsecret" android:value="4064fa0305bc4daf6652bd39622e4009"/> <!-- 请填写你自己的appSecret -->
 
     </application>
 

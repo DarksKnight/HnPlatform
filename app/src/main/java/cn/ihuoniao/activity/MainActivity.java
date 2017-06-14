@@ -12,8 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.sdk.android.push.CloudPushService;
-import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory;
 import com.andview.refreshview.XRefreshView;
 import com.andview.refreshview.listener.OnBottomLoadMoreTime;
 import com.andview.refreshview.listener.OnTopRefreshTime;
@@ -366,8 +364,6 @@ public class MainActivity extends BaseActivity {
 //            }
 //        };
 //        mPushAgent.setNotificationClickHandler(messageHandler);
-
-        CloudPushService pushService = PushServiceFactory.getCloudPushService();
 
     }
 
