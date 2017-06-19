@@ -1,10 +1,13 @@
 package cn.ihuoniao.receiver;
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Vibrator;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.sdk.android.push.MessageReceiver;
+import com.alibaba.sdk.android.push.notification.CPushMessage;
 
 import java.util.Map;
 
@@ -22,6 +25,8 @@ public class HnMsgReceiver extends MessageReceiver {
         Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         long[] pattern = {1000, 1000, 1000, 1000, 1000, 1000};
         vibrator.vibrate(pattern, -1);
+        NotificationManager localNotificationManager = (NotificationManager)context.getSystemService("notification");
+        localNotificationManager.notify();
 //        String music = map.get("music");
 //        int soundId = 0;
 //        if (null != music && music.trim().length() > 0) {
@@ -32,6 +37,17 @@ public class HnMsgReceiver extends MessageReceiver {
 //        String path = "android.resource://" + context.getPackageName() + "/" + soundId;
 //        CloudPushService pushService = PushServiceFactory.getCloudPushService();
 //        pushService.setNotificationSoundFilePath(path);
+    }
+
+    @Override
+    protected void onMessage(Context context, CPushMessage cPushMessage) {
+        super.onMessage(context, cPushMessage);
+        String content = cPushMessage.getContent();
+        JSONObject jsonObject = JSON.parseObject(content);
+        String music = jsonObject.getString()
+        Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+        long[] pattern = {1000, 1000, 1000, 1000, 1000, 1000};
+        vibrator.vibrate(pattern, -1);
     }
 
     @Override
